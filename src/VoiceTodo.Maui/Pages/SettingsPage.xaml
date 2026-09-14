@@ -77,6 +77,29 @@
                                 HorizontalTextAlignment="End" VerticalOptions="Center"
                                 SelectedIndexChanged="OnPreAlertChanged" />
                     </Grid>
+                    <BoxView Style="{StaticResource RowSeparator}" />
+                    <Grid ColumnDefinitions="44,*,Auto" Padding="16,12">
+                        <Label Text="🌙" FontSize="20" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                        <Label x:Name="QuietHoursLabel" Grid.Column="1" Style="{StaticResource BodyText}" VerticalOptions="Center" />
+                        <Switch x:Name="QuietSwitch" Grid.Column="2" VerticalOptions="Center" Toggled="OnQuietToggled" />
+                    </Grid>
+                    <BoxView Style="{StaticResource RowSeparator}" />
+                    <Grid ColumnDefinitions="44,*,Auto" Padding="16,12">
+                        <Label Text="⏰" FontSize="20" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                        <Label x:Name="QuietFromLabel" Grid.Column="1" Style="{StaticResource BodyText}" VerticalOptions="Center" />
+                        <TimePicker x:Name="QuietFromPicker" Grid.Column="2"
+                                    BackgroundColor="Transparent" TextColor="{StaticResource TextPrimary}"
+                                    VerticalOptions="Center" PropertyChanged="OnQuietTimeChanged" />
+                    </Grid>
+                    <BoxView Style="{StaticResource RowSeparator}" />
+                    <Grid ColumnDefinitions="44,*,Auto" Padding="16,12">
+                        <Label Text="⏰" FontSize="20" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                        <Label x:Name="QuietToLabel" Grid.Column="1" Style="{StaticResource BodyText}" VerticalOptions="Center" />
+                        <TimePicker x:Name="QuietToPicker" Grid.Column="2"
+                                    BackgroundColor="Transparent" TextColor="{StaticResource TextPrimary}"
+                                    VerticalOptions="Center" PropertyChanged="OnQuietTimeChanged" />
+                    </Grid>
+                    <Label x:Name="QuietHintLabel" Style="{StaticResource AuxText}" Padding="16,8" />
                 </VerticalStackLayout>
             </Border>
 

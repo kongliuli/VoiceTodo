@@ -1,6 +1,7 @@
 using System.Collections.Concurrent;
 using Plugin.LocalNotification;
 using Plugin.LocalNotification.EventArgs;
+using VoiceTodo.Core;
 using VoiceTodo.Core.Abstractions;
 using VoiceTodo.Core.Models;
 using VoiceTodo.Core.Resources;
@@ -25,6 +26,7 @@ public class LocalNotificationScheduler : INotificationScheduler
     private const string NagPayloadPrefix = "nag|";
 
     private readonly ITodoRepository _repo;
+    private readonly IQuietHours _quiet;
 
     // 待办提醒的标题队列：调度提醒时压入，收到“完成”动作时取出回查并标记完成。
     // 受限说明：Plugin.LocalNotification 13.0.0 的 NotificationActionTapped 事件参数
@@ -32,11 +34,11 @@ public class LocalNotificationScheduler : INotificationScheduler
     // 因此只能按调度顺序做尽力而为的匹配（见 OnNotificationActionTapped 注释）。
     private readonly ConcurrentQueue<string> _pendingTodoTitles = new();
 
-    // 由 DI 注入 ITodoRepository：MauiProgram 中 LocalNotificationScheduler 以
-    // AddSingleton<INotificationScheduler, LocalNotificationScheduler> 注册，DI 会自动解析该依赖，不破坏既有结构。
-    public LocalNotificationScheduler(ITodoRepository repo)
+    // 由 DI 注入 ITodoRepository 与 IQuietHours：MauiProgram 中注册，DI 自动解析依赖，不破坏既有结构。
+    public LocalNotificationScheduler(ITodoRepository repo, IQuietHours quiet)
     {
         _repo = repo;
+        _quiet = quiet;
         WireActionTappedHandler();
         WireReceivedHandler();
     }
@@ -184,9 +186,12 @@ public class LocalNotificationScheduler : INotificationScheduler
         var sound = item.Reminder.CustomSoundPath;
         var ids = new List<int>();
 
-        // 1) 主提醒：ID = todoId*10，时刻 = DueAt；重复任务按 RecurrenceRule 循环
+        // C7 静默时段顺延：主提醒落到静默窗口内 → 顺延到窗口结束（不丢弃）
+        var mainTime = QuietHoursPolicy.Defer(due, _quiet);
+
+        // 1) 主提醒：ID = todoId*10，时刻 = 顺延后 DueAt；重复任务按 RecurrenceRule 循环
         var mainId = NotificationId.Main(item.Id);
-        await ShowRequestAsync(mainId, CoreStrings.Reminder, item.Title, due, sound, null,
+        await ShowRequestAsync(mainId, CoreStrings.Reminder, item.Title, mainTime, sound, null,
             repeat: RecurrenceOf(item));
         ids.Add(mainId);
 
@@ -194,30 +199,35 @@ public class LocalNotificationScheduler : INotificationScheduler
         if (!string.IsNullOrWhiteSpace(item.Title))
             _pendingTodoTitles.Enqueue(item.Title);
 
-        // 2) 预提醒：ID = todoId*10+1，时刻 = DueAt - PreAlert（时刻仍需在未来才排）
-        if (item.Reminder.PreAlert is { } pre && due - pre > DateTimeOffset.Now)
+        // 2) 预提醒：ID = todoId*10+1，时刻 = DueAt - PreAlert，同样经静默顺延；仍未来才排
+        if (item.Reminder.PreAlert is { } pre)
         {
-            try
+            var preTime = QuietHoursPolicy.Defer(due - pre, _quiet);
+            if (preTime > DateTimeOffset.Now)
             {
-                await ShowRequestAsync(NotificationId.PreAlert(item.Id), CoreStrings.Reminder, item.Title,
-                    due - pre, sound, null);
-                ids.Add(NotificationId.PreAlert(item.Id));
-            }
-            catch
-            {
-                // 预提醒失败不影响主提醒。
+                try
+                {
+                    await ShowRequestAsync(NotificationId.PreAlert(item.Id), CoreStrings.Reminder, item.Title,
+                        preTime, sound, null);
+                    ids.Add(NotificationId.PreAlert(item.Id));
+                }
+                catch
+                {
+                    // 预提醒失败不影响主提醒。
+                }
             }
         }
 
-        // 3) Nag：ID = todoId*10+2，DueAt 后按 NagPolicy.Interval 循环；
+        // 3) Nag：ID = todoId*10+2，主提醒顺延后按 NagPolicy.Interval 循环；
         //    截止 = min(次数上限×间隔, 总时长上限)；重排同 ID 覆盖，停止 = 取消该 ID。
         if (item.Reminder.NagMode)
         {
             try
             {
-                var deadline = NagPolicy.Deadline(due);
+                var firstFire = QuietHoursPolicy.Defer(NagPolicy.FirstFire(due), _quiet); // 与主提醒一致顺延
+                var deadline = NagPolicy.Deadline(mainTime); // 截止随主提醒顺延后时刻
                 await ShowRequestAsync(NotificationId.Nag(item.Id), CoreStrings.Reminder, item.Title,
-                    NagPolicy.FirstFire(due), sound, deadline, NagPolicy.Interval);
+                    firstFire, sound, deadline, NagPolicy.Interval);
                 ids.Add(NotificationId.Nag(item.Id));
             }
             catch

@@ -291,4 +291,17 @@ public static class AppResources
 
     // C5 清单页新建入口
     public static string AddTodo => Get(nameof(AddTodo));
+
+    // C3 历史留痕「再次开始」
+    public static string SessionRestart => Get(nameof(SessionRestart));
+    public static string SessionNoStructure => Get(nameof(SessionNoStructure));
+
+    // C6 日历「当日添加」
+    public static string CalAddTodo => Get(nameof(CalAddTodo));
+
+    // C7 静默时段（免打扰）
+    public static string QuietHours => Get(nameof(QuietHours));
+    public static string QuietFrom => Get(nameof(QuietFrom));
+    public static string QuietTo => Get(nameof(QuietTo));
+    public static string QuietHint => Get(nameof(QuietHint));
 }

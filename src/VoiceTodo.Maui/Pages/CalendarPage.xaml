@@ -11,8 +11,8 @@
         <!-- 标题 -->
         <Label x:Name="TitleLabel" Style="{StaticResource PageTitle}" />
 
-        <!-- 头部：上一段 / 区间 / 下一段 / 今天 -->
-        <Grid Grid.Row="1" ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="10">
+        <!-- 头部：上一段 / 区间 / 下一段 / 今天 / 当日添加 -->
+        <Grid Grid.Row="1" ColumnDefinitions="Auto,*,Auto,Auto,Auto" ColumnSpacing="10">
             <Border Style="{StaticResource IconCircle}">
                 <Button x:Name="PrevBtn" Text="‹" Style="{StaticResource GhostButton}"
                         Padding="0" FontSize="20" Clicked="OnPrev" />
@@ -26,6 +26,10 @@
             <Border Grid.Column="3" Style="{StaticResource IconCircle}">
                 <Button x:Name="TodayBtn" Clicked="OnToday" Padding="0" FontSize="12"
                         Style="{StaticResource GhostButton}" />
+            </Border>
+            <Border Grid.Column="4" Style="{StaticResource IconCircle}">
+                <Button x:Name="AddBtn" Clicked="OnAddTodo" Padding="0" FontSize="20"
+                        Style="{StaticResource GhostButton}" Text="＋" />
             </Border>
         </Grid>
 

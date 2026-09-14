@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using System.Globalization;
 using VoiceTodo.Core.Abstractions;
 using VoiceTodo.Core.Models;
 using VoiceTodo.Core.Services;
@@ -13,6 +14,7 @@ namespace VoiceTodo.Maui.Pages;
 /// 日期、时间、提醒、重复四行均以页内覆盖层（ShowOverlay/CloseOverlay）交互。
 /// </summary>
 [QueryProperty(nameof(TodoId), "id")]
+[QueryProperty(nameof(QDate), "date")]
 public partial class TaskEditorPage : ContentPage
 {
     private readonly ITodoRepository _repo;
@@ -20,8 +22,12 @@ public partial class TaskEditorPage : ContentPage
     private TodoItem? _item;
     private DateTime? _date;
     private TimeSpan? _time;
+    private bool _createNew; // C6：带 date 参数进入的新建模式（区别于无参错误回退）
 
     public string? TodoId { get; set; }
+
+    /// <summary>C6：日期查询参数（yyyy-MM-dd）；有值即进入新建模式并预填该日。</summary>
+    public string? QDate { get; set; }
 
     public TaskEditorPage()
     {
@@ -50,6 +56,19 @@ public partial class TaskEditorPage : ContentPage
 
         if (!int.TryParse(TodoId, out var id))
         {
+            // C6：无 id 时，若带 date 参数则进入新建模式（预填日期、时间留空）；
+            // 既无 id 也无 date 维持原有「找不到该任务」错误回退，行为不变。
+            if (DateTime.TryParse(QDate, CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
+            {
+                _createNew = true;
+                _item = new TodoItem();
+                _date = date;
+                _time = null; // 时间不凭空造：留空（UI 显示 --:--）
+                TitleEditor.Text = "";
+                NotesEditor.Text = "";
+                RefreshValues();
+                return;
+            }
             await AlertAndBack();
             return;
         }
@@ -124,7 +143,7 @@ public partial class TaskEditorPage : ContentPage
 
     private async void OnMoreClicked(object? sender, EventArgs e)
     {
-        if (_item is null) return;
+        if (_item is null || _createNew) return; // 未保存的新建项无删除入口
         var action = await DisplayActionSheet(null, AppResources.Cancel, AppResources.DeleteTask);
         if (action != AppResources.DeleteTask) return;
         var confirm = await DisplayAlert(AppResources.DeleteTask, "确定要删除该任务吗？删除后不可恢复。",
@@ -294,11 +313,13 @@ public partial class TaskEditorPage : ContentPage
 
         // A1：仅当待办带提醒时间时，编辑保存前确保通知权限（被拒不阻断保存，也绝不谎报）
         if (_item.DueAt is not null) await NotificationPermission.EnsureAsync();
-        // DEV-02：编辑保存 = 取消旧提醒 + 重排（统一变更入口，不再直接调仓库）
+        // DEV-02：统一变更入口。新建（带 date 进入）→ CreateAsync；编辑现有 → RescheduleAsync。
         TodoChangeResult result;
         try
         {
-            result = await _dispatcher.RescheduleAsync(_item);
+            result = _createNew
+                ? await _dispatcher.CreateAsync(_item)
+                : await _dispatcher.RescheduleAsync(_item);
         }
         catch (StorageException ex)
         {

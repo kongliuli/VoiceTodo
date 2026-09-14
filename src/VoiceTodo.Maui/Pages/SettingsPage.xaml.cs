@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.ComponentModel;
 using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.ApplicationModel.DataTransfer;
 using Microsoft.Maui.Storage;
@@ -82,6 +83,12 @@ public partial class SettingsPage : ContentPage
         CustomSoundEntry.Text = AppSettings.CustomSoundPath;
         AudioCoexistSwitch.IsToggled = AppSettings.AudioCoexist;
 
+        // C7 静默时段（免打扰）：从 Preferences 还原，并联动时间选择器可用性
+        QuietSwitch.IsToggled = Preferences.Default.Get("quiet.enabled", false);
+        QuietFromPicker.Time = TimeSpan.FromTicks(Preferences.Default.Get("quiet.start", new TimeSpan(22, 0, 0).Ticks));
+        QuietToPicker.Time = TimeSpan.FromTicks(Preferences.Default.Get("quiet.end", new TimeSpan(7, 0, 0).Ticks));
+        QuietFromPicker.IsEnabled = QuietToPicker.IsEnabled = QuietSwitch.IsToggled;
+
         _initializing = false;
     }
 
@@ -163,6 +170,12 @@ public partial class SettingsPage : ContentPage
         SnoozeLabel.Text = AppResources.DefaultSnooze;
         PreAlertLabel.Text = "预提醒";
         CustomSoundEntry.Placeholder = AppResources.OptNone;
+
+        // C7 静默时段（免打扰）
+        QuietHoursLabel.Text = AppResources.QuietHours;
+        QuietFromLabel.Text = AppResources.QuietFrom;
+        QuietToLabel.Text = AppResources.QuietTo;
+        QuietHintLabel.Text = AppResources.QuietHint;
 
         AnimLabel.Text = AppResources.InterfaceAnim;
         SceneLabel.Text = AppResources.HandsFreeScene;
@@ -283,6 +296,27 @@ public partial class SettingsPage : ContentPage
     {
         if (_initializing) return;
         AppSettings.CustomSoundPath = string.IsNullOrWhiteSpace(e.NewTextValue) ? null : e.NewTextValue.Trim();
+    }
+
+    // ══════════ C7 静默时段（免打扰） ══════════
+
+    /// <summary>开关：持久化到 Preferences（不用 AppSettings 静态字段，避免重启丢失），并联动时间选择器可用性。</summary>
+    private void OnQuietToggled(object sender, ToggledEventArgs e)
+    {
+        if (_initializing) return;
+        Preferences.Default.Set("quiet.enabled", e.Value);
+        QuietFromPicker.IsEnabled = QuietToPicker.IsEnabled = e.Value;
+    }
+
+    /// <summary>起/止时间变更：仅 Time 属性变化时持久化到 Preferences；初始化阶段由 _initializing 守卫跳过。</summary>
+    private void OnQuietTimeChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (_initializing || e.PropertyName != nameof(TimePicker.Time)) return;
+        if (QuietFromPicker.Time is { } from && QuietToPicker.Time is { } to)
+        {
+            Preferences.Default.Set("quiet.start", from.Ticks);
+            Preferences.Default.Set("quiet.end", to.Ticks);
+        }
     }
 
     // ══════════ C2 数据导出 / 导入 ══════════

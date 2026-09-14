@@ -284,4 +284,17 @@
 
   <!-- C5 清单页新建入口 -->
   <data name="AddTodo" xml:space="preserve"><value>Add to-do</value></data>
+
+  <!-- C3 历史留痕「再次开始」 -->
+  <data name="SessionRestart" xml:space="preserve"><value>Restart</value></data>
+  <data name="SessionNoStructure" xml:space="preserve"><value>This session has no interval structure to restart.</value></data>
+
+  <!-- C6 日历「当日添加」 -->
+  <data name="CalAddTodo" xml:space="preserve"><value>New to-do</value></data>
+
+  <!-- C7 静默时段（免打扰） -->
+  <data name="QuietHours" xml:space="preserve"><value>Quiet hours (Do Not Disturb)</value></data>
+  <data name="QuietFrom" xml:space="preserve"><value>From</value></data>
+  <data name="QuietTo" xml:space="preserve"><value>To</value></data>
+  <data name="QuietHint" xml:space="preserve"><value>Reminders due during quiet hours are deferred to the end of the period.</value></data>
 </root>

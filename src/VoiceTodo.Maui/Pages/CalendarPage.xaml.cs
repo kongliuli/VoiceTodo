@@ -258,6 +258,14 @@ public partial class CalendarPage : ContentPage
         Rebuild();
     }
 
+    /// <summary>C6：当日添加——跳新建并预填当前选中日期（无时间，时间留空）。</summary>
+    private async void OnAddTodo(object? sender, EventArgs e)
+    {
+        if (Shell.Current is null) return;
+        var dateParam = _selectedDay.Date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+        await Shell.Current.GoToAsync($"TaskEditorPage?date={dateParam}");
+    }
+
     private void OnMonthView(object sender, EventArgs e)
     {
         _weekView = false;
@@ -383,8 +391,26 @@ public partial class CalendarPage : ContentPage
         };
         Grid.SetColumn(title, 1);
         grid.Children.Add(title);
-        Grid.SetColumn(badge, 2);
-        grid.Children.Add(badge);
+
+        // 右侧：完成/取消徽标 + 「再次开始」按钮（复用既有 Card/GhostButton 风格）
+        var right = new HorizontalStackLayout
+        {
+            Spacing = 8,
+            VerticalOptions = LayoutOptions.Center
+        };
+        right.Children.Add(badge);
+        var restartBtn = new Button
+        {
+            Text = AppResources.SessionRestart,
+            Style = (Style)resources["GhostButton"],
+            FontSize = 12,
+            Padding = new Thickness(8, 2),
+            VerticalOptions = LayoutOptions.Center
+        };
+        restartBtn.Clicked += async (_, _) => await RestartSessionAsync(s);
+        right.Children.Add(restartBtn);
+        Grid.SetColumn(right, 2);
+        grid.Children.Add(right);
 
         var row = new Border
         {
@@ -397,6 +423,42 @@ public partial class CalendarPage : ContentPage
         tap.Tapped += async (_, _) => await RenameSessionAsync(s);
         row.GestureRecognizers.Add(tap);
         return row;
+    }
+
+    /// <summary>
+    /// 历史留痕「再次开始」：用该 session 的结构快照（Phases + 轮次）重建 TimerItem，
+    /// 经既有 TimerLauncher 通路直接开跑（TimerPage.OnAppearing 消费 PendingStart 并自动开始）。
+    /// 快照为空/无法重建时给出可见提示，绝不静默无反应（cancelled 记录同样可再次开始）。
+    /// </summary>
+    private async Task RestartSessionAsync(TimerSession s)
+    {
+        if (s.Phases is not { Count: > 0 })
+        {
+            // 结构快照缺失：如实告知，不静默
+            await UserAlerts.ShowAsync(AppResources.SessionRestart, AppResources.SessionNoStructure);
+            return;
+        }
+
+        // 复用既有语义：TimerItem 用 Phases 重建执行段，Duration 取各阶段时长×轮次之和。
+        // 无 Plan 时 TimerPage.ConsumePendingStart 直接 Flatten(Phases)，保持原间歇结构。
+        var item = new TimerItem
+        {
+            Title = s.Title,
+            Duration = s.Phases.Aggregate(TimeSpan.Zero, (sum, p) => sum + TimeSpan.FromTicks(p.Duration.Ticks * Math.Max(1, p.Rounds))),
+            TriggerAt = DateTimeOffset.Now,
+            Phases = s.Phases.Select(p => new IntervalPhase
+            {
+                Kind = p.Kind,
+                Duration = p.Duration,
+                Rounds = Math.Max(1, p.Rounds)
+            }).ToList(),
+            Plan = null,
+            Reminder = new()
+        };
+
+        TimerLauncher.RequestStart(item, autoStart: true);
+        if (Shell.Current is null) return;
+        await Shell.Current.GoToAsync("//TimerPage");
     }
 
     /// <summary>点记录行改名（D2：记录可后改）。</summary>

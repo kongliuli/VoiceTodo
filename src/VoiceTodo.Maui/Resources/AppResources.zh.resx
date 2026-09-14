@@ -284,4 +284,17 @@
 
   <!-- C5 清单页新建入口 -->
   <data name="AddTodo" xml:space="preserve"><value>添加待办</value></data>
+
+  <!-- C3 历史留痕「再次开始」 -->
+  <data name="SessionRestart" xml:space="preserve"><value>再次开始</value></data>
+  <data name="SessionNoStructure" xml:space="preserve"><value>该记录没有可重建的间歇结构，无法再次开始。</value></data>
+
+  <!-- C6 日历「当日添加」 -->
+  <data name="CalAddTodo" xml:space="preserve"><value>新建待办</value></data>
+
+  <!-- C7 静默时段（免打扰） -->
+  <data name="QuietHours" xml:space="preserve"><value>静默时段（免打扰）</value></data>
+  <data name="QuietFrom" xml:space="preserve"><value>开始</value></data>
+  <data name="QuietTo" xml:space="preserve"><value>结束</value></data>
+  <data name="QuietHint" xml:space="preserve"><value>静默时段内到期的提醒，将顺延到时段结束后再响，不会丢弃。</value></data>
 </root>

@@ -53,6 +53,8 @@ public static class MauiProgram
             WindowsNotificationScheduler>()
 #endif
         ;
+        // C7 静默时段（免打扰）：读 Preferences 的配置抽象，注入调度器用于提醒顺延
+        builder.Services.AddSingleton<IQuietHours, QuietHoursSettings>();
         // DEV-03 真实录音：按平台注册麦克风采集实现（DemoMicrophoneCapture 保留但不再默认注入）
         builder.Services.AddSingleton<IMicrophoneCapture,
 #if ANDROID
