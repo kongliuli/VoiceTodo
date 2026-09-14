@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata" type="xs:string" />
+          <xsd:element name="assembly" type="xs:string" />
+          <xsd:element name="data" type="xs:string" />
+          <xsd:element name="resheader" type="xs:string" />
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+
+  <data name="AppName" xml:space="preserve"><value>VoiceTodo</value></data>
+  <data name="UnknownCommand" xml:space="preserve"><value>Sorry, I didn't understand that.</value></data>
+  <data name="CreatedTodo" xml:space="preserve"><value>Created task: {0}</value></data>
+  <data name="CreatedTimer" xml:space="preserve"><value>Created timer: {0} for {1}</value></data>
+  <data name="Listening" xml:space="preserve"><value>Listening...</value></data>
+  <data name="Reminder" xml:space="preserve"><value>Reminder</value></data>
+  <data name="NagModeOn" xml:space="preserve"><value>Nag mode on</value></data>
+  <data name="Work" xml:space="preserve"><value>Work</value></data>
+  <data name="Rest" xml:space="preserve"><value>Rest</value></data>
+  <data name="Start" xml:space="preserve"><value>Start</value></data>
+  <data name="Stop" xml:space="preserve"><value>Stop</value></data>
+  <data name="Confirm" xml:space="preserve"><value>Confirm</value></data>
+  <data name="Snooze" xml:space="preserve"><value>Snooze</value></data>
+  <data name="Dismiss" xml:space="preserve"><value>Dismiss</value></data>
+  <data name="TimerDone" xml:space="preserve"><value>Timer finished</value></data>
+  <data name="CompletedTodo" xml:space="preserve"><value>Done: {0}</value></data>
+  <data name="DeletedTodo" xml:space="preserve"><value>Deleted: {0}</value></data>
+  <data name="NotFound" xml:space="preserve"><value>Couldn't find that item.</value></data>
+  <data name="NoPending" xml:space="preserve"><value>Nothing pending right now.</value></data>
+  <data name="QueryResult" xml:space="preserve"><value>You have: {0}</value></data>
+
+  <!-- DEV-04 plan -->
+  <data name="PlanStartedFormat" xml:space="preserve"><value>Started: {0}, total {1}</value></data>
+  <data name="PlanMissingAskFormat" xml:space="preserve"><value>Still need: {0}</value></data>
+  <data name="SlotAction" xml:space="preserve"><value>exercise name</value></data>
+  <data name="SlotRounds" xml:space="preserve"><value>rounds</value></data>
+  <data name="SlotWork" xml:space="preserve"><value>work duration per round</value></data>
+  <data name="SlotRest" xml:space="preserve"><value>rest duration</value></data>
+  <data name="SlotCountHint" xml:space="preserve"><value>Count-based training isn't supported yet — say how long each round lasts, arranged by rounds.</value></data>
+</root>

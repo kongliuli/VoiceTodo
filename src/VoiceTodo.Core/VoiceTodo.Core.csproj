@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>VoiceTodo.Core</RootNamespace>
+    <AssemblyName>VoiceTodo.Core</AssemblyName>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!-- 资源文件 CoreStrings.resx（中性/英文）与 CoreStrings.zh.resx（zh 卫星）由 SDK 默认包含，
+       并自动按文化生成卫星程序集，无需显式 EmbeddedResource。 -->
+
+</Project>

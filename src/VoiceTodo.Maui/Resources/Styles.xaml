@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- ══════ VoiceTodo 设计母版 V1 · 浅色 · 蓝主色（docs/design/maui/design-direction-v1.md） ══════
+         背景 #F7F8FA · 表面 #FFFFFF · 主文字 #182230 · 次文字 #586575 · 边线 #E3E7EE
+         主操作 #315BE8 · 选中背景 #EDF2FF · 计时琥珀 #9B5E10 + 浅琥珀底
+         卡片圆角 8 · 外边距 20 · 间距 8/12/16/24 · 触控目标 ≥48×48 -->
+
+    <!-- 兼容旧键名 → 新令牌值（旧页面引用无需改动） -->
+    <Color x:Key="Bg">#F7F8FA</Color>
+    <Color x:Key="Surface">#FFFFFF</Color>
+    <Color x:Key="SurfaceAlt">#EFF2F7</Color>
+    <Color x:Key="BorderColor">#E3E7EE</Color>
+
+    <Color x:Key="OrangeStart">#315BE8</Color> <!-- 旧主按钮橙 → 主蓝 -->
+    <Color x:Key="OrangeEnd">#4C79F0</Color>
+    <Color x:Key="Cyan">#315BE8</Color>        <!-- 旧青色强调 → 主蓝 -->
+    <Color x:Key="Cyan2">#2748B8</Color>
+
+    <Color x:Key="TextPrimary">#182230</Color>
+    <Color x:Key="TextSecondary">#586575</Color>
+    <Color x:Key="TextMuted">#98A2B3</Color>
+
+    <Color x:Key="Success">#12A66B</Color>
+    <Color x:Key="Warning">#DC6803</Color>
+    <Color x:Key="Danger">#D92D20</Color>
+
+    <!-- 新令牌 -->
+    <Color x:Key="Primary">#315BE8</Color>
+    <Color x:Key="PrimaryDim">#2748B8</Color>
+    <Color x:Key="SelectedBg">#EDF2FF</Color>
+    <Color x:Key="TabUnselected">#667085</Color>
+    <Color x:Key="Separator">#EEF1F5</Color>
+    <Color x:Key="Amber">#9B5E10</Color>
+    <Color x:Key="AmberBright">#C67A1C</Color>
+    <Color x:Key="AmberBg">#FBF3E3</Color>
+    <Color x:Key="TrackGray">#E7EAEF</Color>
+
+    <!-- 渐变刷 -->
+    <LinearGradientBrush x:Key="GradientOrange" StartPoint="0,0" EndPoint="0,1">
+        <GradientStop Color="{StaticResource OrangeStart}" Offset="0.0" />
+        <GradientStop Color="{StaticResource OrangeEnd}" Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="GradientCyan" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="{StaticResource Primary}" Offset="0.0" />
+        <GradientStop Color="{StaticResource PrimaryDim}" Offset="1.0" />
+    </LinearGradientBrush>
+
+    <!-- 页面基调 -->
+    <Style TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="{StaticResource Bg}" />
+    </Style>
+
+    <!-- 页面大标题 30sp（今天/清单/计时） -->
+    <Style TargetType="Label" x:Key="PageTitle">
+        <Setter Property="FontSize" Value="30" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+    </Style>
+
+    <!-- 分组/区块标题 16sp 粗体 -->
+    <Style TargetType="Label" x:Key="SectionHeader">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+    </Style>
+
+    <!-- 正文 16sp -->
+    <Style TargetType="Label" x:Key="BodyText">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+    </Style>
+
+    <!-- 辅助文字 13sp -->
+    <Style TargetType="Label" x:Key="AuxText">
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="TextColor" Value="{StaticResource TextSecondary}" />
+    </Style>
+
+    <!-- 兼容旧键：主标题 / 二级 / 说明 -->
+    <Style TargetType="Label" x:Key="Headline">
+        <Setter Property="FontSize" Value="30" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+    </Style>
+    <Style TargetType="Label" x:Key="SecondaryText">
+        <Setter Property="TextColor" Value="{StaticResource TextSecondary}" />
+    </Style>
+    <Style TargetType="Label" x:Key="MutedText">
+        <Setter Property="TextColor" Value="{StaticResource TextMuted}" />
+    </Style>
+    <Style TargetType="Label" x:Key="ValueText">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="TextColor" Value="{StaticResource TextSecondary}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <!-- 列表行标题（可换行） -->
+    <Style TargetType="Label" x:Key="RowTitle">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="LineBreakMode" Value="WordWrap" />
+    </Style>
+    <Style TargetType="Label" x:Key="RowSub" BasedOn="{StaticResource AuxText}" />
+
+    <!-- 卡片容器：白底圆角 8 + 轻投影 -->
+    <Style TargetType="Border" x:Key="Card">
+        <Setter Property="BackgroundColor" Value="{StaticResource Surface}" />
+        <Setter Property="Stroke" Value="{StaticResource BorderColor}" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 8" />
+        <Setter Property="Padding" Value="16" />
+    </Style>
+
+    <!-- 无边框卡片（列表分组容器） -->
+    <Style TargetType="Border" x:Key="CardFlat" BasedOn="{StaticResource Card}">
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <!-- 行分隔线 -->
+    <Style TargetType="BoxView" x:Key="RowSeparator">
+        <Setter Property="Color" Value="{StaticResource Separator}" />
+        <Setter Property="HeightRequest" Value="1" />
+        <Setter Property="Margin" Value="16,0" />
+    </Style>
+
+    <!-- 主操作按钮容器（蓝，56dp 高语音条 / 44dp 普通主按钮共用圆角 12） -->
+    <Style TargetType="Border" x:Key="PrimaryBtnWrap">
+        <Setter Property="Background" Value="{StaticResource GradientOrange}" />
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 12" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <!-- 次级实底容器（浅灰） -->
+    <Style TargetType="Border" x:Key="SecondaryBtnWrap">
+        <Setter Property="BackgroundColor" Value="{StaticResource Surface}" />
+        <Setter Property="Stroke" Value="{StaticResource BorderColor}" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 12" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <!-- 圆形图标按钮容器（44×44，触控达标） -->
+    <Style TargetType="Border" x:Key="IconCircle">
+        <Setter Property="BackgroundColor" Value="{StaticResource Surface}" />
+        <Setter Property="Stroke" Value="{StaticResource BorderColor}" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 22" />
+        <Setter Property="WidthRequest" Value="44" />
+        <Setter Property="HeightRequest" Value="44" />
+        <Setter Property="Padding" Value="0" />
+    </Style>
+
+    <!-- 按钮：透明幽灵（配合容器使用） -->
+    <Style TargetType="Button" x:Key="GhostButton">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{StaticResource TextPrimary}" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="Padding" Value="10,8" />
+    </Style>
+
+    <!-- 分段控件轨道（倒计时 | 间歇训练） -->
+    <Style TargetType="Border" x:Key="SegmentedTrack">
+        <Setter Property="BackgroundColor" Value="{StaticResource SurfaceAlt}" />
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 10" />
+        <Setter Property="Padding" Value="3" />
+    </Style>
+    <Style TargetType="Button" x:Key="SegmentButton">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{StaticResource TextSecondary}" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Padding" Value="0,9" />
+    </Style>
+
+    <!-- 筛选胶囊（清单页 待安排/今天/未来/已完成） -->
+    <Style TargetType="Border" x:Key="FilterChip">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 16" />
+        <Setter Property="Padding" Value="14,7" />
+    </Style>
+
+    <!-- 兼容旧键：预设 chip -->
+    <Style TargetType="Border" x:Key="Chip" BasedOn="{StaticResource FilterChip}">
+        <Setter Property="BackgroundColor" Value="{StaticResource Surface}" />
+        <Setter Property="Stroke" Value="{StaticResource BorderColor}" />
+        <Setter Property="StrokeThickness" Value="1" />
+    </Style>
+    <Style TargetType="Button" x:Key="ChipButton">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="{StaticResource TextSecondary}" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <!-- 计数徽标（待安排 N） -->
+    <Style TargetType="Border" x:Key="BadgePill">
+        <Setter Property="BackgroundColor" Value="{StaticResource SelectedBg}" />
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 12" />
+        <Setter Property="Padding" Value="8,2" />
+    </Style>
+
+    <!-- 完成圆圈（24 视觉，48 触控由外层按钮保证） -->
+    <Style TargetType="Button" x:Key="CheckCircle">
+        <Setter Property="WidthRequest" Value="26" />
+        <Setter Property="HeightRequest" Value="26" />
+        <Setter Property="CornerRadius" Value="13" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="BorderColor" Value="{StaticResource TextMuted}" />
+        <Setter Property="BorderWidth" Value="1.5" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <!-- 默认按钮兜底：主蓝实心 -->
+    <Style TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="14,11" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+</ResourceDictionary>

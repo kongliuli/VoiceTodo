@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data" type="xs:string" />
+          <xsd:element name="resheader" type="xs:string" />
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+
+  <data name="AppTitle" xml:space="preserve"><value>VoiceTodo</value></data>
+  <data name="MainTitle" xml:space="preserve"><value>Voice To-Do</value></data>
+  <data name="TimerTitle" xml:space="preserve"><value>Timers</value></data>
+  <data name="SettingsTitle" xml:space="preserve"><value>Settings</value></data>
+  <data name="Listen" xml:space="preserve"><value>🎤 Listen</value></data>
+  <data name="Listening" xml:space="preserve"><value>Listening...</value></data>
+  <data name="LatestCommand" xml:space="preserve"><value>Latest command:</value></data>
+  <data name="Todos" xml:space="preserve"><value>Todos</value></data>
+  <data name="Timers" xml:space="preserve"><value>Timers</value></data>
+  <data name="Language" xml:space="preserve"><value>Language</value></data>
+  <data name="UseChinese" xml:space="preserve"><value>中文</value></data>
+  <data name="UseEnglish" xml:space="preserve"><value>English</value></data>
+  <data name="NagMode" xml:space="preserve"><value>Nag mode (repeat until confirmed)</value></data>
+  <data name="TtsVoice" xml:space="preserve"><value>TTS voice</value></data>
+  <data name="Save" xml:space="preserve"><value>Save</value></data>
+  <data name="Back" xml:space="preserve"><value>Back</value></data>
+  <data name="StartTimer" xml:space="preserve"><value>Start</value></data>
+  <data name="StopTimer" xml:space="preserve"><value>Stop</value></data>
+  <data name="PresetTabata" xml:space="preserve"><value>Tabata 20/10×8</value></data>
+  <data name="PresetHiit" xml:space="preserve"><value>HIIT 30/15×8</value></data>
+  <data name="PresetCircuit" xml:space="preserve"><value>Circuit 45/15×6</value></data>
+  <data name="Status" xml:space="preserve"><value>Status</value></data>
+  <data name="CalendarTitle" xml:space="preserve"><value>Calendar</value></data>
+  <data name="Today" xml:space="preserve"><value>Today</value></data>
+  <data name="MonthView" xml:space="preserve"><value>Month</value></data>
+  <data name="WeekView" xml:space="preserve"><value>Week</value></data>
+  <data name="DayTodos" xml:space="preserve"><value>Due on this day</value></data>
+  <data name="NoTodosDay" xml:space="preserve"><value>No todos on this day</value></data>
+  <data name="OpenCalendar" xml:space="preserve"><value>🗓 Calendar</value></data>
+  <data name="TodayTitle" xml:space="preserve"><value>Today</value></data>
+  <data name="SummaryFormat" xml:space="preserve"><value>{0} to-dos · {1} running</value></data>
+  <data name="ViewAll" xml:space="preserve"><value>View all</value></data>
+  <data name="CompletedCount" xml:space="preserve"><value>{0} completed</value></data>
+  <data name="SayToRecord" xml:space="preserve"><value>🎙 Say it, save it</value></data>
+  <data name="TypeToAdd" xml:space="preserve"><value>⌨ Type to add</value></data>
+  <data name="TextAddTitle" xml:space="preserve"><value>Add a to-do</value></data>
+  <data name="TextAddPlaceholder" xml:space="preserve"><value>e.g. Gym tomorrow 18:00</value></data>
+  <data name="Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="OK" xml:space="preserve"><value>OK</value></data>
+  <data name="RunningNow" xml:space="preserve"><value>Running</value></data>
+  <data name="SearchAction" xml:space="preserve"><value>Search</value></data>
+  <data name="ListsTitle" xml:space="preserve"><value>Lists</value></data>
+  <data name="SearchTask" xml:space="preserve"><value>Search tasks</value></data>
+  <data name="FilterUnscheduled" xml:space="preserve"><value>Unscheduled</value></data>
+  <data name="FilterToday" xml:space="preserve"><value>Today</value></data>
+  <data name="FilterUpcoming" xml:space="preserve"><value>Upcoming</value></data>
+  <data name="FilterCompleted" xml:space="preserve"><value>Done</value></data>
+  <data name="UnscheduledHint" xml:space="preserve"><value>Jot it down, plan later</value></data>
+  <data name="NoTimeLabel" xml:space="preserve"><value>📅 Unscheduled</value></data>
+  <data name="SearchEmpty" xml:space="preserve"><value>No matching tasks</value></data>
+  <data name="EmptyUnscheduled" xml:space="preserve"><value>Nothing unscheduled</value></data>
+  <data name="EmptyToday" xml:space="preserve"><value>Nothing scheduled today</value></data>
+  <data name="EmptyUpcoming" xml:space="preserve"><value>Nothing upcoming</value></data>
+  <data name="EmptyCompleted" xml:space="preserve"><value>Nothing completed yet</value></data>
+  <data name="TimersTitle" xml:space="preserve"><value>Timers</value></data>
+  <data name="Countdown" xml:space="preserve"><value>Countdown</value></data>
+  <data name="IntervalTraining" xml:space="preserve"><value>Interval</value></data>
+  <data name="InProgress" xml:space="preserve"><value>In progress</value></data>
+  <data name="CommonTimers" xml:space="preserve"><value>Quick timers</value></data>
+  <data name="RecentUsed" xml:space="preserve"><value>Recent</value></data>
+  <data name="NewTimer" xml:space="preserve"><value>＋ New</value></data>
+  <data name="Pause" xml:space="preserve"><value>Pause</value></data>
+  <data name="Resume" xml:space="preserve"><value>Resume</value></data>
+  <data name="Finish" xml:space="preserve"><value>End</value></data>
+  <data name="RoundFormat" xml:space="preserve"><value>Round {0} / {1}</value></data>
+  <data name="NextUp" xml:space="preserve"><value>Up next</value></data>
+  <data name="VoiceHintOn" xml:space="preserve"><value>🔊 Voice cues on</value></data>
+  <data name="QuickMinFormat" xml:space="preserve"><value>{0} min</value></data>
+  <data name="EndConfirmTitle" xml:space="preserve"><value>End timer?</value></data>
+  <data name="EndConfirmText" xml:space="preserve"><value>The timer is still running. End it?</value></data>
+  <data name="NoRunning" xml:space="preserve"><value>No timers running</value></data>
+  <data name="EmptyTimers" xml:space="preserve"><value>No timers yet</value></data>
+  <data name="TotalLabel" xml:space="preserve"><value>Total {0}</value></data>
+  <data name="CalUnscheduled" xml:space="preserve"><value>Unscheduled to-dos</value></data>
+  <data name="CalUnscheduledEmpty" xml:space="preserve"><value>No unscheduled to-dos</value></data>
+  <data name="GroupGeneral" xml:space="preserve"><value>General</value></data>
+  <data name="GroupSoundRemind" xml:space="preserve"><value>Sound &amp; reminders</value></data>
+  <data name="GroupExperience" xml:space="preserve"><value>Experience</value></data>
+  <data name="GroupPrivacy" xml:space="preserve"><value>Permissions &amp; privacy</value></data>
+  <data name="ReminderSound" xml:space="preserve"><value>Reminder sound</value></data>
+  <data name="DefaultSnooze" xml:space="preserve"><value>Default snooze</value></data>
+  <data name="VoiceBroadcast" xml:space="preserve"><value>Voice broadcast</value></data>
+  <data name="AsrModelKey" xml:space="preserve"><value>ASR model</value></data>
+  <data name="InterfaceAnim" xml:space="preserve"><value>Animations</value></data>
+  <data name="HandsFreeScene" xml:space="preserve"><value>Hands-free scene</value></data>
+  <data name="MicLabel" xml:space="preserve"><value>Microphone</value></data>
+  <data name="NotifLabel" xml:space="preserve"><value>Notifications</value></data>
+  <data name="Allowed" xml:space="preserve"><value>Allowed</value></data>
+  <data name="VoiceDataEntry" xml:space="preserve"><value>Speech &amp; data</value></data>
+  <data name="AutoSaveHint" xml:space="preserve"><value>Changes save automatically</value></data>
+  <data name="OptNone" xml:space="preserve"><value>None</value></data>
+  <data name="EditorTitle" xml:space="preserve"><value>Edit Task</value></data>
+  <data name="FieldContent" xml:space="preserve"><value>Task</value></data>
+  <data name="FieldDate" xml:space="preserve"><value>Date</value></data>
+  <data name="FieldTime" xml:space="preserve"><value>Time</value></data>
+  <data name="FieldReminder" xml:space="preserve"><value>Reminder</value></data>
+  <data name="FieldRepeat" xml:space="preserve"><value>Repeat</value></data>
+  <data name="FieldNotes" xml:space="preserve"><value>Notes</value></data>
+  <data name="RepeatNone" xml:space="preserve"><value>No repeat</value></data>
+  <data name="RepeatDaily" xml:space="preserve"><value>Every day</value></data>
+  <data name="RepeatWeekly" xml:space="preserve"><value>Weekly</value></data>
+  <data name="OnTimeRemind" xml:space="preserve"><value>On time</value></data>
+  <data name="Early10" xml:space="preserve"><value>10 min early</value></data>
+  <data name="Early30" xml:space="preserve"><value>30 min early</value></data>
+  <data name="NoDueLabel" xml:space="preserve"><value>No date</value></data>
+  <data name="SaveChanges" xml:space="preserve"><value>Save changes</value></data>
+  <data name="TodayWord" xml:space="preserve"><value>Today</value></data>
+  <data name="TomorrowWord" xml:space="preserve"><value>Tomorrow</value></data>
+  <data name="DeleteTask" xml:space="preserve"><value>Delete task</value></data>
+  <data name="NotesPlaceholder" xml:space="preserve"><value>Notes (optional)</value></data>
+  <data name="VoiceRecordTitle" xml:space="preserve"><value>Voice record</value></data>
+  <data name="ListeningNow" xml:space="preserve"><value>Listening</value></data>
+  <data name="FinishRecord" xml:space="preserve"><value>Finish recording</value></data>
+  <data name="SpeakHint" xml:space="preserve"><value>Tap done when you finish.</value></data>
+  <data name="SwitchToType" xml:space="preserve"><value>⌨ Type instead</value></data>
+  <data name="ConfirmRecordTitle" xml:space="preserve"><value>Confirm</value></data>
+  <data name="YouSaid" xml:space="preserve"><value>You said</value></data>
+  <data name="OrganizedBanner" xml:space="preserve"><value>Organized as a to-do — confirm the time.</value></data>
+  <data name="ItemLabel" xml:space="preserve"><value>Item</value></data>
+  <data name="TapRowHint" xml:space="preserve"><value>Tap any row to edit.</value></data>
+  <data name="ConfirmAdd" xml:space="preserve"><value>Add</value></data>
+  <data name="SayAgain" xml:space="preserve"><value>Say again</value></data>
+  <data name="InputPlaceholder" xml:space="preserve"><value>What to remember?</value></data>
+  <data name="RecognizedHeader" xml:space="preserve"><value>Recognized</value></data>
+  <data name="EditHintText" xml:space="preserve"><value>Tap time or repeat to edit.</value></data>
+  <data name="VoiceFailText" xml:space="preserve"><value>Didn't catch that. Try again.</value></data>
+  <data name="RecognizingText" xml:space="preserve"><value>Recognizing…</value></data>
+  <data name="NewTimerTitle" xml:space="preserve"><value>New Timer</value></data>
+  <data name="TimerNameLabel" xml:space="preserve"><value>Name</value></data>
+  <data name="TemplateHeader" xml:space="preserve"><value>Template</value></data>
+  <data name="TplCustom" xml:space="preserve"><value>Custom</value></data>
+  <data name="WorkLabel" xml:space="preserve"><value>Work</value></data>
+  <data name="RestLabel" xml:space="preserve"><value>Rest</value></data>
+  <data name="RoundsLabel" xml:space="preserve"><value>Rounds</value></data>
+  <data name="PreviewHeader" xml:space="preserve"><value>Preview</value></data>
+  <data name="TotalFmt" xml:space="preserve"><value>Total {0}</value></data>
+  <data name="TtsCueLabel" xml:space="preserve"><value>Voice cues</value></data>
+  <data name="TtsCueSub" xml:space="preserve"><value>Announce start, end and phase changes</value></data>
+  <data name="SaveStartBtn" xml:space="preserve"><value>Save &amp; start</value></data>
+  <data name="SaveOnlyBtn" xml:space="preserve"><value>Save only</value></data>
+  <data name="WorkLegend" xml:space="preserve"><value>Work {0}s</value></data>
+  <data name="RestLegend" xml:space="preserve"><value>Rest {0}s</value></data>
+  <data name="TimerNamePlaceholder" xml:space="preserve"><value>e.g. Morning workout</value></data>
+  <data name="DueRemindTitle" xml:space="preserve"><value>Due reminder</value></data>
+  <data name="TimeArrived" xml:space="preserve"><value>It's time</value></data>
+  <data name="SnoozeHeader" xml:space="preserve"><value>Snooze</value></data>
+  <data name="CustomTimeLink" xml:space="preserve"><value>Custom time</value></data>
+  <data name="MarkDoneBtn" xml:space="preserve"><value>Mark done</value></data>
+  <data name="SnoozeApplyBtn" xml:space="preserve"><value>Snooze for selected</value></data>
+  <data name="OnbHead" xml:space="preserve"><value>Say it now, do it on time</value></data>
+  <data name="OnbSub" xml:space="preserve"><value>One line to capture a to-do or start a timer.</value></data>
+  <data name="OnbQuote" xml:space="preserve"><value>"Turn off the stove in 10 minutes"</value></data>
+  <data name="OnbResult" xml:space="preserve"><value>🔥 Stove · 10 min</value></data>
+  <data name="OnbF1Head" xml:space="preserve"><value>Speak or type, anytime</value></data>
+  <data name="OnbF1Sub" xml:space="preserve"><value>Quickly add to-dos by voice or text.</value></data>
+  <data name="OnbF2Head" xml:space="preserve"><value>Reminders &amp; timers, visible</value></data>
+  <data name="OnbF2Sub" xml:space="preserve"><value>Set reminders or start timers — never miss.</value></data>
+  <data name="OnbFine" xml:space="preserve"><value>Voice asks for mic access; reminders ask for notifications.</value></data>
+  <data name="GetStartedBtn" xml:space="preserve"><value>Get started</value></data>
+  <data name="TextFirstBtn" xml:space="preserve"><value>Start with text</value></data>
+  <data name="OrganizedTimerBanner" xml:space="preserve"><value>Organized as a timer — confirm to start.</value></data>
+  <data name="FieldPlan" xml:space="preserve"><value>Plan</value></data>
+  <data name="RoundsCount" xml:space="preserve"><value>{0} rounds</value></data>
+  <data name="PhaseWorkShort" xml:space="preserve"><value>Work</value></data>
+  <data name="PhaseRestShort" xml:space="preserve"><value>Rest</value></data>
+  <data name="TimerSessions" xml:space="preserve"><value>Timer sessions</value></data>
+  <data name="SessionCompleted" xml:space="preserve"><value>Completed</value></data>
+  <data name="SessionCancelled" xml:space="preserve"><value>Cancelled</value></data>
+  <data name="RenameSessionTitle" xml:space="preserve"><value>Rename session</value></data>
+  <data name="SessionNamePrompt" xml:space="preserve"><value>New name</value></data>
+
+  <!-- DEV-03 mic -->
+  <data name="FinishSentence" xml:space="preserve"><value>Finish sentence</value></data>
+  <data name="DiscardSentence" xml:space="preserve"><value>Discard sentence</value></data>
+  <data name="MicAwaitText" xml:space="preserve"><value>Waiting for microphone access…</value></data>
+  <data name="MicDeniedText" xml:space="preserve"><value>Microphone access is off. Allow it in system settings, then come back.</value></data>
+  <data name="MicOpenSettings" xml:space="preserve"><value>Open settings</value></data>
+  <data name="MicUnavailableText" xml:space="preserve"><value>Microphone is unavailable — it may be busy or disconnected.</value></data>
+  <data name="MicRetry" xml:space="preserve"><value>Try again</value></data>
+  <data name="ErrorDraftPrefix" xml:space="preserve"><value>We heard: {0}</value></data>
+  <!-- DEV-02 remind -->
+  <data name="SavedRemindOn" xml:space="preserve"><value>Saved. Reminder scheduled.</value></data>
+  <data name="SavedRemindOffFormat" xml:space="preserve"><value>Saved, but reminder not scheduled: {0}</value></data>
+
+  <!-- DEV-04 plan -->
+  <data name="EditPlanTitle" xml:space="preserve"><value>Edit plan</value></data>
+  <data name="ActionNameLabel" xml:space="preserve"><value>Exercise</value></data>
+  <data name="PlanActionPlaceholder" xml:space="preserve"><value>e.g. squats</value></data>
+  <data name="RestLastLabel" xml:space="preserve"><value>Rest after last round</value></data>
+  <data name="CountdownWindowLabel" xml:space="preserve"><value>End countdown</value></data>
+  <data name="PlanWindow5" xml:space="preserve"><value>5 s</value></data>
+  <data name="PlanWindow3" xml:space="preserve"><value>3 s</value></data>
+  <data name="PlanWindowOff" xml:space="preserve"><value>Off</value></data>
+  <data name="PhaseAnnounceLabel" xml:space="preserve"><value>Phase announcements</value></data>
+  <data name="PhaseAnnounceSub" xml:space="preserve"><value>Announce each round and rest change</value></data>
+  <data name="PlanFollowUpTitle" xml:space="preserve"><value>Complete your plan</value></data>
+  <data name="PlanMissingFormat" xml:space="preserve"><value>Still need: {0}</value></data>
+  <data name="PlanMissingAction" xml:space="preserve"><value>exercise name</value></data>
+  <data name="PlanMissingRounds" xml:space="preserve"><value>rounds</value></data>
+  <data name="PlanMissingRoundsCap" xml:space="preserve"><value>Rounds</value></data>
+  <data name="PlanMissingWork" xml:space="preserve"><value>work duration per round</value></data>
+  <data name="PlanMissingRest" xml:space="preserve"><value>rest duration</value></data>
+  <data name="PlanCountHint" xml:space="preserve"><value>"N times" is count-based and not supported yet — say how long each round lasts, arranged by rounds.</value></data>
+  <data name="PlanFollowUpHint" xml:space="preserve"><value>Say the missing part again, or fill it in manually.</value></data>
+  <data name="PlanSpeakAgain" xml:space="preserve"><value>Say it again</value></data>
+  <data name="PlanManualEdit" xml:space="preserve"><value>Edit manually</value></data>
+
+  <!-- DEV-05 run -->
+  <data name="TotalLeftFmt" xml:space="preserve"><value>Total left {0}</value></data>
+  <data name="InterruptedRun" xml:space="preserve"><value>Last training was interrupted</value></data>
+  <data name="FixMistakeBtn" xml:space="preserve"><value>Misheard? Stop &amp; edit</value></data>
+  <data name="FixConfirmTitle" xml:space="preserve"><value>Stop and edit?</value></data>
+  <data name="FixConfirmText" xml:space="preserve"><value>Ends the current training and opens the plan editor.</value></data>
+  <data name="SessionInterrupted" xml:space="preserve"><value>Interrupted</value></data>
+  <data name="RoundAnnounceFmt" xml:space="preserve"><value>Round {0}, {1}</value></data>
+  <data name="RestAnnounceFmt" xml:space="preserve"><value>Rest {0} seconds</value></data>
+
+  <!-- 存储异常与留痕失败（可靠性地基） -->
+  <data name="StorageErrorTitle" xml:space="preserve"><value>Storage error</value></data>
+  <data name="StorageErrorMessage" xml:space="preserve"><value>Local data read/write failed. Please retry. ({0})</value></data>
+  <data name="Retry" xml:space="preserve"><value>Retry</value></data>
+  <data name="SessionSaveFailedFormat" xml:space="preserve"><value>Failed to save the session: {0}</value></data>
+
+  <!-- 常驻语音会话 -->
+  <data name="EndSession" xml:space="preserve"><value>End session</value></data>
+
+  <!-- A1 通知权限 -->
+  <data name="Perm_RemindOffNoNotif" xml:space="preserve"><value>Saved, but notification permission is off — the reminder won't fire.</value></data>
+
+  <!-- A2 运行中训练冲突 -->
+  <data name="Conflict_Title" xml:space="preserve"><value>Training in progress</value></data>
+  <data name="Conflict_Text" xml:space="preserve"><value>A training is already running. Replace it with the new one?</value></data>
+  <data name="Conflict_Replace" xml:space="preserve"><value>Replace</value></data>
+  <data name="Conflict_Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Conflict_Kept" xml:space="preserve"><value>Kept the current training; the new one was discarded.</value></data>
+
+  <!-- A4 按任务停止催促 -->
+  <data name="NagStop_Button" xml:space="preserve"><value>Stop nagging</value></data>
+  <data name="NagStop_Done" xml:space="preserve"><value>Nagging stopped for this task.</value></data>
+
+  <!-- C 组功能（feature-builder-b） -->
+  <!-- C1 删除 + 撤销 -->
+  <data name="Undo_DeletedFormat" xml:space="preserve"><value>Deleted '{0}'</value></data>
+  <data name="Undo_Action" xml:space="preserve"><value>Undo</value></data>
+  <data name="Undo_Failed" xml:space="preserve"><value>Restore failed, please retry.</value></data>
+
+  <!-- C2 数据导出 / 导入 / 分享 -->
+  <data name="DataGroup" xml:space="preserve"><value>Data</value></data>
+  <data name="ExportData" xml:space="preserve"><value>Export data (share)</value></data>
+  <data name="ImportData" xml:space="preserve"><value>Import data</value></data>
+  <data name="ExportDoneFormat" xml:space="preserve"><value>Exported {0} to-dos and {1} timers</value></data>
+  <data name="ImportDoneFormat" xml:space="preserve"><value>Imported {0} to-dos and {1} timers</value></data>
+  <data name="ImportFailed" xml:space="preserve"><value>Import failed: {0}</value></data>
+  <data name="ExportFailed" xml:space="preserve"><value>Export failed: {0}</value></data>
+  <data name="ExportLogs" xml:space="preserve"><value>Export diagnostic logs</value></data>
+  <data name="LogsNone" xml:space="preserve"><value>No diagnostic logs to export.</value></data>
+
+  <!-- C4 自定义训练模板 -->
+  <data name="SaveAsTemplate" xml:space="preserve"><value>Save as template</value></data>
+  <data name="TplNamePrompt" xml:space="preserve"><value>Name this template</value></data>
+  <data name="TplSavedFormat" xml:space="preserve"><value>Saved template '{0}'</value></data>
+  <data name="TplDeleteConfirm" xml:space="preserve"><value>Delete template '{0}'?</value></data>
+  <data name="TplLimitReached" xml:space="preserve"><value>Template limit reached (max 8).</value></data>
+  <data name="SaveAsTemplateTitle" xml:space="preserve"><value>Save template</value></data>
+  <data name="TplDeleteTitle" xml:space="preserve"><value>Delete template</value></data>
+
+  <!-- C5 清单页新建入口 -->
+  <data name="AddTodo" xml:space="preserve"><value>Add to-do</value></data>
+</root>

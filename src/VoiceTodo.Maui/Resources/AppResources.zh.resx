@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data" type="xs:string" />
+          <xsd:element name="resheader" type="xs:string" />
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+
+  <data name="AppTitle" xml:space="preserve"><value>语音待办</value></data>
+  <data name="MainTitle" xml:space="preserve"><value>语音待办</value></data>
+  <data name="TimerTitle" xml:space="preserve"><value>定时器</value></data>
+  <data name="SettingsTitle" xml:space="preserve"><value>设置</value></data>
+  <data name="Listen" xml:space="preserve"><value>🎤 聆听</value></data>
+  <data name="Listening" xml:space="preserve"><value>正在聆听...</value></data>
+  <data name="LatestCommand" xml:space="preserve"><value>最近指令：</value></data>
+  <data name="Todos" xml:space="preserve"><value>待办</value></data>
+  <data name="Timers" xml:space="preserve"><value>定时器</value></data>
+  <data name="Language" xml:space="preserve"><value>语言</value></data>
+  <data name="UseChinese" xml:space="preserve"><value>中文</value></data>
+  <data name="UseEnglish" xml:space="preserve"><value>English</value></data>
+  <data name="NagMode" xml:space="preserve"><value>唠叨模式（重复直到确认）</value></data>
+  <data name="TtsVoice" xml:space="preserve"><value>语音播报嗓音</value></data>
+  <data name="Save" xml:space="preserve"><value>保存</value></data>
+  <data name="Back" xml:space="preserve"><value>返回</value></data>
+  <data name="StartTimer" xml:space="preserve"><value>开始</value></data>
+  <data name="StopTimer" xml:space="preserve"><value>停止</value></data>
+  <data name="PresetTabata" xml:space="preserve"><value>Tabata 20/10×8</value></data>
+  <data name="PresetHiit" xml:space="preserve"><value>HIIT 30/15×8</value></data>
+  <data name="PresetCircuit" xml:space="preserve"><value>循环 45/15×6</value></data>
+  <data name="Status" xml:space="preserve"><value>状态</value></data>
+  <data name="CalendarTitle" xml:space="preserve"><value>待办日历</value></data>
+  <data name="Today" xml:space="preserve"><value>今天</value></data>
+  <data name="MonthView" xml:space="preserve"><value>月</value></data>
+  <data name="WeekView" xml:space="preserve"><value>周</value></data>
+  <data name="DayTodos" xml:space="preserve"><value>当日待办</value></data>
+  <data name="NoTodosDay" xml:space="preserve"><value>这一天没有待办</value></data>
+  <data name="OpenCalendar" xml:space="preserve"><value>🗓 日历</value></data>
+  <data name="TodayTitle" xml:space="preserve"><value>今天</value></data>
+  <data name="SummaryFormat" xml:space="preserve"><value>{0} 件待办 · {1} 个计时中</value></data>
+  <data name="ViewAll" xml:space="preserve"><value>查看全部</value></data>
+  <data name="CompletedCount" xml:space="preserve"><value>已完成 {0} 项</value></data>
+  <data name="SayToRecord" xml:space="preserve"><value>🎙 说一句，记下来</value></data>
+  <data name="TypeToAdd" xml:space="preserve"><value>⌨ 打字添加</value></data>
+  <data name="TextAddTitle" xml:space="preserve"><value>添加待办</value></data>
+  <data name="TextAddPlaceholder" xml:space="preserve"><value>例如：明天 18:00 健身</value></data>
+  <data name="Cancel" xml:space="preserve"><value>取消</value></data>
+  <data name="OK" xml:space="preserve"><value>确定</value></data>
+  <data name="RunningNow" xml:space="preserve"><value>正在计时</value></data>
+  <data name="SearchAction" xml:space="preserve"><value>搜索</value></data>
+  <data name="ListsTitle" xml:space="preserve"><value>清单</value></data>
+  <data name="SearchTask" xml:space="preserve"><value>搜索任务</value></data>
+  <data name="FilterUnscheduled" xml:space="preserve"><value>待安排</value></data>
+  <data name="FilterToday" xml:space="preserve"><value>今天</value></data>
+  <data name="FilterUpcoming" xml:space="preserve"><value>未来</value></data>
+  <data name="FilterCompleted" xml:space="preserve"><value>已完成</value></data>
+  <data name="UnscheduledHint" xml:space="preserve"><value>先记下来，稍后安排</value></data>
+  <data name="NoTimeLabel" xml:space="preserve"><value>📅 未安排时间</value></data>
+  <data name="SearchEmpty" xml:space="preserve"><value>没有匹配的任务</value></data>
+  <data name="EmptyUnscheduled" xml:space="preserve"><value>没有待安排的事项</value></data>
+  <data name="EmptyToday" xml:space="preserve"><value>今天没有安排</value></data>
+  <data name="EmptyUpcoming" xml:space="preserve"><value>未来没有安排</value></data>
+  <data name="EmptyCompleted" xml:space="preserve"><value>还没有已完成的任务</value></data>
+  <data name="TimersTitle" xml:space="preserve"><value>计时</value></data>
+  <data name="Countdown" xml:space="preserve"><value>倒计时</value></data>
+  <data name="IntervalTraining" xml:space="preserve"><value>间歇训练</value></data>
+  <data name="InProgress" xml:space="preserve"><value>正在进行</value></data>
+  <data name="CommonTimers" xml:space="preserve"><value>常用计时</value></data>
+  <data name="RecentUsed" xml:space="preserve"><value>最近使用</value></data>
+  <data name="NewTimer" xml:space="preserve"><value>＋ 新建</value></data>
+  <data name="Pause" xml:space="preserve"><value>暂停</value></data>
+  <data name="Resume" xml:space="preserve"><value>继续</value></data>
+  <data name="Finish" xml:space="preserve"><value>结束</value></data>
+  <data name="RoundFormat" xml:space="preserve"><value>第 {0} / {1} 轮</value></data>
+  <data name="NextUp" xml:space="preserve"><value>接下来</value></data>
+  <data name="VoiceHintOn" xml:space="preserve"><value>🔊 语音提示已开启</value></data>
+  <data name="QuickMinFormat" xml:space="preserve"><value>{0} 分钟</value></data>
+  <data name="EndConfirmTitle" xml:space="preserve"><value>结束计时？</value></data>
+  <data name="EndConfirmText" xml:space="preserve"><value>计时尚未结束，确定要结束吗？</value></data>
+  <data name="NoRunning" xml:space="preserve"><value>暂无进行中的计时</value></data>
+  <data name="EmptyTimers" xml:space="preserve"><value>还没有计时记录</value></data>
+  <data name="TotalLabel" xml:space="preserve"><value>共 {0}</value></data>
+  <data name="CalUnscheduled" xml:space="preserve"><value>待安排的待办</value></data>
+  <data name="CalUnscheduledEmpty" xml:space="preserve"><value>没有无日期的待办</value></data>
+  <data name="GroupGeneral" xml:space="preserve"><value>通用</value></data>
+  <data name="GroupSoundRemind" xml:space="preserve"><value>声音与提醒</value></data>
+  <data name="GroupExperience" xml:space="preserve"><value>使用体验</value></data>
+  <data name="GroupPrivacy" xml:space="preserve"><value>权限与隐私</value></data>
+  <data name="ReminderSound" xml:space="preserve"><value>提醒声音</value></data>
+  <data name="DefaultSnooze" xml:space="preserve"><value>默认延后</value></data>
+  <data name="VoiceBroadcast" xml:space="preserve"><value>语音播报</value></data>
+  <data name="AsrModelKey" xml:space="preserve"><value>ASR 模型</value></data>
+  <data name="InterfaceAnim" xml:space="preserve"><value>界面动效</value></data>
+  <data name="HandsFreeScene" xml:space="preserve"><value>免提场景</value></data>
+  <data name="MicLabel" xml:space="preserve"><value>麦克风</value></data>
+  <data name="NotifLabel" xml:space="preserve"><value>通知</value></data>
+  <data name="Allowed" xml:space="preserve"><value>已允许</value></data>
+  <data name="VoiceDataEntry" xml:space="preserve"><value>语音与数据设置</value></data>
+  <data name="AutoSaveHint" xml:space="preserve"><value>更改后自动保存</value></data>
+  <data name="OptNone" xml:space="preserve"><value>无</value></data>
+  <data name="EditorTitle" xml:space="preserve"><value>编辑任务</value></data>
+  <data name="FieldContent" xml:space="preserve"><value>任务内容</value></data>
+  <data name="FieldDate" xml:space="preserve"><value>日期</value></data>
+  <data name="FieldTime" xml:space="preserve"><value>时间</value></data>
+  <data name="FieldReminder" xml:space="preserve"><value>提醒</value></data>
+  <data name="FieldRepeat" xml:space="preserve"><value>重复</value></data>
+  <data name="FieldNotes" xml:space="preserve"><value>备注</value></data>
+  <data name="RepeatNone" xml:space="preserve"><value>不重复</value></data>
+  <data name="RepeatDaily" xml:space="preserve"><value>每天</value></data>
+  <data name="RepeatWeekly" xml:space="preserve"><value>每周</value></data>
+  <data name="OnTimeRemind" xml:space="preserve"><value>准时提醒</value></data>
+  <data name="Early10" xml:space="preserve"><value>提前 10 分钟</value></data>
+  <data name="Early30" xml:space="preserve"><value>提前 30 分钟</value></data>
+  <data name="NoDueLabel" xml:space="preserve"><value>无日期</value></data>
+  <data name="SaveChanges" xml:space="preserve"><value>保存修改</value></data>
+  <data name="TodayWord" xml:space="preserve"><value>今天</value></data>
+  <data name="TomorrowWord" xml:space="preserve"><value>明天</value></data>
+  <data name="DeleteTask" xml:space="preserve"><value>删除任务</value></data>
+  <data name="NotesPlaceholder" xml:space="preserve"><value>填写备注，可选</value></data>
+  <data name="VoiceRecordTitle" xml:space="preserve"><value>语音记录</value></data>
+  <data name="ListeningNow" xml:space="preserve"><value>正在聆听</value></data>
+  <data name="FinishRecord" xml:space="preserve"><value>完成录音</value></data>
+  <data name="SpeakHint" xml:space="preserve"><value>说完后，点击完成。</value></data>
+  <data name="SwitchToType" xml:space="preserve"><value>⌨ 改用打字</value></data>
+  <data name="ConfirmRecordTitle" xml:space="preserve"><value>确认记录</value></data>
+  <data name="YouSaid" xml:space="preserve"><value>你刚才说</value></data>
+  <data name="OrganizedBanner" xml:space="preserve"><value>已整理为待办，请确认时间。</value></data>
+  <data name="ItemLabel" xml:space="preserve"><value>事项</value></data>
+  <data name="TapRowHint" xml:space="preserve"><value>点击任一项即可修改。</value></data>
+  <data name="ConfirmAdd" xml:space="preserve"><value>确认添加</value></data>
+  <data name="SayAgain" xml:space="preserve"><value>重新说</value></data>
+  <data name="InputPlaceholder" xml:space="preserve"><value>想记些什么？</value></data>
+  <data name="RecognizedHeader" xml:space="preserve"><value>已识别</value></data>
+  <data name="EditHintText" xml:space="preserve"><value>时间和重复规则可点击修改。</value></data>
+  <data name="VoiceFailText" xml:space="preserve"><value>未能识别，请再试一次。</value></data>
+  <data name="RecognizingText" xml:space="preserve"><value>正在识别…</value></data>
+  <data name="NewTimerTitle" xml:space="preserve"><value>新建计时</value></data>
+  <data name="TimerNameLabel" xml:space="preserve"><value>名称</value></data>
+  <data name="TemplateHeader" xml:space="preserve"><value>训练模板</value></data>
+  <data name="TplCustom" xml:space="preserve"><value>自定义</value></data>
+  <data name="WorkLabel" xml:space="preserve"><value>工作时长</value></data>
+  <data name="RestLabel" xml:space="preserve"><value>休息时长</value></data>
+  <data name="RoundsLabel" xml:space="preserve"><value>轮数</value></data>
+  <data name="PreviewHeader" xml:space="preserve"><value>训练预览</value></data>
+  <data name="TotalFmt" xml:space="preserve"><value>总时长 {0}</value></data>
+  <data name="TtsCueLabel" xml:space="preserve"><value>语音提示</value></data>
+  <data name="TtsCueSub" xml:space="preserve"><value>开始、结束和阶段切换时播报</value></data>
+  <data name="SaveStartBtn" xml:space="preserve"><value>保存并开始</value></data>
+  <data name="SaveOnlyBtn" xml:space="preserve"><value>仅保存</value></data>
+  <data name="WorkLegend" xml:space="preserve"><value>工作 {0} 秒</value></data>
+  <data name="RestLegend" xml:space="preserve"><value>休息 {0} 秒</value></data>
+  <data name="TimerNamePlaceholder" xml:space="preserve"><value>例如：晨间训练</value></data>
+  <data name="DueRemindTitle" xml:space="preserve"><value>到期提醒</value></data>
+  <data name="TimeArrived" xml:space="preserve"><value>提醒时间已到</value></data>
+  <data name="SnoozeHeader" xml:space="preserve"><value>延后提醒</value></data>
+  <data name="CustomTimeLink" xml:space="preserve"><value>自定义时间</value></data>
+  <data name="MarkDoneBtn" xml:space="preserve"><value>标记完成</value></data>
+  <data name="SnoozeApplyBtn" xml:space="preserve"><value>按所选时间延后</value></data>
+  <data name="OnbHead" xml:space="preserve"><value>想到就说，按时去做</value></data>
+  <data name="OnbSub" xml:space="preserve"><value>用一句话记下待办，或开始一个计时。</value></data>
+  <data name="OnbQuote" xml:space="preserve"><value>“十分钟后提醒我关火”</value></data>
+  <data name="OnbResult" xml:space="preserve"><value>⏱ 关火 · 10 分钟</value></data>
+  <data name="OnbF1Head" xml:space="preserve"><value>说话或打字，随时记录</value></data>
+  <data name="OnbF1Sub" xml:space="preserve"><value>用语音或文字快速添加待办事项。</value></data>
+  <data name="OnbF2Head" xml:space="preserve"><value>提醒与计时，清楚可见</value></data>
+  <data name="OnbF2Sub" xml:space="preserve"><value>设置提醒或开始计时，不再错过。</value></data>
+  <data name="OnbFine" xml:space="preserve"><value>使用语音时会申请麦克风权限，设置提醒时会申请通知权限。</value></data>
+  <data name="GetStartedBtn" xml:space="preserve"><value>开始使用</value></data>
+  <data name="TextFirstBtn" xml:space="preserve"><value>先用文字记录</value></data>
+  <data name="OrganizedTimerBanner" xml:space="preserve"><value>已整理为计时，确认后开始。</value></data>
+  <data name="FieldPlan" xml:space="preserve"><value>计划</value></data>
+  <data name="RoundsCount" xml:space="preserve"><value>{0} 组</value></data>
+  <data name="PhaseWorkShort" xml:space="preserve"><value>运动</value></data>
+  <data name="PhaseRestShort" xml:space="preserve"><value>休息</value></data>
+  <data name="TimerSessions" xml:space="preserve"><value>计时记录</value></data>
+  <data name="SessionCompleted" xml:space="preserve"><value>已完成</value></data>
+  <data name="SessionCancelled" xml:space="preserve"><value>已取消</value></data>
+  <data name="RenameSessionTitle" xml:space="preserve"><value>重命名计时记录</value></data>
+  <data name="SessionNamePrompt" xml:space="preserve"><value>新名称</value></data>
+
+  <!-- DEV-03 mic -->
+  <data name="FinishSentence" xml:space="preserve"><value>完成本句</value></data>
+  <data name="DiscardSentence" xml:space="preserve"><value>取消本句</value></data>
+  <data name="MicAwaitText" xml:space="preserve"><value>正在等待麦克风授权…</value></data>
+  <data name="MicDeniedText" xml:space="preserve"><value>麦克风权限未开启。请到系统设置允许后回来重试。</value></data>
+  <data name="MicOpenSettings" xml:space="preserve"><value>去授权</value></data>
+  <data name="MicUnavailableText" xml:space="preserve"><value>麦克风不可用，可能被其他应用占用或未连接。</value></data>
+  <data name="MicRetry" xml:space="preserve"><value>再试一次</value></data>
+  <data name="ErrorDraftPrefix" xml:space="preserve"><value>已听到：{0}</value></data>
+  <!-- DEV-02 remind -->
+  <data name="SavedRemindOn" xml:space="preserve"><value>已保存，提醒已安排</value></data>
+  <data name="SavedRemindOffFormat" xml:space="preserve"><value>已保存，但提醒未安排：{0}</value></data>
+
+  <!-- DEV-04 plan -->
+  <data name="EditPlanTitle" xml:space="preserve"><value>编辑训练计划</value></data>
+  <data name="ActionNameLabel" xml:space="preserve"><value>动作名称</value></data>
+  <data name="PlanActionPlaceholder" xml:space="preserve"><value>例如：深蹲</value></data>
+  <data name="RestLastLabel" xml:space="preserve"><value>末组休息</value></data>
+  <data name="CountdownWindowLabel" xml:space="preserve"><value>结束前倒数</value></data>
+  <data name="PlanWindow5" xml:space="preserve"><value>5 秒</value></data>
+  <data name="PlanWindow3" xml:space="preserve"><value>3 秒</value></data>
+  <data name="PlanWindowOff" xml:space="preserve"><value>关</value></data>
+  <data name="PhaseAnnounceLabel" xml:space="preserve"><value>阶段播报</value></data>
+  <data name="PhaseAnnounceSub" xml:space="preserve"><value>每组与休息切换时播报</value></data>
+  <data name="PlanFollowUpTitle" xml:space="preserve"><value>补充训练信息</value></data>
+  <data name="PlanMissingFormat" xml:space="preserve"><value>还缺：{0}</value></data>
+  <data name="PlanMissingAction" xml:space="preserve"><value>动作名</value></data>
+  <data name="PlanMissingRounds" xml:space="preserve"><value>组数</value></data>
+  <data name="PlanMissingRoundsCap" xml:space="preserve"><value>组数</value></data>
+  <data name="PlanMissingWork" xml:space="preserve"><value>每组运动时长</value></data>
+  <data name="PlanMissingRest" xml:space="preserve"><value>组间休息时长</value></data>
+  <data name="PlanCountHint" xml:space="preserve"><value>「N 次」是按次计数，暂不支持；请改说每组持续多久，按组安排。</value></data>
+  <data name="PlanFollowUpHint" xml:space="preserve"><value>补说缺少的部分，或手动补齐。</value></data>
+  <data name="PlanSpeakAgain" xml:space="preserve"><value>再补一句</value></data>
+  <data name="PlanManualEdit" xml:space="preserve"><value>手动补齐</value></data>
+
+  <!-- DEV-05 run -->
+  <data name="TotalLeftFmt" xml:space="preserve"><value>全程剩余 {0}</value></data>
+  <data name="InterruptedRun" xml:space="preserve"><value>上次训练中断</value></data>
+  <data name="FixMistakeBtn" xml:space="preserve"><value>识别有误，停止并修改</value></data>
+  <data name="FixConfirmTitle" xml:space="preserve"><value>停止并修改？</value></data>
+  <data name="FixConfirmText" xml:space="preserve"><value>将结束当前训练并打开计划编辑器。</value></data>
+  <data name="SessionInterrupted" xml:space="preserve"><value>已中断</value></data>
+  <data name="RoundAnnounceFmt" xml:space="preserve"><value>第 {0} 组，{1}</value></data>
+  <data name="RestAnnounceFmt" xml:space="preserve"><value>休息 {0} 秒</value></data>
+
+  <!-- 存储异常与留痕失败（可靠性地基） -->
+  <data name="StorageErrorTitle" xml:space="preserve"><value>存储异常</value></data>
+  <data name="StorageErrorMessage" xml:space="preserve"><value>本地数据读写失败，请重试。（{0}）</value></data>
+  <data name="Retry" xml:space="preserve"><value>重试</value></data>
+  <data name="SessionSaveFailedFormat" xml:space="preserve"><value>训练记录保存失败：{0}</value></data>
+
+  <!-- 常驻语音会话 -->
+  <data name="EndSession" xml:space="preserve"><value>结束会话</value></data>
+
+  <!-- A1 通知权限 -->
+  <data name="Perm_RemindOffNoNotif" xml:space="preserve"><value>已保存，但通知权限未开启，提醒不会响起</value></data>
+
+  <!-- A2 运行中训练冲突 -->
+  <data name="Conflict_Title" xml:space="preserve"><value>训练正在进行</value></data>
+  <data name="Conflict_Text" xml:space="preserve"><value>当前已有训练在运行，是否替换为新的训练？</value></data>
+  <data name="Conflict_Replace" xml:space="preserve"><value>替换</value></data>
+  <data name="Conflict_Cancel" xml:space="preserve"><value>取消</value></data>
+  <data name="Conflict_Kept" xml:space="preserve"><value>已保留当前训练，新的训练已丢弃</value></data>
+
+  <!-- A4 按任务停止催促 -->
+  <data name="NagStop_Button" xml:space="preserve"><value>停止催促</value></data>
+  <data name="NagStop_Done" xml:space="preserve"><value>已停止该任务的催促</value></data>
+
+  <!-- C 组功能（feature-builder-b） -->
+  <!-- C1 删除 + 撤销 -->
+  <data name="Undo_DeletedFormat" xml:space="preserve"><value>已删除「{0}」</value></data>
+  <data name="Undo_Action" xml:space="preserve"><value>撤销</value></data>
+  <data name="Undo_Failed" xml:space="preserve"><value>恢复失败，请重试。</value></data>
+
+  <!-- C2 数据导出 / 导入 / 分享 -->
+  <data name="DataGroup" xml:space="preserve"><value>数据</value></data>
+  <data name="ExportData" xml:space="preserve"><value>导出数据（分享）</value></data>
+  <data name="ImportData" xml:space="preserve"><value>导入数据</value></data>
+  <data name="ExportDoneFormat" xml:space="preserve"><value>已导出 {0} 条待办与 {1} 个计时</value></data>
+  <data name="ImportDoneFormat" xml:space="preserve"><value>已导入 {0} 条待办与 {1} 个计时</value></data>
+  <data name="ImportFailed" xml:space="preserve"><value>导入失败：{0}</value></data>
+  <data name="ExportFailed" xml:space="preserve"><value>导出失败：{0}</value></data>
+  <data name="ExportLogs" xml:space="preserve"><value>导出诊断日志</value></data>
+  <data name="LogsNone" xml:space="preserve"><value>暂无诊断日志可导出。</value></data>
+
+  <!-- C4 自定义训练模板 -->
+  <data name="SaveAsTemplate" xml:space="preserve"><value>存为模板</value></data>
+  <data name="TplNamePrompt" xml:space="preserve"><value>给这个模板起个名字</value></data>
+  <data name="TplSavedFormat" xml:space="preserve"><value>已保存模板「{0}」</value></data>
+  <data name="TplDeleteConfirm" xml:space="preserve"><value>确定删除模板「{0}」吗？</value></data>
+  <data name="TplLimitReached" xml:space="preserve"><value>模板数量已达上限（最多 8 个）。</value></data>
+  <data name="SaveAsTemplateTitle" xml:space="preserve"><value>保存模板</value></data>
+  <data name="TplDeleteTitle" xml:space="preserve"><value>删除模板</value></data>
+
+  <!-- C5 清单页新建入口 -->
+  <data name="AddTodo" xml:space="preserve"><value>添加待办</value></data>
+</root>

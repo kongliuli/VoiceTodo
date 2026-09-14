@@ -1,0 +1,100 @@
+[
+  {
+    "file": "01-today.png",
+    "width": 853,
+    "height": 1844,
+    "bytes": 1006005,
+    "sha256": "948509EC6A07B2C2F326F59624FF5B2B673C3687AB49ABED1340358827B29D07"
+  },
+  {
+    "file": "02-lists.png",
+    "width": 853,
+    "height": 1844,
+    "bytes": 959670,
+    "sha256": "A5E62FD6785733FD0DDA997E1FA72517E28DE478C06D37C5B4F64FC18B3582C3"
+  },
+  {
+    "file": "03-task-editor.png",
+    "width": 853,
+    "height": 1844,
+    "bytes": 1144278,
+    "sha256": "07B64D72809480FD33D04C21498696626936E04228B34A40AC33D4EE7D8F70F1"
+  },
+  {
+    "file": "04-voice-listening.png",
+    "width": 853,
+    "height": 1844,
+    "bytes": 907882,
+    "sha256": "6DE85A09AF7D7DFA15C00ADB560F2A9945C329859A80BB90099FDEA0C740841A"
+  },
+  {
+    "file": "05-voice-confirm.png",
+    "width": 853,
+    "height": 1844,
+    "bytes": 984494,
+    "sha256": "301013E44C01C9335366B8C4094D04788129082F3460322A42CD4A4BDF4E8CBA"
+  },
+  {
+    "file": "06-text-add.png",
+    "width": 853,
+    "height": 1844,
+    "bytes": 972540,
+    "sha256": "D6A1A48D4C0356DECEB7F8393ECF6094A115CE588FE1CBB86A7DCD7A5668BB25"
+  },
+  {
+    "file": "07-timers.png",
+    "width": 853,
+    "height": 1844,
+    "bytes": 1260867,
+    "sha256": "76E9FB7CE3512675EF7E24C971493CBDE537BE772FC14E4DF2DA1AC5ABB0FE5B"
+  },
+  {
+    "file": "08-timer-editor.png",
+    "width": 853,
+    "height": 1844,
+    "bytes": 988504,
+    "sha256": "4081A7BE2ED39B3E9FCFF23624ADA2A9F1F895B8DCEF0C2FF79E6B0FBE754619"
+  },
+  {
+    "file": "09-timer-running.png",
+    "width": 853,
+    "height": 1844,
+    "bytes": 963663,
+    "sha256": "F5D3D750792F0A2A0310B5461B8114A9DE2B83B432B47CC77828F2988011F453"
+  },
+  {
+    "file": "10-timer-paused.png",
+    "width": 853,
+    "height": 1844,
+    "bytes": 979750,
+    "sha256": "FE23165C3650A7BCBED1DC3C2352939E68B96FA67A86264BC774C536E82C9834"
+  },
+  {
+    "file": "11-reminder.png",
+    "width": 853,
+    "height": 1844,
+    "bytes": 1212702,
+    "sha256": "7C77DC30600D6BC1F31912DDF6EB279B766C5E5B1E11389D6B61D09802D2E1C2"
+  },
+  {
+    "file": "12-settings.png",
+    "width": 853,
+    "height": 1844,
+    "bytes": 930152,
+    "sha256": "FFE9036B0A126A2A76C289798DF7AF130338110128127410DE11DF8C2D28F904"
+  },
+  {
+    "file": "13-first-use.png",
+    "width": 853,
+    "height": 1844,
+    "bytes": 1105489,
+    "sha256": "1C086FF1E001BE8248029510440105284B44A8068646D586FEE4195533E0DB4B"
+  },
+  {
+    "file": "14-calendar.png",
+    "width": 853,
+    "height": 1844,
+    "bytes": 1057497,
+    "sha256": "CA372E0E9D5FEC46668132E1989B68F78DD49B9A265A0708D9483F57AA250FBF"
+  }
+]

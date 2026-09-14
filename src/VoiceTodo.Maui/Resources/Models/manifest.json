@@ -1,0 +1,46 @@
+{
+  "Entries": [
+    {
+      "Id": "asr-whisper-tiny",
+      "Name": "Whisper tiny (多语, 快)",
+      "Kind": "Asr",
+      "Culture": null,
+      "Engine": "whisper",
+      "RelativePath": "asr/whisper-tiny",
+      "Files": [ "ggml-tiny.bin" ],
+      "DownloadBaseUrl": "https://huggingface.co/ggerganov/whisper.cpp/resolve/main",
+      "SizeBytes": 75000000,
+      "IsDefault": true,
+      "PackInBuild": true,
+      "Options": { "ModelFile": "ggml-tiny.bin" }
+    },
+    {
+      "Id": "asr-whisper-tiny-en",
+      "Name": "Whisper tiny (仅英文)",
+      "Kind": "Asr",
+      "Culture": "en",
+      "Engine": "whisper",
+      "RelativePath": "asr/whisper-tiny-en",
+      "Files": [ "ggml-tiny.en.bin" ],
+      "DownloadBaseUrl": "https://huggingface.co/ggerganov/whisper.cpp/resolve/main",
+      "SizeBytes": 39000000,
+      "IsDefault": false,
+      "PackInBuild": false,
+      "Options": { "ModelFile": "ggml-tiny.en.bin" }
+    },
+    {
+      "Id": "asr-whisper-base",
+      "Name": "Whisper base (多语, 更准)",
+      "Kind": "Asr",
+      "Culture": null,
+      "Engine": "whisper",
+      "RelativePath": "asr/whisper-base",
+      "Files": [ "ggml-base.bin" ],
+      "DownloadBaseUrl": "https://huggingface.co/ggerganov/whisper.cpp/resolve/main",
+      "SizeBytes": 142000000,
+      "IsDefault": false,
+      "PackInBuild": false,
+      "Options": { "ModelFile": "ggml-base.bin" }
+    }
+  ]
+}

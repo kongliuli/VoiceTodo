@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:pages="clr-namespace:VoiceTodo.Maui.Pages"
+       x:Class="VoiceTodo.Maui.AppShell"
+       Title="VoiceTodo"
+       BackgroundColor="{StaticResource Bg}"
+       ForegroundColor="{StaticResource TextPrimary}"
+       TabBarBackgroundColor="{StaticResource Surface}"
+       TabBarTitleColor="{StaticResource Primary}"
+       TabBarUnselectedColor="{StaticResource TabUnselected}"
+       TabBarDisabledColor="{StaticResource TextMuted}">
+
+    <!--
+        设计母版 V1 信息架构：底部主导航 今天 / 清单 / 计时。
+        设置、日历为子页（自页面顶部入口 push 进入），语音是全局操作不占导航目的地。
+        图标暂用纯文字标题（未注册图标字体，FontImageSource 有运行时缺字体风险）。
+    -->
+    <ShellContent Title="今天"
+                  ContentTemplate="{DataTemplate pages:MainPage}"
+                  Route="MainPage" />
+
+    <ShellContent Title="清单"
+                  ContentTemplate="{DataTemplate pages:ListsPage}"
+                  Route="ListsPage" />
+
+    <ShellContent Title="计时"
+                  ContentTemplate="{DataTemplate pages:TimerPage}"
+                  Route="TimerPage" />
+
+</Shell>

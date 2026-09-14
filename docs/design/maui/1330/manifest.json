@@ -1,0 +1,62 @@
+[
+  {
+    "file": "01-today-v2.png",
+    "width": 935,
+    "height": 1683,
+    "sha256": "7723303C073147CA39A63A02E5C2CCCE26E6AF3CFFAC30EC16E67A1A1D022513"
+  },
+  {
+    "file": "02-lists-v2.png",
+    "width": 935,
+    "height": 1683,
+    "sha256": "9281C4240B341C59AE0918CAF9C449925E6481A0A36196C51ACF8EAF998555F1"
+  },
+  {
+    "file": "04-voice-listening-v2.png",
+    "width": 853,
+    "height": 1844,
+    "sha256": "3E454CF4166FF75FF62594449AB924745359B56AC3C2FD335FEC1620D0FF7BA7"
+  },
+  {
+    "file": "05-training-started-v2.png",
+    "width": 935,
+    "height": 1683,
+    "sha256": "F44ABA41EB1A8FDD2648F74713F181EFFC1F50FA5A68BE2EA4D747E39A1C46E3"
+  },
+  {
+    "file": "07-timers-v2.png",
+    "width": 935,
+    "height": 1683,
+    "sha256": "B7E10E631ACA0088D57FF92933C62BBFA9FBF8AAC77D2A02DD891193CB47B318"
+  },
+  {
+    "file": "08-training-plan-v2.png",
+    "width": 935,
+    "height": 1683,
+    "sha256": "09755754734896D13937C3E7380007F84EFC4BE253860852175C970E9A4F0DF8"
+  },
+  {
+    "file": "09-timer-running-v2.png",
+    "width": 935,
+    "height": 1683,
+    "sha256": "DAEB378D0B759C3D048EB73B8702CB0A77245CA22B5A66B783FE5ADE09CCD5F9"
+  },
+  {
+    "file": "12-settings-v2.png",
+    "width": 935,
+    "height": 1683,
+    "sha256": "6913FB3B2907B88F630F6BFF394B274F3122238AF3206C7DC608A42FA9F0EA52"
+  },
+  {
+    "file": "13-first-use-v2.png",
+    "width": 935,
+    "height": 1683,
+    "sha256": "8B5CF7810B1DCF89BF99614E3DFBA919834F15742F4D29211D93EE63AA2A49D5"
+  },
+  {
+    "file": "14-calendar-v2.png",
+    "width": 935,
+    "height": 1683,
+    "sha256": "B287280A700865FA65B0603963D420C954F6569390EA07B3D9A98D9AFA5B259C"
+  }
+]

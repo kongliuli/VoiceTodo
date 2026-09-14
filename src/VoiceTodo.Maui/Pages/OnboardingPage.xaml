@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VoiceTodo.Maui.Pages.OnboardingPage"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="*,Auto" Padding="20,16,20,24">
+
+        <ScrollView>
+            <VerticalStackLayout Spacing="10">
+
+                <Label Text="VoiceTodo" FontSize="13" FontAttributes="Bold"
+                       TextColor="{StaticResource Primary}" Margin="0,4,0,14" />
+
+                <Label x:Name="HeadLabel" FontSize="32" FontAttributes="Bold"
+                       TextColor="{StaticResource TextPrimary}" LineBreakMode="WordWrap" Margin="0,0,0,4" />
+                <Label x:Name="SubLabel" Style="{StaticResource BodyText}"
+                       TextColor="{StaticResource TextSecondary}" Margin="0,0,0,18" />
+
+                <!-- 示例卡：语音 → 解析结果 -->
+                <Border BackgroundColor="{StaticResource AmberBg}" StrokeThickness="0"
+                        StrokeShape="RoundRectangle 12" Padding="16" Margin="0,0,0,18">
+                    <HorizontalStackLayout Spacing="14">
+                        <Border WidthRequest="56" HeightRequest="56" BackgroundColor="{StaticResource SelectedBg}"
+                                StrokeThickness="0" StrokeShape="RoundRectangle 28" Padding="0"
+                                VerticalOptions="Start">
+                            <Label Text="🎙" FontSize="24" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Spacing="6" VerticalOptions="Center">
+                            <Label x:Name="QuoteLabel" FontSize="17" FontAttributes="Bold"
+                                   TextColor="{StaticResource TextPrimary}" LineBreakMode="WordWrap" />
+                            <Label Text="↓" TextColor="{StaticResource TextMuted}" HorizontalOptions="Center" />
+                            <Border BackgroundColor="{StaticResource Surface}" Stroke="{StaticResource BorderColor}"
+                                    StrokeThickness="1" StrokeShape="RoundRectangle 8" Padding="10,6">
+                                <Label x:Name="ResultLabel" FontSize="15" FontAttributes="Bold"
+                                       TextColor="{StaticResource Amber}" />
+                            </Border>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </Border>
+
+                <!-- 特性行 1 -->
+                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12" Margin="0,4">
+                    <Label Text="📝" FontSize="24" VerticalOptions="Center" />
+                    <VerticalStackLayout Grid.Column="1" Spacing="2">
+                        <Label x:Name="F1Head" Style="{StaticResource BodyText}" FontAttributes="Bold" />
+                        <Label x:Name="F1Sub" Style="{StaticResource AuxText}" />
+                    </VerticalStackLayout>
+                </Grid>
+                <BoxView Style="{StaticResource RowSeparator}" />
+
+                <!-- 特性行 2 -->
+                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12" Margin="0,4">
+                    <Label Text="🕐" FontSize="24" VerticalOptions="Center" />
+                    <VerticalStackLayout Grid.Column="1" Spacing="2">
+                        <Label x:Name="F2Head" Style="{StaticResource BodyText}" FontAttributes="Bold" />
+                        <Label x:Name="F2Sub" Style="{StaticResource AuxText}" />
+                    </VerticalStackLayout>
+                </Grid>
+
+                <Label x:Name="FineLabel" FontSize="12" TextColor="{StaticResource TextMuted}"
+                       Margin="0,12,0,0" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- 底部操作 -->
+        <VerticalStackLayout Grid.Row="1" Spacing="10" Margin="0,16,0,0">
+            <Border Style="{StaticResource PrimaryBtnWrap}">
+                <Button x:Name="StartBtn" Style="{StaticResource GhostButton}" TextColor="White"
+                        Clicked="OnGetStarted" />
+            </Border>
+            <Border Style="{StaticResource SecondaryBtnWrap}">
+                <Button x:Name="TextBtn" Style="{StaticResource GhostButton}" Clicked="OnTextFirst" />
+            </Border>
+        </VerticalStackLayout>
+    </Grid>
+
+</ContentPage>

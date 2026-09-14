@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:VoiceTodo.Maui.ViewModels"
+             x:Class="VoiceTodo.Maui.Pages.MainPage"
+             BackgroundColor="{StaticResource Bg}">
+
+    <ContentPage.Resources>
+        <!-- 待办行模板：今日安排与已完成列表共用 -->
+        <DataTemplate x:Key="TodoRowTemplate" x:DataType="vm:TodoRowVm">
+            <Border Style="{StaticResource Card}" Margin="0,0,0,8">
+                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTodoTapped" />
+                    </Grid.GestureRecognizers>
+                    <Button Style="{StaticResource CheckCircle}" Command="{Binding ToggleDoneCommand}"
+                            VerticalOptions="Center">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding IsDone}" Value="True">
+                                <Setter Property="Text" Value="✓" />
+                                <Setter Property="BackgroundColor" Value="{StaticResource Success}" />
+                                <Setter Property="BorderColor" Value="{StaticResource Success}" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding IsDone}" Value="False">
+                                <Setter Property="Text" Value="" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+
+                    <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                        <Label Text="{Binding Title}" Style="{StaticResource RowTitle}">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding IsDone}" Value="True">
+                                    <Setter Property="TextDecorations" Value="Strikethrough" />
+                                    <Setter Property="TextColor" Value="{StaticResource TextMuted}" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                        <HorizontalStackLayout Spacing="8">
+                            <Label Text="{Binding RecurrenceLabel}" Style="{StaticResource RowSub}"
+                                   TextColor="{StaticResource TextMuted}" />
+                            <Label Text="{Binding DueLabel}" Style="{StaticResource RowSub}"
+                                   TextColor="{StaticResource TextMuted}" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+
+                    <Label Grid.Column="2" Text="›" Style="{StaticResource BodyText}"
+                           TextColor="{StaticResource TextMuted}" VerticalOptions="Center" />
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="CalendarToolbarItem" Clicked="OnCalendarClicked" />
+    </ContentPage.ToolbarItems>
+
+    <Grid RowDefinitions="*,Auto">
+
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="20,16,20,16" Spacing="14">
+
+                <!-- 日期行 + 搜索/设置圆钮 -->
+                <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="10">
+                    <Label x:Name="DateLabel" Style="{StaticResource AuxText}"
+                           TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" />
+                    <Border Grid.Column="1" Style="{StaticResource IconCircle}" VerticalOptions="Center">
+                        <Button Style="{StaticResource GhostButton}" Text="⌕" FontSize="18"
+                                Clicked="OnSearchClicked" />
+                    </Border>
+                    <Border Grid.Column="2" Style="{StaticResource IconCircle}" VerticalOptions="Center">
+                        <Button Style="{StaticResource GhostButton}" Text="⚙" FontSize="18"
+                                Clicked="OnSettingsClicked" />
+                    </Border>
+                </Grid>
+
+                <!-- 大标题 + 摘要行 -->
+                <Label x:Name="TitleLabel" Style="{StaticResource PageTitle}" />
+                <Label x:Name="SummaryLabel" Style="{StaticResource AuxText}"
+                       TextColor="{StaticResource TextSecondary}" />
+
+                <!-- 正在计时卡 -->
+                <Border x:Name="RunningCard" IsVisible="False"
+                        BackgroundColor="{StaticResource AmberBg}" StrokeThickness="0"
+                        StrokeShape="RoundRectangle 8" Padding="0">
+                    <Grid ColumnDefinitions="Auto,*">
+                        <BoxView WidthRequest="4" Color="{StaticResource AmberBright}" />
+                        <Grid Grid.Column="1" Padding="14,12" RowDefinitions="Auto,Auto,Auto" RowSpacing="6">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Label x:Name="RunningNowLabel" FontSize="13"
+                                       TextColor="{StaticResource Amber}" VerticalOptions="End" />
+                                <Label x:Name="RunningRemainingLabel" Grid.Column="1" FontSize="28"
+                                       FontAttributes="Bold" TextColor="{StaticResource Amber}" />
+                            </Grid>
+                            <Label x:Name="RunningTitleLabel" Grid.Row="1" Style="{StaticResource RowTitle}" />
+                            <Grid Grid.Row="2" ColumnDefinitions="Auto,*,Auto" ColumnSpacing="10">
+                                <Label x:Name="RunningTotalLabel" FontSize="13"
+                                       TextColor="{StaticResource Amber}" VerticalOptions="Center" />
+                                <ProgressBar x:Name="RunningProgress" Grid.Column="1"
+                                             ProgressColor="{StaticResource AmberBright}"
+                                             BackgroundColor="{StaticResource TrackGray}"
+                                             HeightRequest="6" VerticalOptions="Center" />
+                                <Label x:Name="RunningPercentLabel" Grid.Column="2" FontSize="13"
+                                       TextColor="{StaticResource Amber}" VerticalOptions="Center" />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnRunningCardTapped" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+                <!-- 今日安排 -->
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label x:Name="ScheduleHeader" Style="{StaticResource SectionHeader}" VerticalOptions="Center" />
+                    <Button x:Name="ViewAllButton" Grid.Column="1" Style="{StaticResource GhostButton}"
+                            TextColor="{StaticResource Primary}" FontSize="13" FontAttributes="None"
+                            Padding="8,4" VerticalOptions="Center" Clicked="OnViewAllClicked" />
+                </Grid>
+                <CollectionView x:Name="TodoList" ItemsSource="{Binding Todos}"
+                                ItemTemplate="{StaticResource TodoRowTemplate}">
+                    <CollectionView.EmptyView>
+                        <VerticalStackLayout Padding="0,26,0,8" Spacing="10" HorizontalOptions="Center">
+                            <Label Text="🗒️" FontSize="36" HorizontalOptions="Center" />
+                            <Label x:Name="EmptyTodayLabel" Style="{StaticResource MutedText}"
+                                   HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+
+                <!-- 已完成折叠 -->
+                <VerticalStackLayout x:Name="CompletedSection" Spacing="8" IsVisible="False">
+                    <Border Style="{StaticResource Card}" Padding="16,12">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label x:Name="CompletedTitleLabel" Style="{StaticResource RowTitle}"
+                                   VerticalOptions="Center" />
+                            <Label x:Name="CompletedChevron" Grid.Column="1" Text="›"
+                                   Style="{StaticResource BodyText}" TextColor="{StaticResource TextMuted}"
+                                   VerticalOptions="Center" />
+                        </Grid>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCompletedToggled" />
+                        </Border.GestureRecognizers>
+                    </Border>
+                    <CollectionView x:Name="DoneList" IsVisible="False" ItemsSource="{Binding DoneTodos}"
+                                    ItemTemplate="{StaticResource TodoRowTemplate}" />
+                </VerticalStackLayout>
+
+                <!-- 待安排入口 -->
+                <Border Style="{StaticResource Card}" Padding="16,12">
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                        <Label Text="📥" FontSize="20" VerticalOptions="Center" />
+                        <VerticalStackLayout Grid.Column="1" Spacing="2">
+                            <Label x:Name="UnscheduledTitleLabel" Style="{StaticResource RowTitle}" />
+                            <Label x:Name="UnscheduledHintLabel" Style="{StaticResource RowSub}"
+                                   TextColor="{StaticResource TextMuted}" />
+                        </VerticalStackLayout>
+                        <HorizontalStackLayout Grid.Column="2" Spacing="8" VerticalOptions="Center">
+                            <Border x:Name="UnscheduledBadge" Style="{StaticResource BadgePill}" IsVisible="False">
+                                <Label x:Name="UnscheduledBadgeLabel" Style="{StaticResource AuxText}"
+                                       TextColor="{StaticResource Primary}" />
+                            </Border>
+                            <Label Text="›" Style="{StaticResource BodyText}"
+                                   TextColor="{StaticResource TextMuted}" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </Grid>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnUnscheduledTapped" />
+                    </Border.GestureRecognizers>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- 底部固定语音条 -->
+        <VerticalStackLayout Grid.Row="1" Padding="20,8,20,12" Spacing="4">
+            <Border Style="{StaticResource PrimaryBtnWrap}" HeightRequest="56">
+                <Button x:Name="SayButton" Style="{StaticResource GhostButton}" TextColor="White"
+                        FontSize="16" Clicked="OnSayClicked" />
+            </Border>
+            <Button x:Name="TypeAddButton" Style="{StaticResource GhostButton}"
+                    TextColor="{StaticResource TextSecondary}" FontAttributes="None" FontSize="13"
+                    Padding="10,6" HorizontalOptions="Center" Clicked="OnTypeAddClicked" />
+        </VerticalStackLayout>
+
+    </Grid>
+
+</ContentPage>

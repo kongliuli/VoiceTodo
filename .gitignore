@@ -1,0 +1,25 @@
+# ===== .NET / MAUI 构建产物 =====
+bin/
+obj/
+*.user
+*.suo
+.vs/
+
+# ===== 端侧模型文件（体积大，不进 git；用 scripts/ 拉取与打包） =====
+src/VoiceTodo.Maui/Resources/Models/**
+!src/VoiceTodo.Maui/Resources/Models/manifest.json
+# 本地模型库（download-models.ps1 下载的全部候选，并存保留）
+ModelsLibrary/
+
+# ===== 本地数据 =====
+*.db
+*.sqlite
+*.sqlite3
+
+# ===== 系统 / IDE =====
+.DS_Store
+Thumbs.db
+
+# ===== 本地构建日志与打包产物 =====
+*.log
+dist/

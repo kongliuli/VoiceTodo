@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:VoiceTodo.Maui.Pages"
+             x:Class="VoiceTodo.Maui.Pages.TimerPage">
+
+    <Grid Padding="20,12,20,24" RowDefinitions="Auto,*" RowSpacing="14">
+
+        <!-- 顶部：标题 + 新建 -->
+        <Grid ColumnDefinitions="*,Auto">
+            <Label x:Name="PageTitleLabel" Style="{StaticResource PageTitle}" VerticalOptions="Center" />
+            <Border x:Name="NewBtnWrap" Grid.Column="1" Style="{StaticResource IconCircle}">
+                <Button x:Name="NewBtn" Style="{StaticResource GhostButton}" Padding="0" CornerRadius="22"
+                        Clicked="OnNewTimer" />
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="1">
+
+            <!-- ══════════ 列表视图（倒计时 / 间歇训练） ══════════ -->
+            <ScrollView x:Name="ListScroll">
+                <VerticalStackLayout Spacing="14">
+
+                    <!-- 分段控件 -->
+                    <Border Style="{StaticResource SegmentedTrack}">
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="3">
+                            <Button x:Name="SegCountdown" Style="{StaticResource SegmentButton}" Clicked="OnSegment" />
+                            <Button x:Name="SegInterval" Grid.Column="1" Style="{StaticResource SegmentButton}"
+                                    Clicked="OnSegment" />
+                        </Grid>
+                    </Border>
+
+                    <!-- ── 倒计时面板 ── -->
+                    <VerticalStackLayout x:Name="CountdownPanel" Spacing="12">
+
+                        <Label x:Name="InProgressHeader" Style="{StaticResource SectionHeader}" />
+
+                        <!-- DEV-05 run：上次训练中断提示（快照无法恢复时如实显示，不伪装完成） -->
+                        <Label x:Name="InterruptedBanner" FontSize="13" FontAttributes="Bold"
+                               TextColor="{StaticResource Amber}" IsVisible="False" />
+
+                        <!-- 留痕保存失败提示（结束后没有记录时如实告知，不静默） -->
+                        <Label x:Name="SessionSaveFailedBanner" FontSize="13" FontAttributes="Bold"
+                               TextColor="{StaticResource Danger}" IsVisible="False"
+                               LineBreakMode="WordWrap" />
+
+                        <!-- 正在进行：琥珀运行卡 -->
+                        <Border x:Name="RunningCard" BackgroundColor="{StaticResource AmberBg}" StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8" Padding="14,12" IsVisible="False">
+                            <Grid ColumnDefinitions="4,*" ColumnSpacing="12">
+                                <BoxView Color="{StaticResource AmberBright}" CornerRadius="2" />
+                                <VerticalStackLayout Grid.Column="1" Spacing="8">
+                                    <Label x:Name="RunCardBadge" FontSize="12" FontAttributes="Bold"
+                                           TextColor="{StaticResource Amber}" />
+                                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                                        <Label x:Name="RunCardTitle" Style="{StaticResource RowTitle}"
+                                               VerticalOptions="Center" />
+                                        <Label x:Name="RunCardTime" Grid.Column="1" FontSize="30"
+                                               FontAttributes="Bold" TextColor="{StaticResource Amber}"
+                                               VerticalOptions="Center" />
+                                    </Grid>
+                                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                                        <ProgressBar x:Name="RunCardProgress" ProgressColor="{StaticResource AmberBright}"
+                                                     BackgroundColor="{StaticResource TrackGray}" HeightRequest="6"
+                                                     VerticalOptions="Center" />
+                                        <Label x:Name="RunCardPct" Grid.Column="1" Style="{StaticResource AuxText}"
+                                               VerticalOptions="Center" />
+                                    </Grid>
+                                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                                        <Label x:Name="RunCardTotal" Style="{StaticResource AuxText}"
+                                               VerticalOptions="Center" />
+                                        <Border Grid.Column="1" WidthRequest="44" HeightRequest="44"
+                                                BackgroundColor="{StaticResource Surface}"
+                                                Stroke="{StaticResource BorderColor}" StrokeThickness="1"
+                                                StrokeShape="RoundRectangle 22" Padding="0">
+                                            <Button x:Name="RunCardBtn" Style="{StaticResource GhostButton}"
+                                                    Padding="0" CornerRadius="22" Clicked="OnPauseResume" />
+                                        </Border>
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Border>
+                        <Label x:Name="NoRunningLabel" Style="{StaticResource MutedText}" FontSize="13" />
+
+                        <!-- 常用计时 -->
+                        <Label x:Name="CommonHeader" Style="{StaticResource SectionHeader}" />
+                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                            <Border Style="{StaticResource Card}" Padding="12,14">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnQuickTap" CommandParameter="5" />
+                                </Border.GestureRecognizers>
+                                <VerticalStackLayout Spacing="4">
+                                    <Label Text="⏱" FontSize="26" TextColor="{StaticResource TextSecondary}"
+                                           HorizontalOptions="Center" />
+                                    <Label x:Name="QuickLabel5" FontSize="13" FontAttributes="Bold"
+                                           TextColor="{StaticResource TextPrimary}" HorizontalOptions="Center" />
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border Grid.Column="1" Style="{StaticResource Card}" Padding="12,14">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnQuickTap" CommandParameter="10" />
+                                </Border.GestureRecognizers>
+                                <VerticalStackLayout Spacing="4">
+                                    <Label Text="⏱" FontSize="26" TextColor="{StaticResource TextSecondary}"
+                                           HorizontalOptions="Center" />
+                                    <Label x:Name="QuickLabel10" FontSize="13" FontAttributes="Bold"
+                                           TextColor="{StaticResource TextPrimary}" HorizontalOptions="Center" />
+                                </VerticalStackLayout>
+                            </Border>
+                            <Border Grid.Column="2" Style="{StaticResource Card}" Padding="12,14">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnQuickTap" CommandParameter="25" />
+                                </Border.GestureRecognizers>
+                                <VerticalStackLayout Spacing="4">
+                                    <Label Text="⏱" FontSize="26" TextColor="{StaticResource TextSecondary}"
+                                           HorizontalOptions="Center" />
+                                    <Label x:Name="QuickLabel25" FontSize="13" FontAttributes="Bold"
+                                           TextColor="{StaticResource TextPrimary}" HorizontalOptions="Center" />
+                                </VerticalStackLayout>
+                            </Border>
+                        </Grid>
+
+                        <!-- 最近使用 -->
+                        <Label x:Name="RecentHeader" Style="{StaticResource SectionHeader}" />
+                        <Label x:Name="EmptyTimersLabel" Style="{StaticResource MutedText}" FontSize="13"
+                               IsVisible="False" />
+                        <CollectionView x:Name="RecentList" SelectionMode="None" IsVisible="False">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="local:RecentRow">
+                                    <Border Style="{StaticResource Card}" Padding="14,12" Margin="0,0,0,10">
+                                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12"
+                                              VerticalOptions="Center">
+                                            <Border WidthRequest="40" HeightRequest="40"
+                                                    BackgroundColor="{StaticResource SurfaceAlt}"
+                                                    StrokeThickness="0" StrokeShape="RoundRectangle 20"
+                                                    Padding="0">
+                                                <Label Text="⏱" FontSize="18"
+                                                       TextColor="{StaticResource TextSecondary}"
+                                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                                            </Border>
+                                            <VerticalStackLayout Grid.Column="1" Spacing="2"
+                                                                 VerticalOptions="Center">
+                                                <Label Style="{StaticResource RowTitle}" Text="{Binding Title}" />
+                                                <Label Style="{StaticResource RowSub}" Text="{Binding Sub}" />
+                                            </VerticalStackLayout>
+                                            <Button Grid.Column="2" Style="{StaticResource GhostButton}" Text="▶"
+                                                    WidthRequest="44" HeightRequest="44" CornerRadius="22"
+                                                    Padding="0" Clicked="OnRecentStart"
+                                                    CommandParameter="{Binding Item}" />
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+
+                    <!-- ── 间歇训练面板 ── -->
+                    <VerticalStackLayout x:Name="IntervalPanel" Spacing="12" IsVisible="False">
+
+                        <!-- 间歇配置区（右上 + 号显示/收起） -->
+                        <VerticalStackLayout x:Name="PresetArea" Spacing="10" IsVisible="False">
+                            <HorizontalStackLayout Spacing="10">
+                                <Border x:Name="TabataChip" Style="{StaticResource Chip}">
+                                    <Button x:Name="TabataBtn" Style="{StaticResource ChipButton}" Clicked="OnPreset" />
+                                </Border>
+                                <Border x:Name="HiitChip" Style="{StaticResource Chip}">
+                                    <Button x:Name="HiitBtn" Style="{StaticResource ChipButton}" Clicked="OnPreset" />
+                                </Border>
+                                <Border x:Name="CircuitChip" Style="{StaticResource Chip}">
+                                    <Button x:Name="CircuitBtn" Style="{StaticResource ChipButton}" Clicked="OnPreset" />
+                                </Border>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+
+                        <Label x:Name="SummaryLabel" Style="{StaticResource AuxText}" />
+
+                        <Border Style="{StaticResource PrimaryBtnWrap}">
+                            <Button x:Name="StartBtn" Style="{StaticResource GhostButton}" TextColor="White"
+                                    Clicked="OnStartInterval" />
+                        </Border>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </ScrollView>
+
+            <!-- ══════════ 运行视图（覆盖列表） ══════════ -->
+            <ScrollView x:Name="RunScroll" IsVisible="False">
+                <VerticalStackLayout Spacing="14">
+
+                    <Label x:Name="RoundLabel" Style="{StaticResource AuxText}" HorizontalOptions="Center"
+                           IsVisible="False" />
+                    <Label x:Name="RunPhaseLabel" FontSize="26" FontAttributes="Bold"
+                           HorizontalOptions="Center" />
+
+                    <!-- 大环形进度 + 中央剩余 -->
+                    <Grid WidthRequest="260" HeightRequest="260" HorizontalOptions="Center">
+                        <GraphicsView x:Name="RingDrawing" WidthRequest="260" HeightRequest="260" />
+                        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="4">
+                            <Label x:Name="RunTimeLabel" FontSize="56" FontAttributes="Bold"
+                                   HorizontalOptions="Center" />
+                            <Label x:Name="RunTotalLabel" Style="{StaticResource AuxText}"
+                                   HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <!-- 接下来 -->
+                    <Border x:Name="NextUpCard" BackgroundColor="{StaticResource SelectedBg}" StrokeThickness="0"
+                            StrokeShape="RoundRectangle 8" Padding="14" IsVisible="False">
+                        <VerticalStackLayout Spacing="2">
+                            <Label x:Name="NextUpHeader" Style="{StaticResource AuxText}" />
+                            <Label x:Name="NextUpLabel" Style="{StaticResource BodyText}" />
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Label x:Name="VoiceHintLabel" Style="{StaticResource AuxText}" />
+
+                    <Border Style="{StaticResource PrimaryBtnWrap}">
+                        <Button x:Name="PauseBtn" Style="{StaticResource GhostButton}" TextColor="White"
+                                Clicked="OnPauseResume" />
+                    </Border>
+                    <Border Style="{StaticResource SecondaryBtnWrap}">
+                        <Button x:Name="FinishBtn" Style="{StaticResource GhostButton}"
+                                TextColor="{StaticResource Danger}" Clicked="OnFinish" />
+                    </Border>
+
+                    <!-- DEV-05 run：识别有误，停止并修改（仅计划型训练显示，ApplyPhaseVisuals 控制可见性） -->
+                    <Border x:Name="FixBtnWrap" Style="{StaticResource SecondaryBtnWrap}" IsVisible="False">
+                        <Button x:Name="FixBtn" Style="{StaticResource GhostButton}"
+                                TextColor="{StaticResource TextSecondary}" Clicked="OnFixMistake" />
+                    </Border>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+    </Grid>
+
+</ContentPage>

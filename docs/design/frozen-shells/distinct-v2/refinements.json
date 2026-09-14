@@ -1,0 +1,10 @@
+[
+  {
+    "id": "cyx-v2-01-home",
+    "prompt": "Refine this app home screenshot. Remove ALL illustrative objects in purple header: cup, table, window shadow, vase, notebook, plant. Make header solid dusk plum. Reduce header to exactly top23% of screen: small brand/date/settings at top, title 今天，留一点空间 at readable compact 24dp on ONE or TWO lines, helper 你的记录，由你决定, two action links记录感受 /只记一件事. Start cream content sheet immediately under at23%, give functional content more space. Retain all existing task rows, records, timer, note and navigation, their labels and palette. Make user's quoted note normal readable Chinese sans-serif, not handwriting. Exactly3 navigation destinations今天/留记/我的; microphone floats ABOVE nav at right with label说一句 and is NOT a fourth tab. No ornamental art anywhere. Everything readable, editorial personal-journal character with typography and color blocking only. Same portrait aspect."
+  },
+  {
+    "id": "cyx-v2-03-rule",
+    "prompt": "Edit only one small control in this screenshot: remove the toggle switch to the RIGHT of the text 只提醒，不替我改安排. Keep that line as a STATIC explanatory label with the existing info icon, not an interactive option. Retain the upper toggle 这句话启用中 ON unchanged. Preserve all other layout, typography, colors, text, quote, radio choices, buttons. No automatic schedule editing option. Same size and exact composition."
+  }
+]

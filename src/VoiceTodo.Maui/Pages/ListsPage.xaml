@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:VoiceTodo.Maui.Pages"
+             xmlns:vm="clr-namespace:VoiceTodo.Maui.ViewModels"
+             xmlns:res="clr-namespace:VoiceTodo.Maui.Resources"
+             x:Class="VoiceTodo.Maui.Pages.ListsPage">
+
+    <ContentPage.Resources>
+        <local:DueLabelConverter x:Key="DueLabel" />
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,*,Auto" Padding="16" RowSpacing="12"
+          BackgroundColor="{StaticResource Bg}">
+
+        <!-- 大标题 + 新建入口（C5） -->
+        <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
+            <Label x:Name="TitleLabel" Style="{StaticResource PageTitle}" />
+            <Button x:Name="AddBtn" Grid.Column="1" Style="{StaticResource GhostButton}"
+                    Text="＋" FontSize="22" WidthRequest="44" HeightRequest="44"
+                    Padding="0" Clicked="OnAddTodo" />
+        </Grid>
+
+        <!-- 搜索框 -->
+        <Border Grid.Row="1" BackgroundColor="{StaticResource SurfaceAlt}" StrokeThickness="0"
+                StrokeShape="RoundRectangle 10" Padding="12,8">
+            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
+                <Label Text="🔍" VerticalOptions="Center" FontSize="14" />
+                <Entry x:Name="SearchEntry" Grid.Column="1" BackgroundColor="Transparent"
+                       TextColor="{StaticResource TextPrimary}"
+                       PlaceholderColor="{StaticResource TextMuted}"
+                       TextChanged="OnSearchTextChanged" />
+            </Grid>
+        </Border>
+
+        <!-- 筛选胶囊：待安排 / 今天 / 未来 / 已完成 -->
+        <ScrollView Grid.Row="2" Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+            <HorizontalStackLayout Spacing="8">
+                <Border x:Name="ChipUnscheduled" Style="{StaticResource FilterChip}">
+                    <Button x:Name="ChipUnscheduledBtn" Style="{StaticResource GhostButton}" FontSize="14"
+                            Padding="0" Clicked="OnChipClicked" />
+                </Border>
+                <Border x:Name="ChipToday" Style="{StaticResource FilterChip}">
+                    <Button x:Name="ChipTodayBtn" Style="{StaticResource GhostButton}" FontSize="14"
+                            Padding="0" Clicked="OnChipClicked" />
+                </Border>
+                <Border x:Name="ChipUpcoming" Style="{StaticResource FilterChip}">
+                    <Button x:Name="ChipUpcomingBtn" Style="{StaticResource GhostButton}" FontSize="14"
+                            Padding="0" Clicked="OnChipClicked" />
+                </Border>
+                <Border x:Name="ChipCompleted" Style="{StaticResource FilterChip}">
+                    <Button x:Name="ChipCompletedBtn" Style="{StaticResource GhostButton}" FontSize="14"
+                            Padding="0" Clicked="OnChipClicked" />
+                </Border>
+            </HorizontalStackLayout>
+        </ScrollView>
+
+        <!-- 待安排说明行 -->
+        <Label x:Name="HintLabel" Grid.Row="3" Style="{StaticResource AuxText}" IsVisible="False" />
+
+        <!-- 清单列表 -->
+        <CollectionView x:Name="TodoList" Grid.Row="4">
+            <CollectionView.EmptyView>
+                <VerticalStackLayout Padding="0,26,0,8" Spacing="10" HorizontalOptions="Center">
+                    <Label Text="🗒️" FontSize="40" HorizontalOptions="Center" />
+                    <Label x:Name="EmptyLabel" Style="{StaticResource MutedText}" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="vm:TodoRowVm">
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="{x:Static res:AppResources.DeleteTask}"
+                                           BackgroundColor="#E54848"
+                                           CommandParameter="{Binding Id}"
+                                           Clicked="OnDeleteSwiped" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Border Style="{StaticResource Card}" Margin="0,0,0,8" Padding="12,10">
+                            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnTodoTapped" />
+                                </Grid.GestureRecognizers>
+                                <!-- 完成圆圈 -->
+                                <Button Style="{StaticResource CheckCircle}" Command="{Binding ToggleDoneCommand}"
+                                        VerticalOptions="Center">
+                                    <Button.Triggers>
+                                        <DataTrigger TargetType="Button" Binding="{Binding IsDone}" Value="True">
+                                            <Setter Property="Text" Value="✓" />
+                                            <Setter Property="BackgroundColor" Value="{StaticResource Success}" />
+                                            <Setter Property="TextColor" Value="White" />
+                                            <Setter Property="BorderColor" Value="{StaticResource Success}" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="Button" Binding="{Binding IsDone}" Value="False">
+                                            <Setter Property="Text" Value="" />
+                                        </DataTrigger>
+                                    </Button.Triggers>
+                                </Button>
+
+                                <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                                    <Label Text="{Binding Title}" Style="{StaticResource RowTitle}">
+                                        <Label.Triggers>
+                                            <DataTrigger TargetType="Label" Binding="{Binding IsDone}" Value="True">
+                                                <Setter Property="TextDecorations" Value="Strikethrough" />
+                                                <Setter Property="TextColor" Value="{StaticResource TextMuted}" />
+                                            </DataTrigger>
+                                        </Label.Triggers>
+                                    </Label>
+                                    <HorizontalStackLayout Spacing="8">
+                                        <Label Text="{Binding DueLabel, Converter={StaticResource DueLabel}}"
+                                               Style="{StaticResource RowSub}" />
+                                        <Label Text="{Binding RecurrenceLabel}" Style="{StaticResource RowSub}" />
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+
+                                <Label Grid.Column="2" Text="›" FontSize="20" VerticalOptions="Center"
+                                       TextColor="{StaticResource TextMuted}" />
+                            </Grid>
+                        </Border>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- 底部撤销条（C1）：删除后 2.5s 自动隐藏，仅保留最近一次可撤销 -->
+        <Border x:Name="UndoBar" Grid.Row="5" IsVisible="False" Style="{StaticResource CardFlat}"
+                Margin="0,8,0,0" Padding="12,10">
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                <Label x:Name="UndoLabel" Style="{StaticResource BodyText}" VerticalOptions="Center" />
+                <Button x:Name="UndoBtn" Grid.Column="1" Style="{StaticResource GhostButton}"
+                        TextColor="{StaticResource Primary}" Clicked="OnUndoClicked" />
+            </Grid>
+        </Border>
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "04-voice-listening-v2",
+    "title": "语音会话内录音",
+    "type": "R",
+    "file": "04-voice-listening-v2.png",
+    "prompt": "Use case ui-mockup. ONE high fidelity flat Android mobile screen for VoiceTodo, 853x1844 portrait (390x844 logical), no device frame or annotations. Supplied reference is ONLY a style reference: warm white #F7F8FA, white panels, ink #182230, secondary #586575, cobalt #315BE8, selected #EDF2FF, amber #9B5E10. Consistent clean outline icons, no emoji. Chinese sans-serif, body16sp auxiliary13sp title30sp, spacing8/12/16/20, corners8dp. Precise simplified Chinese text. All controls legible and fully visible in one screen; 48dp hit areas and realistic compact density. No decorative art or invented stats. Status bar09:41 unless specified. Screen content supersedes reference layout. Exact screen brief: No bottom tabs. Header back arrow, title 语音会话, small status 已开启. Pale blue compact panel with microphone icon 会话保持开启 and helper 返回其他页面后仍会采集声音. Center heading 正在采集本句, cobalt animated-looking audio waveform, elapsed00:06. DO NOT display transcript or pretend streaming text. Helper 完成本句后开始识别. Below secondary recent result card 上一条记录 / 明天15:00取快递 · 已保存. Bottom cobalt full width 完成本句; below equal secondary actions 取消本句 and 改用文字; separate outlined neutral button 结束语音会话, small text 结束会话不会停止正在进行的训练. Clear distinction three actions, no repeated cancel button."
+  },
+  {
+    "id": "05-voice-confirm-v2",
+    "title": "语音训练自动启动",
+    "type": "R",
+    "file": "05-training-started-v2.png",
+    "prompt": "Use case ui-mockup. ONE high fidelity flat Android mobile screen for VoiceTodo, 853x1844 portrait (390x844 logical), no device frame or annotations. Supplied reference is ONLY a style reference: warm white #F7F8FA, white panels, ink #182230, secondary #586575, cobalt #315BE8, selected #EDF2FF, amber #9B5E10. Consistent clean outline icons, no emoji. Chinese sans-serif, body16sp auxiliary13sp title30sp, spacing8/12/16/20, corners8dp. Precise simplified Chinese text. All controls legible and fully visible in one screen; 48dp hit areas and realistic compact density. No decorative art or invented stats. Status bar09:41 unless specified. Screen content supersedes reference layout. Exact screen brief: No tabs. Header 训练已开始. Blue strip语音会话已开启. Heading已识别并自动开始;quote“深蹲10组，每组5秒，休息10秒”. Compact plan card 深蹲 /10组 /运动5秒 /组间休息10秒 /总时长02:20 /末组不休息. Main amber card 第1/10组 · 深蹲, huge00:05 caption本组运动剩余. Next接下来：休息10秒. Small speaker line最后3秒倒数 · 阶段切换提示. Bottom primary查看训练, secondary暂停, text识别有误，停止并修改. No confirmation, no fake template matching, no mandatory template selection. Clear compact fields in two columns instead of five crowded columns."
+  },
+  {
+    "id": "12-settings-v2",
+    "title": "设置分层",
+    "type": "R",
+    "file": "12-settings-v2.png",
+    "prompt": "Use case ui-mockup. ONE high fidelity flat Android mobile screen for VoiceTodo, 853x1844 portrait (390x844 logical), no device frame or annotations. Supplied reference is ONLY a style reference: warm white #F7F8FA, white panels, ink #182230, secondary #586575, cobalt #315BE8, selected #EDF2FF, amber #9B5E10. Consistent clean outline icons, no emoji. Chinese sans-serif, body16sp auxiliary13sp title30sp, spacing8/12/16/20, corners8dp. Precise simplified Chinese text. All controls legible and fully visible in one screen; 48dp hit areas and realistic compact density. No decorative art or invented stats. Status bar09:41 unless specified. Screen content supersedes reference layout. Exact screen brief: No tabs. Back header 设置. Compact grouped white rows: 通用 section 语言 简体中文 chevron; 界面动效 toggle on. 声音与提醒 section 提醒声音 默认提示音 chevron; 语音播报 toggle on; 默认延后 5分钟 chevron. 权限 section 麦克风 已允许 with text 管理; 通知 未开启 amber with outlined 开启 button. 语音与数据 section 语音与高级设置 chevron; 隐私与数据说明 chevron; 数据与恢复 chevron. Footer 更改后自动保存, with no saving failure at same time. No model IDs, no file path input, no unsupported dark mode switch. Wide readable rows and simple icons."
+  },
+  {
+    "id": "08-timer-editor-v2",
+    "title": "通用训练计划编辑",
+    "type": "M",
+    "file": "08-training-plan-v2.png",
+    "prompt": "Use case ui-mockup. ONE high fidelity flat Android mobile screen for VoiceTodo, 853x1844 portrait (390x844 logical), no device frame or annotations. Supplied reference is ONLY a style reference: warm white #F7F8FA, white panels, ink #182230, secondary #586575, cobalt #315BE8, selected #EDF2FF, amber #9B5E10. Consistent clean outline icons, no emoji. Chinese sans-serif, body16sp auxiliary13sp title30sp, spacing8/12/16/20, corners8dp. Precise simplified Chinese text. All controls legible and fully visible in one screen; 48dp hit areas and realistic compact density. No decorative art or invented stats. Status bar09:41 unless specified. Screen content supersedes reference layout. Exact screen brief: No tabs. Back header编辑训练计划, small badge来自语音草稿. Editable name动作 深蹲. White rows组数 minus [10] plus;每组运动 minus [00:05] plus;组间休息 minus [00:10] plus. Hint点击数字修改. 末组结束后休息 toggleOFF. Total总时长02:20. Section语音提示: 阶段结束前倒数 selector5秒 /3秒 selected /关闭. 下一步指示 toggleON. Tiny example“3、2、1” → “休息10秒” → “第2组，深蹲”. Footer primary开始训练, secondary保存为我的模板. This is stopped/corrected draft or template editing, NOT active automatic creation. No preset chips and no fixed Tabata branding. Show all within viewport, compact readable."
+  },
+  {
+    "id": "09-timer-running-v2",
+    "title": "训练运行",
+    "type": "M",
+    "file": "09-timer-running-v2.png",
+    "prompt": "Use case ui-mockup. ONE high fidelity flat Android mobile screen for VoiceTodo, 853x1844 portrait (390x844 logical), no device frame or annotations. Supplied reference is ONLY a style reference: warm white #F7F8FA, white panels, ink #182230, secondary #586575, cobalt #315BE8, selected #EDF2FF, amber #9B5E10. Consistent clean outline icons, no emoji. Chinese sans-serif, body16sp auxiliary13sp title30sp, spacing8/12/16/20, corners8dp. Precise simplified Chinese text. All controls legible and fully visible in one screen; 48dp hit areas and realistic compact density. No decorative art or invented stats. Status bar09:41 unless specified. Screen content supersedes reference layout. Exact screen brief: No tabs. Back header深蹲. Compact blue strip语音会话已开启 · 查看. Main第3/10组 · 运动中. Large amber elapsed40percent ring central00:03 caption本组运动剩余. Small speaker正在倒数：3. Summary每组运动5秒 /训练剩余01:48. Next panel接下来：休息10秒, smaller休息后开始第4组深蹲. Bottom primary暂停训练, secondary结束训练. Tiny note结束训练不会关闭语音会话. 10 groups,5sec exercise,9 rests10sec, total140sec; third group has3sec remaining and full remaining108sec. Do not show 8 rounds or20sec."
+  },
+  {
+    "id": "01-today-v2",
+    "title": "今天",
+    "type": "M",
+    "file": "01-today-v2.png",
+    "prompt": "Use case ui-mockup. ONE high fidelity flat Android mobile screen for VoiceTodo, 853x1844 portrait (390x844 logical), no device frame or annotations. Supplied reference is ONLY a style reference: warm white #F7F8FA, white panels, ink #182230, secondary #586575, cobalt #315BE8, selected #EDF2FF, amber #9B5E10. Consistent clean outline icons, no emoji. Chinese sans-serif, body16sp auxiliary13sp title30sp, spacing8/12/16/20, corners8dp. Precise simplified Chinese text. All controls legible and fully visible in one screen; 48dp hit areas and realistic compact density. No decorative art or invented stats. Status bar09:41 unless specified. Screen content supersedes reference layout. Exact screen brief: Bottom nav 今天 selected / 清单 / 计时. Header 今天, date9月11日 星期五, settings icon. Compact pale blue status strip microphone 语音会话已开启 with action 查看. Small amber summary 有1件逾期待办 · 查看, not modal. Compact running timer 煮鸡蛋 06:42 共10分钟, pause icon; no percent. Heading 今日安排. Two checkbox rows 提交项目方案 /10:30提醒; 取快递 /18:00 · 提醒未开启 amber with action 开启. Collapsed 已完成2项. Tray 待安排 count2. Bottom primary microphone 进入语音会话, below 打字添加. Clear task count no incorrect summary count. Distinct saved task vs reminder permission status. Keep all content compact."
+  },
+  {
+    "id": "02-lists-v2",
+    "title": "清单列表",
+    "type": "M",
+    "file": "02-lists-v2.png",
+    "prompt": "Use case ui-mockup. ONE high fidelity flat Android mobile screen for VoiceTodo, 853x1844 portrait (390x844 logical), no device frame or annotations. Supplied reference is ONLY a style reference: warm white #F7F8FA, white panels, ink #182230, secondary #586575, cobalt #315BE8, selected #EDF2FF, amber #9B5E10. Consistent clean outline icons, no emoji. Chinese sans-serif, body16sp auxiliary13sp title30sp, spacing8/12/16/20, corners8dp. Precise simplified Chinese text. All controls legible and fully visible in one screen; 48dp hit areas and realistic compact density. No decorative art or invented stats. Status bar09:41 unless specified. Screen content supersedes reference layout. Exact screen brief: Bottom nav 今天 / 清单 selected / 计时. Header 清单 search and settings icons. Switch 列表 selected / 日历. Search box 搜索任务. Four filters 待安排 selected / 今天 / 未来 / 已完成. Helper 先记下来，稍后安排. Three clean rows checkbox 买咖啡豆, 预约牙齿检查, 整理旅行照片, each subtitle 未指定日期 and chevron. Compact bottom tray status 语音会话未开启. Primary microphone 开启语音会话, secondary plus 打字添加. No duplicate search button if space limited, no categories unsupported."
+  },
+  {
+    "id": "14-calendar-v2",
+    "title": "日历与训练记录",
+    "type": "M",
+    "file": "14-calendar-v2.png",
+    "prompt": "Use case ui-mockup. ONE high fidelity flat Android mobile screen for VoiceTodo, 853x1844 portrait (390x844 logical), no device frame or annotations. Supplied reference is ONLY a style reference: warm white #F7F8FA, white panels, ink #182230, secondary #586575, cobalt #315BE8, selected #EDF2FF, amber #9B5E10. Consistent clean outline icons, no emoji. Chinese sans-serif, body16sp auxiliary13sp title30sp, spacing8/12/16/20, corners8dp. Precise simplified Chinese text. All controls legible and fully visible in one screen; 48dp hit areas and realistic compact density. No decorative art or invented stats. Status bar09:41 unless specified. Screen content supersedes reference layout. Exact screen brief: Bottom nav 今天 / 清单 selected / 计时. Header 清单. Switch 列表 / 日历 selected. Month heading2026年9月 arrows and 今天 action. Toggle 月 / 周 selected. ONE WEEK ONLY 7 columns headers 一 二 三 四 五 六 日 with exact dates7 8 9 10 11 12 13, 11 selected cobalt; dots under11,12. Below title9月11日 · 星期五 and plus 添加. Section 当日待办, rows10:30 提交项目方案 / 准时提醒 and18:00 取快递 / 准时提醒 each checkbox and edit chevron. Section 训练记录, pale white card 晨间训练,08:00–08:04, 已完成 badge, small pencil 改名. Second record 拉伸,08:20–08:23, 已中断 badge, 改名. These are finished before current09:41. Collapsed 待安排 2. Bottom note 新建任务默认使用所选日期. No claim planned duration equals actual elapsed. Everything readable, no month grid needed in selected week view."
+  },
+  {
+    "id": "07-timers-v2",
+    "title": "语音训练入口与活动列表",
+    "type": "M",
+    "file": "07-timers-v2.png",
+    "prompt": "Use case ui-mockup. ONE high fidelity flat Android mobile screen for VoiceTodo, 853x1844 portrait (390x844 logical), no device frame or annotations. Supplied reference is ONLY a style reference: warm white #F7F8FA, white panels, ink #182230, secondary #586575, cobalt #315BE8, selected #EDF2FF, amber #9B5E10. Consistent clean outline icons, no emoji. Chinese sans-serif, body16sp auxiliary13sp title30sp, spacing8/12/16/20, corners8dp. Precise simplified Chinese text. All controls legible and fully visible in one screen; 48dp hit areas and realistic compact density. No decorative art or invented stats. Status bar09:41 unless specified. Screen content supersedes reference layout. Exact screen brief: Bottomnav今天 /清单 /计时 selected. Header训练计时, speaker-settings icon. Main cobalt microphone button说出你的训练. Below small example“深蹲10组，每组5秒，休息10秒”. Helper自动创建并开始；有训练运行时先处理当前训练. Heading正在进行. Compact amber card深蹲 /第3/10组 · 运动中 /00:03 action查看. Section从模板开始 with small辅助入口 label. Two white compact rows我的深蹲 /10组 · 5秒运动 /套用修改 and间歇训练 /可调整动作、时长与组数 /套用修改. Next训练记录 row晨间拉伸 /今天08:00 · 已完成 chevron. Small footer当前仅支持一个活动训练，套用模板不会覆盖正在进行的训练. No forced template before voice. All controls fit."
+  },
+  {
+    "id": "13-first-use-v2",
+    "title": "首次使用",
+    "type": "M",
+    "file": "13-first-use-v2.png",
+    "prompt": "Use case ui-mockup. ONE high fidelity flat Android mobile screen for VoiceTodo, 853x1844 portrait (390x844 logical), no device frame or annotations. Supplied reference is ONLY a style reference: warm white #F7F8FA, white panels, ink #182230, secondary #586575, cobalt #315BE8, selected #EDF2FF, amber #9B5E10. Consistent clean outline icons, no emoji. Chinese sans-serif, body16sp auxiliary13sp title30sp, spacing8/12/16/20, corners8dp. Precise simplified Chinese text. All controls legible and fully visible in one screen; 48dp hit areas and realistic compact density. No decorative art or invented stats. Status bar09:41 unless specified. Screen content supersedes reference layout. Exact screen brief: No tabs. BrandVoiceTodo. Title说出训练，即刻开始. Subtitle按你的动作、组数和时长安排. Examplecard“深蹲10组，每组持续5秒钟，休息10秒”→ 深蹲 ·10组 ·总时长02:20, small末组不休息. Three rows口述直接创建 /识别完整后自动开始，可暂停纠错;模板也能改 /套用已有计划，改成你的训练;倒数提醒下一步 /最后5秒或3秒报数，切换时提示下一步. Small会话由你手动开启和结束，返回页面后仍保持开启. Permission note使用语音或提醒时按需申请权限. Link隐私与数据说明. Bottom开始使用 and先用文字记录. No regular confirmation requirement, no claim already running on onboarding."
+  }
+]

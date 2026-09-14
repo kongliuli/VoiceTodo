@@ -1,0 +1,14 @@
+[
+  {
+    "id": "07-timers",
+    "prompt": "Edit only the lower blue 阅读 timer card progress: it has total 25 minutes and remaining 18:25, so elapsed is 6:35 (26.33%). Replace incorrect 73% with exact 26%. Make the blue progress fill exactly about one quarter (26%) of its grey track. The orange egg timer stays 06:42 and 33%. Preserve all other typography, layout, text, icons and navigation exactly. Single same-size screen."
+  },
+  {
+    "id": "03-task-editor",
+    "prompt": "Edit only two tiny character counters. Remove 8/500 and 15/500 completely, leaving plain white backgrounds in their positions. These are unwanted and mathematically inaccurate. Preserve all other pixels, text, layout, typography and buttons. Do not add any other features. Single same-size screen."
+  },
+  {
+    "id": "11-reminder",
+    "prompt": "Edit only status-bar clock at very top left from 09:41 to 18:00, so current time agrees with the due reminder 今天18:00. Preserve ALL remaining page content, layout, colors, type, spacing and buttons exactly. Single same-size screen."
+  }
+]

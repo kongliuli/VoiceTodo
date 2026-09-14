@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VoiceTodo.Maui.Pages.ReminderPage">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="20,12,20,24" RowSpacing="8">
+
+        <!-- 顶栏：小字标题 + 关闭 -->
+        <Grid ColumnDefinitions="*,Auto">
+            <Label x:Name="HeaderLabel" Style="{StaticResource AuxText}" VerticalOptions="Center" />
+            <Border x:Name="CloseWrap" Grid.Column="1" Style="{StaticResource IconCircle}">
+                <Button x:Name="CloseBtn" Style="{StaticResource GhostButton}" Text="✕" Padding="0"
+                        CornerRadius="22" Clicked="OnClose" />
+            </Border>
+        </Grid>
+
+        <!-- 中央内容 -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="6" VerticalOptions="Center">
+
+                <!-- 大琥珀圆底 🔔 -->
+                <Border WidthRequest="96" HeightRequest="96" BackgroundColor="{StaticResource AmberBg}"
+                        StrokeThickness="0" StrokeShape="RoundRectangle 48" Padding="0"
+                        HorizontalOptions="Center" Margin="0,8,0,16">
+                    <Label Text="🔔" FontSize="44" TextColor="{StaticResource Amber}"
+                           HorizontalOptions="Center" VerticalOptions="Center" />
+                </Border>
+
+                <Label x:Name="TaskTitleLabel" Style="{StaticResource RowTitle}" FontSize="26"
+                       HorizontalTextAlignment="Center" HorizontalOptions="Center" />
+                <Label x:Name="DueLabel" FontSize="22" TextColor="{StaticResource TextSecondary}"
+                       HorizontalTextAlignment="Center" HorizontalOptions="Center" IsVisible="False" />
+                <Label x:Name="ArrivedLabel" FontSize="14" FontAttributes="Bold"
+                       TextColor="{StaticResource Amber}" HorizontalTextAlignment="Center"
+                       HorizontalOptions="Center" Margin="0,4,0,0" />
+
+                <Label x:Name="SnoozeLabel" Style="{StaticResource SectionHeader}" Margin="0,28,0,0" />
+
+                <!-- 延后 chips：5 / 10 / 30 分钟 -->
+                <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+                    <HorizontalStackLayout Spacing="8">
+                        <Border x:Name="Chip5" Style="{StaticResource FilterChip}">
+                            <Button x:Name="Chip5Btn" Style="{StaticResource GhostButton}" FontSize="14"
+                                    Padding="0" Clicked="OnChip" />
+                        </Border>
+                        <Border x:Name="Chip10" Style="{StaticResource FilterChip}">
+                            <Button x:Name="Chip10Btn" Style="{StaticResource GhostButton}" FontSize="14"
+                                    Padding="0" Clicked="OnChip" />
+                        </Border>
+                        <Border x:Name="Chip30" Style="{StaticResource FilterChip}">
+                            <Button x:Name="Chip30Btn" Style="{StaticResource GhostButton}" FontSize="14"
+                                    Padding="0" Clicked="OnChip" />
+                        </Border>
+                    </HorizontalStackLayout>
+                </ScrollView>
+
+                <Label x:Name="CustomLink" Style="{StaticResource AuxText}" TextColor="{StaticResource Primary}"
+                       Margin="0,6,0,0">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnCustomTime" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- 底部操作 -->
+        <VerticalStackLayout Grid.Row="2" Spacing="10">
+            <Border Style="{StaticResource PrimaryBtnWrap}">
+                <Button x:Name="DoneBtn" Style="{StaticResource GhostButton}" TextColor="White"
+                        Clicked="OnMarkDone" />
+            </Border>
+            <Border Style="{StaticResource SecondaryBtnWrap}">
+                <Button x:Name="SnoozeBtn" Style="{StaticResource GhostButton}"
+                        TextColor="{StaticResource Primary}" Clicked="OnSnooze" />
+            </Border>
+            <Border Style="{StaticResource SecondaryBtnWrap}">
+                <Button x:Name="StopNagBtn" Style="{StaticResource GhostButton}"
+                        TextColor="{StaticResource Primary}" Clicked="OnStopNag" />
+            </Border>
+        </VerticalStackLayout>
+
+        <!-- 自定义时间覆盖层 -->
+        <Grid x:Name="CustomTimeOverlay" Grid.RowSpan="3" IsVisible="False" BackgroundColor="#66000000">
+            <Border Style="{StaticResource Card}" StrokeShape="RoundRectangle 12" Padding="20"
+                    HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="280">
+                <VerticalStackLayout Spacing="14">
+                    <Label x:Name="OverlayTitle" Style="{StaticResource SectionHeader}"
+                           HorizontalOptions="Center" />
+                    <TimePicker x:Name="CustomTimePicker" TextColor="{StaticResource TextPrimary}"
+                                HorizontalOptions="Center" />
+                    <Border Style="{StaticResource PrimaryBtnWrap}">
+                        <Button x:Name="CustomOkBtn" Style="{StaticResource GhostButton}" TextColor="White"
+                                Clicked="OnCustomConfirm" />
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </Grid>
+
+</ContentPage>

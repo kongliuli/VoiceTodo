@@ -1,0 +1,17 @@
+Use case: ui-mockup. Generate ONE additional Android mobile screen for VoiceTodo, matching the provided homepage as STYLE REFERENCE. Flat full-bleed single portrait app screen, exactly same 853x1844 output dimensions if possible (390x844 logical layout). No device frame, no poster, no collage or external annotations. Simplified Chinese UI, warm white #F7F8FA background, white surfaces, ink #182230, secondary #586575, cobalt #315BE8, pale blue #EDF2FF, thin #E3E7EE dividers, restrained 8dp card radius. Same readable Chinese sans-serif and outline icons. All content visible, 20dp horizontal margins, minimum 48dp action touch targets, actual date squares may be 48dp including hit area.
+
+This is a calendar VIEW within the 清单 destination, NOT a fourth bottom navigation tab. Header status bar 09:41 then page title "清单", search and settings icons right. Compact view switch with "列表" unselected and "日历" selected pale blue. Month row "2026年9月" with previous/next chevrons and small outlined "今天" action. Below a clean 7-column month grid, WEEK STARTS MONDAY. Weekday headers EXACTLY: 一 二 三 四 五 六 日.
+CRITICAL Gregorian date layout, do not reorder or omit dates:
+Row1: grey 31, 1, 2, 3, 4, 5, 6
+Row2: 7, 8, 9, 10, selected 11, 12, 13
+Row3: 14, 15, 16, 17, 18, 19, 20
+Row4: 21, 22, 23, 24, 25, 26, 27
+Row5: 28, 29, 30, grey 1, grey 2, grey 3, grey 4.
+September 11 is FRIDAY, column five, second row. Selected 11 uses solid cobalt rounded rectangle with white number. Small cobalt event dots below 12,15,18,22; selected 11 small white dot. Adjacent-month digits muted. No event cards inside cells. Separate calendar with subtle rule.
+Below calendar heading "9月11日 · 星期五" and right secondary "3 件待办".
+Three compact agenda rows, each with left time aligned in a narrow column, hollow checkbox, task title and subtitle:
+10:30 | 提交项目方案 | 准时提醒
+18:00 | 取快递 | 准时提醒
+今晚 | 拉伸 10 分钟 | 可开始计时, with small play icon right.
+This is current day at09:41, all tasks pending. At bottom of agenda a compact tray row "待安排" count "2" and chevron.
+Fixed bottom compact primary cobalt button microphone icon "说一句，记下来", small secondary keyboard action "打字添加". Bottom nav exactly "今天", "清单" selected, "计时". Safe gesture indicator. Keep top calendar about 40 percent screen, agenda about 25 percent, capture and nav bottom. Fit all visible with compact typography; no oversized month title or wasted empty space. No extra labels, no fake weekly stats. Preserve date arithmetic EXACTLY; legibility and faithful calendar grid are critical. Output only the single complete calendar screen.

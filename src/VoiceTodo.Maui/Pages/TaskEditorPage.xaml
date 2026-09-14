@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VoiceTodo.Maui.Pages.TaskEditorPage"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="*,Auto" Padding="20,12,20,16" RowSpacing="14"
+          BackgroundColor="{StaticResource Bg}">
+
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Spacing="14">
+
+                <!-- 顶栏：返回 + 标题 + 更多 -->
+                <Grid ColumnDefinitions="Auto,*,Auto">
+                    <Border Style="{StaticResource IconCircle}">
+                        <Button Text="←" Style="{StaticResource GhostButton}" Padding="0" CornerRadius="22"
+                                Clicked="OnBackClicked" />
+                    </Border>
+                    <Label x:Name="TopTitleLabel" Grid.Column="1" FontSize="20" FontAttributes="Bold"
+                           TextColor="{StaticResource TextPrimary}" Margin="8,0"
+                           HorizontalOptions="Center" VerticalOptions="Center" />
+                    <Border Grid.Column="2" Style="{StaticResource IconCircle}">
+                        <Button Text="⋮" Style="{StaticResource GhostButton}" Padding="0" CornerRadius="22"
+                                Clicked="OnMoreClicked" />
+                    </Border>
+                </Grid>
+
+                <!-- 任务内容卡 -->
+                <Border Style="{StaticResource Card}">
+                    <VerticalStackLayout Spacing="6">
+                        <Label x:Name="ContentHeader" Style="{StaticResource AuxText}" />
+                        <Editor x:Name="TitleEditor" FontSize="22" FontAttributes="Bold"
+                                TextColor="{StaticResource TextPrimary}" BackgroundColor="Transparent"
+                                AutoSize="TextChanges" MinimumHeightRequest="44" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- 字段行卡：日期 / 时间 / 提醒 / 重复 -->
+                <Border Style="{StaticResource Card}" Padding="0">
+                    <VerticalStackLayout Spacing="0">
+
+                        <Grid ColumnDefinitions="44,*,Auto" Padding="16,14" BackgroundColor="Transparent">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnDateRowTapped" />
+                            </Grid.GestureRecognizers>
+                            <Label Text="📅" FontSize="20" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                            <Label x:Name="DateNameLabel" Grid.Column="1" Style="{StaticResource BodyText}"
+                                   VerticalOptions="Center" />
+                            <HorizontalStackLayout Grid.Column="2" Spacing="6" VerticalOptions="Center">
+                                <Label x:Name="DateValueLabel" Style="{StaticResource ValueText}" />
+                                <Label Text="›" FontSize="18" TextColor="{StaticResource TextMuted}"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </Grid>
+                        <BoxView Style="{StaticResource RowSeparator}" />
+
+                        <Grid ColumnDefinitions="44,*,Auto" Padding="16,14" BackgroundColor="Transparent">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTimeRowTapped" />
+                            </Grid.GestureRecognizers>
+                            <Label Text="🕐" FontSize="20" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                            <Label x:Name="TimeNameLabel" Grid.Column="1" Style="{StaticResource BodyText}"
+                                   VerticalOptions="Center" />
+                            <HorizontalStackLayout Grid.Column="2" Spacing="6" VerticalOptions="Center">
+                                <Label x:Name="TimeValueLabel" Style="{StaticResource ValueText}" />
+                                <Label Text="›" FontSize="18" TextColor="{StaticResource TextMuted}"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </Grid>
+                        <BoxView Style="{StaticResource RowSeparator}" />
+
+                        <Grid ColumnDefinitions="44,*,Auto" Padding="16,14" BackgroundColor="Transparent">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnReminderRowTapped" />
+                            </Grid.GestureRecognizers>
+                            <Label Text="🔔" FontSize="20" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                            <Label x:Name="ReminderNameLabel" Grid.Column="1" Style="{StaticResource BodyText}"
+                                   VerticalOptions="Center" />
+                            <HorizontalStackLayout Grid.Column="2" Spacing="6" VerticalOptions="Center">
+                                <Label x:Name="ReminderValueLabel" Style="{StaticResource ValueText}" />
+                                <Label Text="›" FontSize="18" TextColor="{StaticResource TextMuted}"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </Grid>
+                        <BoxView Style="{StaticResource RowSeparator}" />
+
+                        <Grid ColumnDefinitions="44,*,Auto" Padding="16,14" BackgroundColor="Transparent">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnRepeatRowTapped" />
+                            </Grid.GestureRecognizers>
+                            <Label Text="🔁" FontSize="20" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                            <Label x:Name="RepeatNameLabel" Grid.Column="1" Style="{StaticResource BodyText}"
+                                   VerticalOptions="Center" />
+                            <HorizontalStackLayout Grid.Column="2" Spacing="6" VerticalOptions="Center">
+                                <Label x:Name="RepeatValueLabel" Style="{StaticResource ValueText}" />
+                                <Label Text="›" FontSize="18" TextColor="{StaticResource TextMuted}"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- 备注卡 -->
+                <Border Style="{StaticResource Card}">
+                    <VerticalStackLayout Spacing="6">
+                        <Label x:Name="NotesHeader" Style="{StaticResource AuxText}" />
+                        <Editor x:Name="NotesEditor" HeightRequest="90" BackgroundColor="Transparent"
+                                TextColor="{StaticResource TextPrimary}"
+                                PlaceholderColor="{StaticResource TextMuted}" />
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- 底部按钮（固定不滚动） -->
+        <VerticalStackLayout Grid.Row="1" Spacing="10">
+            <Border Style="{StaticResource PrimaryBtnWrap}">
+                <Button x:Name="SaveBtn" Style="{StaticResource GhostButton}" TextColor="White"
+                        Clicked="OnSaveClicked" />
+            </Border>
+            <Border Style="{StaticResource SecondaryBtnWrap}">
+                <Button x:Name="CancelBtn" Style="{StaticResource GhostButton}"
+                        TextColor="{StaticResource TextPrimary}" Clicked="OnCancelClicked" />
+            </Border>
+        </VerticalStackLayout>
+
+        <!-- 页内覆盖层（日期/时间选择、提醒/重复选项） -->
+        <Grid x:Name="OverlayRoot" Grid.RowSpan="2" IsVisible="False" BackgroundColor="#40000000">
+            <Border x:Name="OverlayCard" Style="{StaticResource Card}" Padding="18" WidthRequest="320"
+                    HorizontalOptions="Center" VerticalOptions="Center" />
+        </Grid>
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata" type="xs:string" />
+          <xsd:element name="assembly" type="xs:string" />
+          <xsd:element name="data" type="xs:string" />
+          <xsd:element name="resheader" type="xs:string" />
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+
+  <data name="AppName" xml:space="preserve"><value>语音待办</value></data>
+  <data name="UnknownCommand" xml:space="preserve"><value>抱歉，我没听懂。</value></data>
+  <data name="CreatedTodo" xml:space="preserve"><value>已创建待办：{0}</value></data>
+  <data name="CreatedTimer" xml:space="preserve"><value>已创建定时器：{0}，时长 {1}</value></data>
+  <data name="Listening" xml:space="preserve"><value>正在聆听...</value></data>
+  <data name="Reminder" xml:space="preserve"><value>提醒</value></data>
+  <data name="NagModeOn" xml:space="preserve"><value>唠叨模式已开启</value></data>
+  <data name="Work" xml:space="preserve"><value>训练</value></data>
+  <data name="Rest" xml:space="preserve"><value>休息</value></data>
+  <data name="Start" xml:space="preserve"><value>开始</value></data>
+  <data name="Stop" xml:space="preserve"><value>停止</value></data>
+  <data name="Confirm" xml:space="preserve"><value>确认</value></data>
+  <data name="Snooze" xml:space="preserve"><value>稍后</value></data>
+  <data name="Dismiss" xml:space="preserve"><value>忽略</value></data>
+  <data name="TimerDone" xml:space="preserve"><value>计时结束</value></data>
+  <data name="CompletedTodo" xml:space="preserve"><value>已完成：{0}</value></data>
+  <data name="DeletedTodo" xml:space="preserve"><value>已删除：{0}</value></data>
+  <data name="NotFound" xml:space="preserve"><value>没有找到对应的事项。</value></data>
+  <data name="NoPending" xml:space="preserve"><value>当前没有待办事项。</value></data>
+  <data name="QueryResult" xml:space="preserve"><value>你有：{0}</value></data>
+
+  <!-- DEV-04 plan -->
+  <data name="PlanStartedFormat" xml:space="preserve"><value>已开始：{0}，共 {1}</value></data>
+  <data name="PlanMissingAskFormat" xml:space="preserve"><value>还缺：{0}</value></data>
+  <data name="SlotAction" xml:space="preserve"><value>动作名</value></data>
+  <data name="SlotRounds" xml:space="preserve"><value>组数</value></data>
+  <data name="SlotWork" xml:space="preserve"><value>每组运动时长</value></data>
+  <data name="SlotRest" xml:space="preserve"><value>组间休息时长</value></data>
+  <data name="SlotCountHint" xml:space="preserve"><value>按次训练暂不支持，请改说每组持续多久，按组安排。</value></data>
+</root>

@@ -1,0 +1,38 @@
+[
+  {
+    "file": "cyx-v2-01-home.png",
+    "width": 853,
+    "height": 1844,
+    "sha256": "4305317748735FCAD597E962E8CCD755E47B3F610339FADB580F29405FD9F101"
+  },
+  {
+    "file": "cyx-v2-02-record.png",
+    "width": 853,
+    "height": 1844,
+    "sha256": "68E6DACF64A72ED1DBFCAB605E52847C2C8C8D4682E8E03317129DAECC7DEA15"
+  },
+  {
+    "file": "cyx-v2-03-rule.png",
+    "width": 853,
+    "height": 1844,
+    "sha256": "AB1605F30A1320B55CBEB8D5F339F8B261931310EE842A6D5165A77F7992A2F8"
+  },
+  {
+    "file": "yc-v2-01-home.png",
+    "width": 853,
+    "height": 1844,
+    "sha256": "6123B0D85A08CCB13EE27828663068BA7FE6C0CF8C4771DEC3C8BCACF50A6AFA"
+  },
+  {
+    "file": "yc-v2-02-record.png",
+    "width": 853,
+    "height": 1844,
+    "sha256": "4EA5EA5A619D11F57A76A7903D5647756485F484A54334EA55246BD1E426AFF2"
+  },
+  {
+    "file": "yc-v2-03-rule.png",
+    "width": 853,
+    "height": 1844,
+    "sha256": "B88775736B80E2E6E902140EC6A6ADF7BEBC29BDA0D52FAA0486F238E387FB81"
+  }
+]

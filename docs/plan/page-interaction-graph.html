@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>VoiceTodo 页面交互图</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --border:#30363d;
+    --text:#e6edf3; --muted:#8b949e;
+    --blue:#58a6ff; --purple:#bc8cff; --amber:#e3b341; --green:#3fb950; --orange:#f0883e;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,"Segoe UI","Microsoft YaHei",system-ui,sans-serif;
+    padding:28px 24px 40px;
+  }
+  h1{font-size:20px;margin:0 0 6px;font-weight:600;letter-spacing:.3px}
+  .sub{color:var(--muted);font-size:13px;margin:0 0 22px;line-height:1.6}
+  .wrap{
+    background:var(--panel); border:1px solid var(--border); border-radius:12px;
+    padding:8px; overflow-x:auto;
+  }
+  svg{display:block;width:1400px;height:800px}
+  .legend{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+  .lg{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
+  .lg h3{margin:0 0 8px;font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.6px;text-transform:uppercase}
+  .lg p{margin:0;font-size:12.5px;line-height:1.75;color:var(--text)}
+  .lg .k{display:inline-block;color:var(--muted)}
+  .sw{display:inline-block;width:22px;height:3px;border-radius:2px;vertical-align:middle;margin-right:7px}
+</style>
+</head>
+<body>
+
+<h1>VoiceTodo 页面交互图</h1>
+<p class="sub">
+  11 个页面 · 3 个底栏 Tab + 8 个 push 子页 · 快照 2026-09-11<br>
+  实线＝用户点击跳转｜虚线＝非点击触发（自动 / 间接）｜粗绿线＝跨页状态通道（TimerLauncher）
+</p>
+
+<div class="wrap">
+<svg viewBox="0 0 1400 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="a-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#58a6ff"/>
+    </marker>
+    <marker id="a-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e3b341"/>
+    </marker>
+    <marker id="a-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#3fb950"/>
+    </marker>
+    <marker id="a-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#bc8cff"/>
+    </marker>
+    <marker id="a-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#f0883e"/>
+    </marker>
+  </defs>
+
+  <!-- ══════════ 边 ══════════ -->
+
+  <!-- 启动引导 → 主 Tab -->
+  <path d="M270,58 H660 V140" fill="none" stroke="#f0883e" stroke-width="2" marker-end="url(#a-orange)"/>
+  <text x="470" y="50" fill="#f0883e" font-size="11" text-anchor="middle">开始使用</text>
+
+  <!-- 引导 → 文字添加（间接，点线） -->
+  <path d="M60,58 H38 V560 H388 V504" fill="none" stroke="#f0883e" stroke-width="1.5"
+        stroke-dasharray="3 4" marker-end="url(#a-orange)"/>
+  <text x="46" y="300" fill="#f0883e" font-size="11" transform="rotate(-90 46,300)" text-anchor="middle">先打字试试</text>
+
+  <!-- 主 Tab → 清单 / 计时 -->
+  <path d="M590,178 H450" fill="none" stroke="#58a6ff" stroke-width="2" marker-end="url(#a-blue)"/>
+  <text x="520" y="168" fill="#8b949e" font-size="11" text-anchor="middle">放大镜 · 查看全部 · 待安排</text>
+
+  <path d="M810,178 H950" fill="none" stroke="#58a6ff" stroke-width="2" marker-end="url(#a-blue)"/>
+  <text x="880" y="168" fill="#8b949e" font-size="11" text-anchor="middle">运行计时卡</text>
+
+  <!-- 首页 → 6 个子页（总线） -->
+  <path d="M700,214 V370" fill="none" stroke="#58a6ff" stroke-width="2"/>
+  <path d="M180,370 H1220" fill="none" stroke="#58a6ff" stroke-width="2"/>
+  <path d="M180,370 V440"  fill="none" stroke="#58a6ff" stroke-width="2" marker-end="url(#a-blue)"/>
+  <path d="M388,370 V440"  fill="none" stroke="#58a6ff" stroke-width="2" marker-end="url(#a-blue)"/>
+  <path d="M596,370 V440"  fill="none" stroke="#58a6ff" stroke-width="2" marker-end="url(#a-blue)"/>
+  <path d="M804,370 V440"  fill="none" stroke="#e3b341" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#a-amber)"/>
+  <path d="M1012,370 V440" fill="none" stroke="#58a6ff" stroke-width="2" marker-end="url(#a-blue)"/>
+  <path d="M1220,370 V440" fill="none" stroke="#58a6ff" stroke-width="2" marker-end="url(#a-blue)"/>
+
+  <text x="188"  y="404" fill="#8b949e" font-size="10">对我说…</text>
+  <text x="396"  y="404" fill="#8b949e" font-size="10">打字添加</text>
+  <text x="604"  y="404" fill="#8b949e" font-size="10">点待办行</text>
+  <text x="812"  y="404" fill="#e3b341" font-size="10">自动到期检查</text>
+  <text x="1020" y="404" fill="#8b949e" font-size="10">打开日历</text>
+  <text x="1228" y="404" fill="#8b949e" font-size="10">齿轮</text>
+
+  <!-- 清单 → 任务编辑 -->
+  <path d="M405,206 V250 H640 V440" fill="none" stroke="#bc8cff" stroke-width="2" marker-end="url(#a-purple)"/>
+  <text x="700" y="245" fill="#bc8cff" font-size="10">点待办行</text>
+
+  <!-- 语音录入 → 文字添加 -->
+  <path d="M275,472 H293" fill="none" stroke="#58a6ff" stroke-width="2" marker-end="url(#a-blue)"/>
+  <text x="284" y="530" fill="#8b949e" font-size="10" text-anchor="middle">改用打字</text>
+
+  <!-- 语音录入 → 计时（TimerLauncher 通道） -->
+  <path d="M180,504 V640 H1345 V178 H1130" fill="none" stroke="#3fb950" stroke-width="2.5" marker-end="url(#a-green)"/>
+  <text x="700" y="656" fill="#3fb950" font-size="11" text-anchor="middle">确认添加（计时草稿）→ TimerLauncher 投放 → 计时页准备态</text>
+
+  <!-- 计时 → 计时编辑器 -->
+  <path d="M1010,206 V300" fill="none" stroke="#58a6ff" stroke-width="2" marker-end="url(#a-blue)"/>
+  <text x="1000" y="258" fill="#8b949e" font-size="11" text-anchor="end">右上 +</text>
+
+  <!-- 计时编辑器 → 计时（TimerLauncher 通道） -->
+  <path d="M1075,300 V206" fill="none" stroke="#3fb950" stroke-width="2.5" marker-end="url(#a-green)"/>
+  <text x="1088" y="258" fill="#3fb950" font-size="11">保存并开始</text>
+
+  <!-- ══════════ 节点 ══════════ -->
+
+  <!-- Onboarding -->
+  <rect x="60" y="30" width="210" height="56" rx="10" fill="#2b2110" stroke="#f0883e" stroke-width="2"/>
+  <text x="165" y="53" fill="#e6edf3" font-size="13.5" font-weight="600" text-anchor="middle">OnboardingPage</text>
+  <text x="165" y="71" fill="#8b949e" font-size="11" text-anchor="middle">首次引导</text>
+
+  <!-- 主 Tab：今天 -->
+  <rect x="590" y="140" width="220" height="74" rx="12" fill="#132a43" stroke="#58a6ff" stroke-width="2.5"/>
+  <text x="700" y="169" fill="#e6edf3" font-size="15" font-weight="700" text-anchor="middle">MainPage</text>
+  <text x="700" y="189" fill="#58a6ff" font-size="11" text-anchor="middle">今天 · Tab 根（枢纽页）</text>
+  <text x="700" y="205" fill="#8b949e" font-size="10" text-anchor="middle">聚合 / 语音入口 / 到期检查</text>
+
+  <!-- Tab：清单 -->
+  <rect x="270" y="150" width="180" height="56" rx="10" fill="#132a43" stroke="#58a6ff" stroke-width="2"/>
+  <text x="360" y="173" fill="#e6edf3" font-size="14" font-weight="600" text-anchor="middle">ListsPage</text>
+  <text x="360" y="191" fill="#58a6ff" font-size="11" text-anchor="middle">清单 · Tab 根</text>
+
+  <!-- Tab：计时 -->
+  <rect x="950" y="150" width="180" height="56" rx="10" fill="#132a43" stroke="#58a6ff" stroke-width="2"/>
+  <text x="1040" y="173" fill="#e6edf3" font-size="14" font-weight="600" text-anchor="middle">TimerPage</text>
+  <text x="1040" y="191" fill="#58a6ff" font-size="11" text-anchor="middle">计时 · Tab 根</text>
+
+  <!-- 子页行（y=440） -->
+  <rect x="85" y="440" width="190" height="64" rx="10" fill="#1c1730" stroke="#bc8cff" stroke-width="1.8"/>
+  <text x="180" y="464" fill="#e6edf3" font-size="12.5" font-weight="600" text-anchor="middle">VoiceCapturePage</text>
+  <text x="180" y="482" fill="#8b949e" font-size="10.5" text-anchor="middle">语音录入（聆听/确认/失败）</text>
+
+  <rect x="293" y="440" width="190" height="64" rx="10" fill="#1c1730" stroke="#bc8cff" stroke-width="1.8"/>
+  <text x="388" y="464" fill="#e6edf3" font-size="12.5" font-weight="600" text-anchor="middle">TextAddPage</text>
+  <text x="388" y="482" fill="#8b949e" font-size="10.5" text-anchor="middle">文字添加（防抖解析）</text>
+
+  <rect x="501" y="440" width="190" height="64" rx="10" fill="#1c1730" stroke="#bc8cff" stroke-width="1.8"/>
+  <text x="596" y="464" fill="#e6edf3" font-size="12.5" font-weight="600" text-anchor="middle">TaskEditorPage</text>
+  <text x="596" y="482" fill="#8b949e" font-size="10.5" text-anchor="middle">任务编辑（id=N）</text>
+
+  <rect x="709" y="440" width="190" height="64" rx="10" fill="#1c1730" stroke="#bc8cff" stroke-width="1.8"/>
+  <text x="804" y="464" fill="#e6edf3" font-size="12.5" font-weight="600" text-anchor="middle">ReminderPage</text>
+  <text x="804" y="482" fill="#8b949e" font-size="10.5" text-anchor="middle">到期提醒（id=N）</text>
+
+  <rect x="917" y="440" width="190" height="64" rx="10" fill="#1c1730" stroke="#bc8cff" stroke-width="1.8"/>
+  <text x="1012" y="464" fill="#e6edf3" font-size="12.5" font-weight="600" text-anchor="middle">CalendarPage</text>
+  <text x="1012" y="482" fill="#8b949e" font-size="10.5" text-anchor="middle">日历 + 计时记录图层</text>
+
+  <rect x="1125" y="440" width="190" height="64" rx="10" fill="#1c1730" stroke="#bc8cff" stroke-width="1.8"/>
+  <text x="1220" y="464" fill="#e6edf3" font-size="12.5" font-weight="600" text-anchor="middle">SettingsPage</text>
+  <text x="1220" y="482" fill="#8b949e" font-size="10.5" text-anchor="middle">设置（四组）</text>
+
+  <!-- 计时编辑器 -->
+  <rect x="940" y="300" width="200" height="64" rx="10" fill="#1c1730" stroke="#bc8cff" stroke-width="1.8"/>
+  <text x="1040" y="324" fill="#e6edf3" font-size="12.5" font-weight="600" text-anchor="middle">TimerEditorPage</text>
+  <text x="1040" y="342" fill="#8b949e" font-size="10.5" text-anchor="middle">计时编辑器（模板/步进/预览）</text>
+
+  <!-- ══════════ 分区标注 ══════════ -->
+  <text x="60" y="128" fill="#8b949e" font-size="11" font-weight="600" letter-spacing="1">启动</text>
+  <text x="270" y="138" fill="#8b949e" font-size="11" font-weight="600" letter-spacing="1">底栏 Tab（3）</text>
+  <text x="60" y="700" fill="#8b949e" font-size="11" font-weight="600" letter-spacing="1">push 子页（8）</text>
+  <line x1="60" y1="706" x2="420" y2="706" stroke="#30363d" stroke-width="1"/>
+
+  <!-- 返回说明 -->
+  <rect x="60" y="722" width="1310" height="46" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="78" y="742" fill="#8b949e" font-size="11.5">
+    出栈返回：所有子页的「确认 / 保存 / 取消」都走 GoToAsync("..")，回到进入它的那个页面（不一定是首页 —— 例如任务编辑从清单进入就回清单）。
+  </text>
+  <text x="78" y="760" fill="#8b949e" font-size="11.5">
+    页面之间不直接传对象：数据一律经 ITodoRepository（各页 OnAppearing 重读）或静态中枢（TimerLauncher / RunningTimerHub）流转。
+  </text>
+</svg>
+</div>
+
+<div class="legend">
+  <div class="lg">
+    <h3>线型</h3>
+    <p>
+      <span class="sw" style="background:#58a6ff"></span>点击跳转<br>
+      <span class="sw" style="background:#e3b341"></span>非点击触发（自动到期检查）<br>
+      <span class="sw" style="background:#3fb950"></span>跨页状态通道 TimerLauncher<br>
+      <span class="sw" style="background:#bc8cff"></span>清单 → 任务编辑<br>
+      <span class="sw" style="background:#f0883e"></span>启动引导
+    </p>
+  </div>
+  <div class="lg">
+    <h3>跨页通道</h3>
+    <p>
+      <b>TimerLauncher</b><br>
+      <span class="k">计时编辑器 / 语音录入 → 计时页</span><br>
+      投放一个「待开始的计时」，计时页 OnAppearing 消费并置空 → 进入<b>准备态</b>（不自动跑）
+    </p>
+  </div>
+  <div class="lg">
+    <h3>跨页通道</h3>
+    <p>
+      <b>RunningTimerHub</b><br>
+      <span class="k">计时页 → 首页</span><br>
+      静态快照 + Changed 事件；首页「正在计时」卡 500ms 心跳刷新
+    </p>
+  </div>
+  <div class="lg">
+    <h3>已知断点</h3>
+    <p>
+      · 日历页待办行<b>不可点</b>（进不了编辑）<br>
+      · 清单页<b>无新建入口</b><br>
+      · 到期提醒窗口仅 24h、每会话一次<br>
+      · 首页已改跳语音页，ListenCommand 成孤儿
+    </p>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VoiceTodo.Maui.Pages.SettingsPage">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,16" Spacing="14">
+
+            <Label x:Name="TitleLabel" Style="{StaticResource PageTitle}" Margin="0,4,0,8" />
+
+            <!-- 通用 -->
+            <Label x:Name="GroupGeneralLabel" Style="{StaticResource SectionHeader}" />
+            <Border Style="{StaticResource CardFlat}">
+                <VerticalStackLayout Spacing="0">
+                    <Grid ColumnDefinitions="44,*,Auto" Padding="16,12">
+                        <Label Text="🌐" FontSize="20" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                        <Label x:Name="LangLabel" Grid.Column="1" Style="{StaticResource BodyText}" VerticalOptions="Center" />
+                        <Picker x:Name="LangPicker" Grid.Column="2" WidthRequest="130"
+                                BackgroundColor="Transparent" TextColor="{StaticResource TextPrimary}"
+                                HorizontalTextAlignment="End" VerticalOptions="Center"
+                                SelectedIndexChanged="OnLangChanged" />
+                    </Grid>
+                    <BoxView Style="{StaticResource RowSeparator}" />
+                    <Grid ColumnDefinitions="44,*,Auto" Padding="16,12">
+                        <Label Text="🧠" FontSize="20" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                        <Label x:Name="AsrModelLabel" Grid.Column="1" Style="{StaticResource BodyText}" VerticalOptions="Center" />
+                        <Picker x:Name="AsrModelPicker" Grid.Column="2" WidthRequest="200"
+                                BackgroundColor="Transparent" TextColor="{StaticResource TextPrimary}"
+                                HorizontalTextAlignment="End" VerticalOptions="Center"
+                                SelectedIndexChanged="OnAsrModelChanged" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- 声音与提醒 -->
+            <Label x:Name="GroupSoundLabel" Style="{StaticResource SectionHeader}" />
+            <Border Style="{StaticResource CardFlat}">
+                <VerticalStackLayout Spacing="0">
+                    <Grid ColumnDefinitions="44,*,Auto" Padding="16,12">
+                        <Label Text="🔔" FontSize="20" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                        <Label x:Name="ReminderSoundLabel" Grid.Column="1" Style="{StaticResource BodyText}" VerticalOptions="Center" />
+                        <Entry x:Name="CustomSoundEntry" Grid.Column="2" WidthRequest="160"
+                               BackgroundColor="Transparent" TextColor="{StaticResource TextPrimary}"
+                               HorizontalTextAlignment="End" VerticalOptions="Center"
+                               TextChanged="OnCustomSoundChanged" />
+                    </Grid>
+                    <BoxView Style="{StaticResource RowSeparator}" />
+                    <Grid ColumnDefinitions="44,*,Auto" Padding="16,12">
+                        <Label Text="🗣" FontSize="20" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                        <Label x:Name="TtsVoiceLabel" Grid.Column="1" Style="{StaticResource BodyText}" VerticalOptions="Center" />
+                        <Entry x:Name="VoiceEntry" Grid.Column="2" WidthRequest="160"
+                               BackgroundColor="Transparent" TextColor="{StaticResource TextPrimary}"
+                               HorizontalTextAlignment="End" VerticalOptions="Center"
+                               TextChanged="OnTtsVoiceChanged" />
+                    </Grid>
+                    <BoxView Style="{StaticResource RowSeparator}" />
+                    <Grid ColumnDefinitions="44,*,Auto" Padding="16,12">
+                        <Label Text="📢" FontSize="20" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                        <Label x:Name="NagLabel" Grid.Column="1" Style="{StaticResource BodyText}" VerticalOptions="Center" />
+                        <Switch x:Name="NagSwitch" Grid.Column="2" VerticalOptions="Center" Toggled="OnNagToggled" />
+                    </Grid>
+                    <BoxView Style="{StaticResource RowSeparator}" />
+                    <Grid ColumnDefinitions="44,*,Auto" Padding="16,12">
+                        <Label Text="⏱" FontSize="20" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                        <Label x:Name="SnoozeLabel" Grid.Column="1" Style="{StaticResource BodyText}" VerticalOptions="Center" />
+                        <Picker x:Name="SnoozePicker" Grid.Column="2"
+                                BackgroundColor="Transparent" TextColor="{StaticResource TextPrimary}"
+                                HorizontalTextAlignment="End" VerticalOptions="Center"
+                                SelectedIndexChanged="OnSnoozeChanged" />
+                    </Grid>
+                    <BoxView Style="{StaticResource RowSeparator}" />
+                    <Grid ColumnDefinitions="44,*,Auto" Padding="16,12">
+                        <Label Text="⏰" FontSize="20" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                        <Label x:Name="PreAlertLabel" Grid.Column="1" Style="{StaticResource BodyText}" VerticalOptions="Center" />
+                        <Picker x:Name="PreAlertPicker" Grid.Column="2"
+                                BackgroundColor="Transparent" TextColor="{StaticResource TextPrimary}"
+                                HorizontalTextAlignment="End" VerticalOptions="Center"
+                                SelectedIndexChanged="OnPreAlertChanged" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- 使用体验 -->
+            <Label x:Name="GroupExperienceLabel" Style="{StaticResource SectionHeader}" />
+            <Border Style="{StaticResource CardFlat}">
+                <VerticalStackLayout Spacing="0">
+                    <Grid ColumnDefinitions="44,*,Auto" Padding="16,12">
+                        <Label Text="✨" FontSize="20" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                        <Label x:Name="AnimLabel" Grid.Column="1" Style="{StaticResource BodyText}" VerticalOptions="Center" />
+                        <Switch x:Name="AnimSwitch" Grid.Column="2" VerticalOptions="Center" Toggled="OnAnimToggled" />
+                    </Grid>
+                    <BoxView Style="{StaticResource RowSeparator}" />
+                    <Grid ColumnDefinitions="44,*,Auto" Padding="16,12">
+                        <Label Text="🎯" FontSize="20" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                        <Label x:Name="SceneLabel" Grid.Column="1" Style="{StaticResource BodyText}" VerticalOptions="Center" />
+                        <Picker x:Name="ScenePicker" Grid.Column="2"
+                                BackgroundColor="Transparent" TextColor="{StaticResource TextPrimary}"
+                                HorizontalTextAlignment="End" VerticalOptions="Center"
+                                SelectedIndexChanged="OnSceneChanged" />
+                    </Grid>
+                    <BoxView Style="{StaticResource RowSeparator}" />
+                    <Grid ColumnDefinitions="44,*,Auto" Padding="16,12">
+                        <Label Text="🎵" FontSize="20" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                        <VerticalStackLayout Grid.Column="1" Spacing="2" VerticalOptions="Center">
+                            <Label x:Name="AudioCoexistLabel" Style="{StaticResource BodyText}" />
+                            <Label Style="{StaticResource AuxText}" Text="播报时压低而非暂停背景音乐" />
+                        </VerticalStackLayout>
+                        <Switch x:Name="AudioCoexistSwitch" Grid.Column="2" VerticalOptions="Center" Toggled="OnAudioCoexistToggled" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- 权限与隐私 -->
+            <Label x:Name="GroupPrivacyLabel" Style="{StaticResource SectionHeader}" />
+            <Border Style="{StaticResource CardFlat}">
+                <VerticalStackLayout Spacing="0">
+                    <Grid x:Name="MicRow" ColumnDefinitions="44,*,Auto" Padding="16,12">
+                        <Label Text="🎙" FontSize="20" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                        <Label x:Name="MicLabel" Grid.Column="1" Style="{StaticResource BodyText}" VerticalOptions="Center" />
+                        <Label x:Name="MicValue" Grid.Column="2" Style="{StaticResource ValueText}" />
+                    </Grid>
+                    <BoxView x:Name="PermSeparator" Style="{StaticResource RowSeparator}" />
+                    <Grid x:Name="NotifRow" ColumnDefinitions="44,*,Auto" Padding="16,12">
+                        <Label Text="🔔" FontSize="20" HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                        <Label x:Name="NotifLabel" Grid.Column="1" Style="{StaticResource BodyText}" VerticalOptions="Center" />
+                        <Label x:Name="NotifValue" Grid.Column="2" Style="{StaticResource ValueText}" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- 数据（C2 导出/导入 · C12 诊断日志） -->
+            <Label x:Name="GroupDataLabel" Style="{StaticResource SectionHeader}" />
+            <Border Style="{StaticResource CardFlat}">
+                <VerticalStackLayout Spacing="0">
+                    <Button x:Name="ExportDataBtn" Style="{StaticResource GhostButton}"
+                            HorizontalOptions="Fill" HorizontalTextAlignment="Start"
+                            Padding="16,12" Clicked="OnExportData" />
+                    <BoxView Style="{StaticResource RowSeparator}" />
+                    <Button x:Name="ImportDataBtn" Style="{StaticResource GhostButton}"
+                            HorizontalOptions="Fill" HorizontalTextAlignment="Start"
+                            Padding="16,12" Clicked="OnImportData" />
+                    <BoxView Style="{StaticResource RowSeparator}" />
+                    <Button x:Name="ExportLogsBtn" Style="{StaticResource GhostButton}"
+                            HorizontalOptions="Fill" HorizontalTextAlignment="Start"
+                            Padding="16,12" Clicked="OnExportLogs" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Label x:Name="AutoSaveHintLabel" Style="{StaticResource AuxText}" HorizontalOptions="Center" Margin="0,8,0,4" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

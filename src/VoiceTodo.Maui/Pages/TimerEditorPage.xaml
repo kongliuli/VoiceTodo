@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VoiceTodo.Maui.Pages.TimerEditorPage"
+             BackgroundColor="{StaticResource Bg}">
+
+    <Grid Padding="20,12,20,24" RowDefinitions="Auto,*,Auto" RowSpacing="14">
+
+        <!-- 顶栏：返回 + 标题 -->
+        <Grid ColumnDefinitions="*,Auto">
+            <Label x:Name="TitleLabel" FontSize="20" FontAttributes="Bold"
+                   TextColor="{StaticResource TextPrimary}" VerticalOptions="Center" />
+            <Border Grid.Column="1" Style="{StaticResource IconCircle}">
+                <Button x:Name="BackBtn" Style="{StaticResource GhostButton}" Padding="0"
+                        CornerRadius="22" Clicked="OnBack" />
+            </Border>
+        </Grid>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="14">
+
+                <!-- 分段控件：倒计时 | 间歇训练 -->
+                <Border Style="{StaticResource SegmentedTrack}">
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="3">
+                        <Button x:Name="SegCountdown" Style="{StaticResource SegmentButton}" Clicked="OnSegment" />
+                        <Button x:Name="SegInterval" Grid.Column="1" Style="{StaticResource SegmentButton}"
+                                Clicked="OnSegment" />
+                    </Grid>
+                </Border>
+
+                <!-- 名称卡（两面板共用） -->
+                <VerticalStackLayout Spacing="8">
+                    <Label x:Name="NameHeader" Style="{StaticResource SectionHeader}" />
+                    <Border Style="{StaticResource Card}" Padding="16,10">
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="4">
+                            <Entry x:Name="NameEntry" VerticalOptions="Center"
+                                   PlaceholderColor="{StaticResource TextMuted}" />
+                            <Button x:Name="ClearBtn" Grid.Column="1" Style="{StaticResource GhostButton}"
+                                    TextColor="{StaticResource TextMuted}" WidthRequest="40" HeightRequest="40"
+                                    CornerRadius="20" Padding="0" Clicked="OnClearName" />
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- ── 间歇训练面板 ── -->
+                <VerticalStackLayout x:Name="IntervalPanel" Spacing="8" IsVisible="False">
+
+                    <Label x:Name="TemplateHeaderLabel" Style="{StaticResource SectionHeader}" />
+                    <HorizontalStackLayout Spacing="10">
+                        <HorizontalStackLayout x:Name="TemplateChips" Spacing="10">
+                            <Border x:Name="TabataChip" Style="{StaticResource FilterChip}">
+                                <Button x:Name="TabataBtn" Style="{StaticResource GhostButton}" Padding="4,4"
+                                        CommandParameter="tabata" Clicked="OnTpl" />
+                            </Border>
+                            <Border x:Name="HiitChip" Style="{StaticResource FilterChip}">
+                                <Button x:Name="HiitBtn" Style="{StaticResource GhostButton}" Padding="4,4"
+                                        CommandParameter="hiit" Clicked="OnTpl" />
+                            </Border>
+                            <Border x:Name="CustomChip" Style="{StaticResource FilterChip}">
+                                <Button x:Name="CustomBtn" Style="{StaticResource GhostButton}" Padding="4,4"
+                                        CommandParameter="custom" Clicked="OnTpl" />
+                            </Border>
+                        </HorizontalStackLayout>
+                        <Button x:Name="SaveTplBtn" Style="{StaticResource GhostButton}" Text="＋"
+                                FontSize="20" WidthRequest="44" HeightRequest="40" Padding="0"
+                                Clicked="OnSaveTemplate" />
+                    </HorizontalStackLayout>
+
+                    <!-- 参数卡：三行步进器 -->
+                    <Border Style="{StaticResource Card}" Padding="16,4">
+                        <VerticalStackLayout>
+                            <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto" Padding="0,12">
+                                <Label x:Name="WorkRowLabel" Style="{StaticResource BodyText}" VerticalOptions="Center" />
+                                <Button x:Name="WorkMinus" Grid.Column="2" Style="{StaticResource GhostButton}"
+                                        TextColor="{StaticResource TextMuted}" WidthRequest="44" HeightRequest="44"
+                                        CornerRadius="22" Padding="0" Clicked="OnWorkMinus" />
+                                <Label x:Name="WorkValue" Grid.Column="3" FontSize="17" FontAttributes="Bold"
+                                       TextColor="{StaticResource TextPrimary}" WidthRequest="84"
+                                       HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                                <Button x:Name="WorkPlus" Grid.Column="4" Style="{StaticResource GhostButton}"
+                                        TextColor="{StaticResource TextMuted}" WidthRequest="44" HeightRequest="44"
+                                        CornerRadius="22" Padding="0" Clicked="OnWorkPlus" />
+                            </Grid>
+                            <BoxView Style="{StaticResource RowSeparator}" Margin="0" />
+                            <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto" Padding="0,12">
+                                <Label x:Name="RestRowLabel" Style="{StaticResource BodyText}" VerticalOptions="Center" />
+                                <Button x:Name="RestMinus" Grid.Column="2" Style="{StaticResource GhostButton}"
+                                        TextColor="{StaticResource TextMuted}" WidthRequest="44" HeightRequest="44"
+                                        CornerRadius="22" Padding="0" Clicked="OnRestMinus" />
+                                <Label x:Name="RestValue" Grid.Column="3" FontSize="17" FontAttributes="Bold"
+                                       TextColor="{StaticResource TextPrimary}" WidthRequest="84"
+                                       HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                                <Button x:Name="RestPlus" Grid.Column="4" Style="{StaticResource GhostButton}"
+                                        TextColor="{StaticResource TextMuted}" WidthRequest="44" HeightRequest="44"
+                                        CornerRadius="22" Padding="0" Clicked="OnRestPlus" />
+                            </Grid>
+                            <BoxView Style="{StaticResource RowSeparator}" Margin="0" />
+                            <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto" Padding="0,12">
+                                <Label x:Name="RoundsRowLabel" Style="{StaticResource BodyText}" VerticalOptions="Center" />
+                                <Button x:Name="RoundsMinus" Grid.Column="2" Style="{StaticResource GhostButton}"
+                                        TextColor="{StaticResource TextMuted}" WidthRequest="44" HeightRequest="44"
+                                        CornerRadius="22" Padding="0" Clicked="OnRoundsMinus" />
+                                <Label x:Name="RoundsValue" Grid.Column="3" FontSize="17" FontAttributes="Bold"
+                                       TextColor="{StaticResource TextPrimary}" WidthRequest="84"
+                                       HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                                <Button x:Name="RoundsPlus" Grid.Column="4" Style="{StaticResource GhostButton}"
+                                        TextColor="{StaticResource TextMuted}" WidthRequest="44" HeightRequest="44"
+                                        CornerRadius="22" Padding="0" Clicked="OnRoundsPlus" />
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!-- 末组休息 + 结束前倒数窗（DEV-04 通用计划编辑器） -->
+                    <Border Style="{StaticResource Card}" Padding="16,4">
+                        <VerticalStackLayout>
+                            <Grid ColumnDefinitions="*,Auto" Padding="0,12" ColumnSpacing="12">
+                                <Label x:Name="RestLastLabel" Style="{StaticResource BodyText}" VerticalOptions="Center" />
+                                <Switch x:Name="RestLastSwitch" Grid.Column="1" OnColor="{StaticResource Primary}"
+                                        VerticalOptions="Center" Toggled="OnRestLastToggled" />
+                            </Grid>
+                            <BoxView Style="{StaticResource RowSeparator}" Margin="0" />
+                            <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto" Padding="0,12" ColumnSpacing="8">
+                                <Label x:Name="CountdownWindowLabel" Style="{StaticResource BodyText}"
+                                       VerticalOptions="Center" />
+                                <Border x:Name="Win5Chip" Grid.Column="2" Style="{StaticResource FilterChip}">
+                                    <Button x:Name="Win5Btn" Style="{StaticResource GhostButton}" Padding="4,4"
+                                            TextColor="{StaticResource TextSecondary}" CommandParameter="5"
+                                            Clicked="OnWindow" />
+                                </Border>
+                                <Border x:Name="Win3Chip" Grid.Column="3" Style="{StaticResource FilterChip}">
+                                    <Button x:Name="Win3Btn" Style="{StaticResource GhostButton}" Padding="4,4"
+                                            TextColor="{StaticResource TextSecondary}" CommandParameter="3"
+                                            Clicked="OnWindow" />
+                                </Border>
+                                <Border x:Name="WinOffChip" Grid.Column="4" Style="{StaticResource FilterChip}">
+                                    <Button x:Name="WinOffBtn" Style="{StaticResource GhostButton}" Padding="4,4"
+                                            TextColor="{StaticResource TextSecondary}" CommandParameter="0"
+                                            Clicked="OnWindow" />
+                                </Border>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <!-- 训练预览卡 -->
+                    <Label x:Name="PreviewHeaderLabel" Style="{StaticResource SectionHeader}" Margin="0,6,0,0" />
+                    <Border Style="{StaticResource Card}">
+                        <VerticalStackLayout Spacing="12">
+                            <ScrollView HorizontalScrollBarVisibility="Never">
+                                <HorizontalStackLayout x:Name="PreviewBlocks" Spacing="6" />
+                            </ScrollView>
+                            <Grid ColumnDefinitions="Auto,Auto,*,Auto" ColumnSpacing="8">
+                                <HorizontalStackLayout Spacing="6" VerticalOptions="Center">
+                                    <Label Text="●" FontSize="12" TextColor="{StaticResource Primary}"
+                                           VerticalOptions="Center" />
+                                    <Label x:Name="WorkLegendLabel" Style="{StaticResource AuxText}"
+                                           VerticalOptions="Center" />
+                                    <Label Text="●" FontSize="12" TextColor="{StaticResource SelectedBg}"
+                                           VerticalOptions="Center" Margin="8,0,0,0" />
+                                    <Label x:Name="RestLegendLabel" Style="{StaticResource AuxText}"
+                                           VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                                <Label Grid.Column="1" Text="｜" Style="{StaticResource AuxText}"
+                                       TextColor="{StaticResource TextMuted}" VerticalOptions="Center" />
+                                <Label x:Name="TotalLabel" Grid.Column="3" FontSize="14" FontAttributes="Bold"
+                                       TextColor="{StaticResource TextPrimary}" VerticalOptions="Center" />
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- ── 倒计时面板 ── -->
+                <VerticalStackLayout x:Name="CountdownPanel" Spacing="8" IsVisible="False">
+                    <Border Style="{StaticResource Card}" Padding="16,12">
+                        <VerticalStackLayout Spacing="12">
+                            <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto">
+                                <Label Text="⏱" FontSize="18" VerticalOptions="Center" />
+                                <Button x:Name="CdMinus" Grid.Column="2" Style="{StaticResource GhostButton}"
+                                        TextColor="{StaticResource TextMuted}" WidthRequest="44" HeightRequest="44"
+                                        CornerRadius="22" Padding="0" Clicked="OnCdMinus" />
+                                <Label x:Name="CdValue" Grid.Column="3" FontSize="17" FontAttributes="Bold"
+                                       TextColor="{StaticResource TextPrimary}" WidthRequest="84"
+                                       HorizontalTextAlignment="Center" VerticalOptions="Center" />
+                                <Button x:Name="CdPlus" Grid.Column="4" Style="{StaticResource GhostButton}"
+                                        TextColor="{StaticResource TextMuted}" WidthRequest="44" HeightRequest="44"
+                                        CornerRadius="22" Padding="0" Clicked="OnCdPlus" />
+                            </Grid>
+                            <BoxView Style="{StaticResource RowSeparator}" Margin="0" />
+                            <HorizontalStackLayout Spacing="10">
+                                <Border x:Name="QuickChip5" Style="{StaticResource FilterChip}">
+                                    <Button x:Name="Quick5" Style="{StaticResource GhostButton}" Padding="4,4"
+                                            TextColor="{StaticResource TextSecondary}" CommandParameter="5"
+                                            Clicked="OnQuickDur" />
+                                </Border>
+                                <Border x:Name="QuickChip10" Style="{StaticResource FilterChip}">
+                                    <Button x:Name="Quick10" Style="{StaticResource GhostButton}" Padding="4,4"
+                                            TextColor="{StaticResource TextSecondary}" CommandParameter="10"
+                                            Clicked="OnQuickDur" />
+                                </Border>
+                                <Border x:Name="QuickChip25" Style="{StaticResource FilterChip}">
+                                    <Button x:Name="Quick25" Style="{StaticResource GhostButton}" Padding="4,4"
+                                            TextColor="{StaticResource TextSecondary}" CommandParameter="25"
+                                            Clicked="OnQuickDur" />
+                                </Border>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- 语音提示（两面板共用） -->
+                <Border Style="{StaticResource Card}" Padding="16,12">
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                        <VerticalStackLayout Spacing="2" VerticalOptions="Center">
+                            <Label x:Name="TtsLabel" Style="{StaticResource BodyText}" />
+                            <Label x:Name="TtsSub" Style="{StaticResource AuxText}" />
+                        </VerticalStackLayout>
+                        <Switch x:Name="TtsSwitch" Grid.Column="1" OnColor="{StaticResource Primary}"
+                                VerticalOptions="Center" Toggled="OnTtsToggled" />
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- 底部操作 -->
+        <VerticalStackLayout Grid.Row="2" Spacing="10">
+            <Border x:Name="SaveStartWrap" Style="{StaticResource PrimaryBtnWrap}"
+                    BackgroundColor="{StaticResource Primary}">
+                <Button x:Name="SaveStartBtn" Style="{StaticResource GhostButton}" TextColor="White"
+                        Clicked="OnSaveStart" />
+            </Border>
+            <Border x:Name="SaveOnlyWrap" Style="{StaticResource SecondaryBtnWrap}"
+                    BackgroundColor="{StaticResource SelectedBg}" StrokeThickness="0">
+                <Button x:Name="SaveOnlyBtn" Style="{StaticResource GhostButton}"
+                        TextColor="{StaticResource Primary}" Clicked="OnSaveOnly" />
+            </Border>
+        </VerticalStackLayout>
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VoiceTodo.Maui.Pages.VoiceCapturePage">
+
+    <!-- 语音录入流：聆听 → 识别 → 确认（04-voice-listening / 05-voice-confirm 设计稿） -->
+    <Grid>
+
+        <Grid RowDefinitions="Auto,*,Auto" Padding="20,12,20,20" RowSpacing="10">
+
+            <!-- 顶栏：X/← + 居中标题 -->
+            <Grid ColumnDefinitions="44,*,44">
+                <Border x:Name="BackWrap" Style="{StaticResource IconCircle}">
+                    <Button x:Name="BackBtn" Style="{StaticResource GhostButton}" Padding="0" CornerRadius="22"
+                            FontSize="18" Clicked="OnBackClicked" />
+                </Border>
+                <Label x:Name="TitleLabel" Grid.Column="1" Style="{StaticResource BodyText}"
+                       FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
+            </Grid>
+
+            <!-- 三个状态面板（IsVisible 切换） -->
+            <Grid Grid.Row="1">
+
+                <!-- ── 面板 1：聆听 / 识别中 ── -->
+                <Grid x:Name="ListeningPanel" RowDefinitions="Auto,*,Auto,Auto" RowSpacing="6">
+                    <Border x:Name="Capsule" BackgroundColor="{StaticResource AmberBg}" StrokeThickness="0"
+                            StrokeShape="RoundRectangle 16" Padding="14,7" HorizontalOptions="Center">
+                        <Label x:Name="CapsuleLabel" FontSize="13" FontAttributes="Bold"
+                               TextColor="{StaticResource Amber}" />
+                    </Border>
+
+                    <VerticalStackLayout Grid.Row="1" VerticalOptions="Center" Spacing="14">
+                        <Label x:Name="LiveText" Text="…" FontSize="34" FontAttributes="Bold"
+                               TextColor="{StaticResource TextMuted}" HorizontalTextAlignment="Center" />
+                        <HorizontalStackLayout x:Name="WaveHost" Spacing="4" HeightRequest="60"
+                                               HorizontalOptions="Center" VerticalOptions="Center" />
+                        <Label x:Name="TimerLabel" Text="00:00" FontSize="30" FontAttributes="Bold"
+                               TextColor="{StaticResource TextPrimary}" HorizontalOptions="Center" />
+                        <Label x:Name="SpeakHintLabel" Style="{StaticResource AuxText}" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Row="2" Spacing="6" HorizontalOptions="Center">
+                        <Button x:Name="MicBtn" Text="🎙" WidthRequest="96" HeightRequest="96" CornerRadius="48"
+                                BackgroundColor="{StaticResource Primary}" TextColor="White" FontSize="36"
+                                Padding="0" Clicked="OnFinishRecord" />
+                        <Label x:Name="FinishLabel" FontSize="13" FontAttributes="Bold"
+                               TextColor="{StaticResource TextPrimary}" HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+
+                    <Grid Grid.Row="3" ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                        <Button x:Name="SwitchBtn" Style="{StaticResource GhostButton}"
+                                TextColor="{StaticResource TextSecondary}" Clicked="OnSwitchToType" />
+                        <!-- 取消本句：丢弃本次录音并回到可再次录音（离开页面走顶部 ✕，会话保持） -->
+                        <Button x:Name="CancelBtn" Grid.Column="1" Style="{StaticResource GhostButton}"
+                                TextColor="{StaticResource TextSecondary}" Clicked="OnDiscardSentence" />
+                        <!-- 结束会话：终止常驻会话生命周期（DEV-06） -->
+                        <Button x:Name="EndSessionBtn" Grid.Column="2" Style="{StaticResource GhostButton}"
+                                TextColor="{StaticResource TextSecondary}" Clicked="OnEndSession" />
+                    </Grid>
+                </Grid>
+
+                <!-- ── 面板 2：确认记录 ── -->
+                <ScrollView x:Name="ConfirmPanel" IsVisible="False">
+                    <VerticalStackLayout Spacing="12">
+                        <Label x:Name="YouSaidLabel" Style="{StaticResource BodyText}" />
+                        <Label x:Name="QuotedText" FontSize="22" FontAttributes="Bold"
+                               TextColor="{StaticResource TextPrimary}" LineBreakMode="WordWrap" />
+
+                        <Border BackgroundColor="{StaticResource AmberBg}" StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8" Padding="12,10">
+                            <HorizontalStackLayout Spacing="6">
+                                <Label Text="✓" FontSize="14" FontAttributes="Bold"
+                                       TextColor="{StaticResource Success}" VerticalOptions="Center" />
+                                <Label x:Name="BannerLabel" FontSize="13" TextColor="{StaticResource Amber}"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </Border>
+
+                        <Border Style="{StaticResource Card}" Padding="0">
+                            <VerticalStackLayout>
+                                <Grid x:Name="ItemRow" ColumnDefinitions="Auto,*,Auto" Padding="14,13"
+                                      ColumnSpacing="8">
+                                    <Label x:Name="ItemLabel" FontSize="15" TextColor="{StaticResource TextPrimary}"
+                                           VerticalOptions="Center" />
+                                    <Label x:Name="ItemValue" Grid.Column="1" Style="{StaticResource ValueText}"
+                                           HorizontalTextAlignment="End" LineBreakMode="TailTruncation" />
+                                    <Label Grid.Column="2" Text="›" FontSize="18" TextColor="{StaticResource TextMuted}"
+                                           VerticalOptions="Center" />
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnEditItem" />
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                                <BoxView Style="{StaticResource RowSeparator}" />
+                                <Grid x:Name="DateRow" ColumnDefinitions="Auto,*,Auto" Padding="14,13" ColumnSpacing="8">
+                                    <Label x:Name="DateLabel" FontSize="15" TextColor="{StaticResource TextPrimary}"
+                                           VerticalOptions="Center" />
+                                    <Label x:Name="DateValue" Grid.Column="1" Style="{StaticResource ValueText}"
+                                           HorizontalTextAlignment="End" />
+                                    <Label Grid.Column="2" Text="›" FontSize="18" TextColor="{StaticResource TextMuted}"
+                                           VerticalOptions="Center" />
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnEditDate" />
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                                <BoxView Style="{StaticResource RowSeparator}" />
+                                <Grid x:Name="TimeRow" ColumnDefinitions="Auto,*,Auto" Padding="14,13" ColumnSpacing="8">
+                                    <Label x:Name="TimeLabel" FontSize="15" TextColor="{StaticResource TextPrimary}"
+                                           VerticalOptions="Center" />
+                                    <Label x:Name="TimeValue" Grid.Column="1" Style="{StaticResource ValueText}"
+                                           HorizontalTextAlignment="End" />
+                                    <Label Grid.Column="2" Text="›" FontSize="18" TextColor="{StaticResource TextMuted}"
+                                           VerticalOptions="Center" />
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnEditTime" />
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                                <BoxView Style="{StaticResource RowSeparator}" />
+                                <Grid x:Name="ReminderRow" ColumnDefinitions="Auto,*,Auto" Padding="14,13"
+                                      ColumnSpacing="8">
+                                    <Label x:Name="ReminderLabel" FontSize="15" TextColor="{StaticResource TextPrimary}"
+                                           VerticalOptions="Center" />
+                                    <Label x:Name="ReminderValue" Grid.Column="1" Style="{StaticResource ValueText}"
+                                           HorizontalTextAlignment="End" />
+                                    <Label Grid.Column="2" Text="›" FontSize="18" TextColor="{StaticResource TextMuted}"
+                                           VerticalOptions="Center" />
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnEditReminder" />
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                                <BoxView Style="{StaticResource RowSeparator}" />
+                                <Grid x:Name="RepeatRow" ColumnDefinitions="Auto,*,Auto" Padding="14,13"
+                                      ColumnSpacing="8">
+                                    <Label x:Name="RepeatLabel" FontSize="15" TextColor="{StaticResource TextPrimary}"
+                                           VerticalOptions="Center" />
+                                    <Label x:Name="RepeatValue" Grid.Column="1" Style="{StaticResource ValueText}"
+                                           HorizontalTextAlignment="End" />
+                                    <Label Grid.Column="2" Text="›" FontSize="18" TextColor="{StaticResource TextMuted}"
+                                           VerticalOptions="Center" />
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnEditRepeat" />
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Label x:Name="TapHintLabel" Style="{StaticResource AuxText}" HorizontalOptions="Center" />
+
+                        <Border Style="{StaticResource PrimaryBtnWrap}">
+                            <Button x:Name="ConfirmBtn" Style="{StaticResource GhostButton}" TextColor="White"
+                                    Clicked="OnConfirmAdd" />
+                        </Border>
+                        <Border Style="{StaticResource SecondaryBtnWrap}">
+                            <Button x:Name="SayAgainBtn" Style="{StaticResource GhostButton}"
+                                    TextColor="{StaticResource Primary}" Clicked="OnSayAgain" />
+                        </Border>
+                    </VerticalStackLayout>
+                </ScrollView>
+
+                <!-- ── 面板 3：识别失败（保留已获得文本为草稿 + 重试 / 改文字） ── -->
+                <Grid x:Name="ErrorPanel" IsVisible="False">
+                    <VerticalStackLayout VerticalOptions="Center" Spacing="16" Padding="0,40">
+                        <Label Text="😕" FontSize="44" HorizontalOptions="Center" />
+                        <Label x:Name="ErrorLabel" Style="{StaticResource BodyText}" HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center" />
+                        <Label x:Name="ErrorDraftLabel" IsVisible="False" Style="{StaticResource AuxText}"
+                               HorizontalOptions="Center" HorizontalTextAlignment="Center"
+                               LineBreakMode="WordWrap" />
+                        <Border Style="{StaticResource PrimaryBtnWrap}" HorizontalOptions="Center" WidthRequest="220">
+                            <Button x:Name="RetryBtn" Style="{StaticResource GhostButton}" TextColor="White"
+                                    Clicked="OnSayAgain" />
+                        </Border>
+                        <Button x:Name="ErrorSwitchBtn" Style="{StaticResource GhostButton}"
+                                TextColor="{StaticResource TextSecondary}" Clicked="OnSwitchToType"
+                                HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Grid>
+
+                <!-- ── 面板 4：等待授权 / 权限被拒 / 麦克风不可用（三分支复用） ── -->
+                <Grid x:Name="AccessPanel" IsVisible="False">
+                    <VerticalStackLayout VerticalOptions="Center" Spacing="16" Padding="0,40">
+                        <Label Text="🎙" FontSize="44" HorizontalOptions="Center" />
+                        <Label x:Name="AccessLabel" Style="{StaticResource BodyText}" HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center" />
+                        <Border x:Name="AccessPrimaryWrap" Style="{StaticResource PrimaryBtnWrap}"
+                                HorizontalOptions="Center" WidthRequest="220">
+                            <Button x:Name="AccessPrimaryBtn" Style="{StaticResource GhostButton}" TextColor="White"
+                                    Clicked="OnAccessPrimary" />
+                        </Border>
+                        <Button x:Name="AccessSwitchBtn" Style="{StaticResource GhostButton}"
+                                TextColor="{StaticResource TextSecondary}" Clicked="OnSwitchToType"
+                                HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Grid>
+
+                <!-- ── 面板 5：训练计划追问（DEV-04：缺槽只追问缺失项，已识别字段保留；补说或手动补齐） ── -->
+                <ScrollView x:Name="FollowUpPanel" IsVisible="False">
+                    <VerticalStackLayout Spacing="12">
+                        <Label x:Name="YouSaidFollowLabel" Style="{StaticResource BodyText}" />
+                        <Label x:Name="QuotedFollowText" FontSize="22" FontAttributes="Bold"
+                               TextColor="{StaticResource TextPrimary}" LineBreakMode="WordWrap" />
+
+                        <Border Style="{StaticResource Card}" Padding="0">
+                            <VerticalStackLayout>
+                                <Grid ColumnDefinitions="Auto,*" Padding="14,13" ColumnSpacing="8">
+                                    <Label x:Name="PlanActionRowLabel" FontSize="15"
+                                           TextColor="{StaticResource TextPrimary}" VerticalOptions="Center" />
+                                    <Label x:Name="PlanActionRowValue" Grid.Column="1" Style="{StaticResource ValueText}"
+                                           HorizontalTextAlignment="End" LineBreakMode="TailTruncation" />
+                                </Grid>
+                                <BoxView Style="{StaticResource RowSeparator}" />
+                                <Grid ColumnDefinitions="Auto,*" Padding="14,13" ColumnSpacing="8">
+                                    <Label x:Name="PlanRoundsRowLabel" FontSize="15"
+                                           TextColor="{StaticResource TextPrimary}" VerticalOptions="Center" />
+                                    <Label x:Name="PlanRoundsRowValue" Grid.Column="1" Style="{StaticResource ValueText}"
+                                           HorizontalTextAlignment="End" />
+                                </Grid>
+                                <BoxView Style="{StaticResource RowSeparator}" />
+                                <Grid ColumnDefinitions="Auto,*" Padding="14,13" ColumnSpacing="8">
+                                    <Label x:Name="PlanWorkRowLabel" FontSize="15"
+                                           TextColor="{StaticResource TextPrimary}" VerticalOptions="Center" />
+                                    <Label x:Name="PlanWorkRowValue" Grid.Column="1" Style="{StaticResource ValueText}"
+                                           HorizontalTextAlignment="End" />
+                                </Grid>
+                                <BoxView Style="{StaticResource RowSeparator}" />
+                                <Grid ColumnDefinitions="Auto,*" Padding="14,13" ColumnSpacing="8">
+                                    <Label x:Name="PlanRestRowLabel" FontSize="15"
+                                           TextColor="{StaticResource TextPrimary}" VerticalOptions="Center" />
+                                    <Label x:Name="PlanRestRowValue" Grid.Column="1" Style="{StaticResource ValueText}"
+                                           HorizontalTextAlignment="End" />
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border BackgroundColor="{StaticResource AmberBg}" StrokeThickness="0"
+                                StrokeShape="RoundRectangle 8" Padding="12,10">
+                            <Label x:Name="MissingLabel" FontSize="13" TextColor="{StaticResource Amber}"
+                                   LineBreakMode="WordWrap" />
+                        </Border>
+
+                        <Label x:Name="FollowUpHintLabel" Style="{StaticResource AuxText}" HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center" />
+
+                        <Border Style="{StaticResource PrimaryBtnWrap}">
+                            <Button x:Name="FollowSpeakBtn" Style="{StaticResource GhostButton}" TextColor="White"
+                                    Clicked="OnSayAgain" />
+                        </Border>
+                        <Border Style="{StaticResource SecondaryBtnWrap}">
+                            <Button x:Name="FollowEditBtn" Style="{StaticResource GhostButton}"
+                                    TextColor="{StaticResource Primary}" Clicked="OnFollowUpEdit" />
+                        </Border>
+                    </VerticalStackLayout>
+                </ScrollView>
+            </Grid>
+        </Grid>
+
+        <!-- 覆盖层：事项 / 日期 / 时间 / 提醒 / 重复 -->
+        <Grid x:Name="Overlay" IsVisible="False" BackgroundColor="#66000000">
+            <Border Style="{StaticResource Card}" VerticalOptions="Center" HorizontalOptions="Center"
+                    WidthRequest="320" Padding="20">
+                <VerticalStackLayout Spacing="12">
+                    <Label x:Name="OverlayTitle" Style="{StaticResource SectionHeader}" HorizontalOptions="Center" />
+                    <Editor x:Name="OverlayEditor" IsVisible="False" HeightRequest="90"
+                            BackgroundColor="Transparent" TextColor="{StaticResource TextPrimary}" />
+                    <DatePicker x:Name="OverlayDatePicker" IsVisible="False" DateSelected="OnOverlayDatePicked" />
+                    <TimePicker x:Name="OverlayTimePicker" IsVisible="False" TimeSelected="OnOverlayTimePicked" />
+                    <VerticalStackLayout x:Name="OverlayOptions" IsVisible="False" Spacing="4" />
+                    <Border Style="{StaticResource PrimaryBtnWrap}">
+                        <Button x:Name="OverlayOkBtn" Style="{StaticResource GhostButton}" TextColor="White"
+                                Clicked="OnOverlayClose" />
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+        </Grid>
+    </Grid>
+
+</ContentPage>
