@@ -16,8 +16,8 @@
     <ApplicationIdGuid>f7d2e8b1-3c4a-4f9b-9d2e-1a2b3c4d5e6f</ApplicationIdGuid>
 
     <!-- 版本号（对外展示 / 安装包 versionName 与 versionCode）；README 与隐私说明引用此值 -->
-    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-    <ApplicationVersion>1</ApplicationVersion>
+    <ApplicationDisplayVersion>1.1</ApplicationDisplayVersion>
+    <ApplicationVersion>2</ApplicationVersion>
 
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">24.0</SupportedOSPlatformVersion>
     <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.19041.0</SupportedOSPlatformVersion>

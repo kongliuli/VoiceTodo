@@ -156,15 +156,15 @@
             <Border Style="{StaticResource CardFlat}">
                 <VerticalStackLayout Spacing="0">
                     <Button x:Name="ExportDataBtn" Style="{StaticResource GhostButton}"
-                            HorizontalOptions="Fill" HorizontalTextAlignment="Start"
+                            HorizontalOptions="Fill" ContentLayout="Left,0"
                             Padding="16,12" Clicked="OnExportData" />
                     <BoxView Style="{StaticResource RowSeparator}" />
                     <Button x:Name="ImportDataBtn" Style="{StaticResource GhostButton}"
-                            HorizontalOptions="Fill" HorizontalTextAlignment="Start"
+                            HorizontalOptions="Fill" ContentLayout="Left,0"
                             Padding="16,12" Clicked="OnImportData" />
                     <BoxView Style="{StaticResource RowSeparator}" />
                     <Button x:Name="ExportLogsBtn" Style="{StaticResource GhostButton}"
-                            HorizontalOptions="Fill" HorizontalTextAlignment="Start"
+                            HorizontalOptions="Fill" ContentLayout="Left,0"
                             Padding="16,12" Clicked="OnExportLogs" />
                 </VerticalStackLayout>
             </Border>

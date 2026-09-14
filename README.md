@@ -5,7 +5,7 @@
 
 | 项 | 值 |
 |---|---|
-| 版本 | 1.0（`ApplicationDisplayVersion`） |
+| 版本 | 1.1（`ApplicationDisplayVersion`，`ApplicationVersion` 2） |
 | 目标平台 | Android（minSdk 24 / targetSdk 36）、Windows 10.0.19041+ |
 | 应用 ID | `com.voicetodo.app` |
 | 技术栈 | .NET 10 · .NET MAUI · C# |
