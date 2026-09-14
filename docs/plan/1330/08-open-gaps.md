@@ -1,7 +1,7 @@
 # 1330 · 当前开放缺口清单
 
 > **生成时间**：2026-09-14（初版）　**口径**：代码级审计（逐条查证到文件:行号），非推测。
-> **最近更新**：2026-09-14 —— A1–A5 与 C1/C2/C4/C5/C11/C12 已实现并**闭合**，实现位置见末尾 [§G 已闭合清单](#g-已闭合清单2026-09-14)；仍开放 C3/C6/C7/C8/C9/C10、B 组、D 组。
+> **最近更新**：2026-09-14 —— A1–A5 与 C1–C7、C11、C12 已实现并**闭合**（C 组 9/12），实现位置见末尾 [§G 已闭合清单](#g-已闭合清单2026-09-14)；仍开放 C8 / C9 / C10 与 B 组（常驻会话外围）。**D1 已解决**：仓库已 `git init` 并推送至 GitHub（`kongliuli/VoiceTodo`，走 SSH over 443）。
 > **本文取代** [voicetodo-master.md](../voicetodo-master.md) 第 4.2 / 4.3 / 4.4 节中已过期的部分——那三节写于 2026-09-11 重构中途，其 P0/P1/P2 大半已修复，**不可再作为待办依据**。
 > 平台能力导致的「不修项」见 [06-execution-plan.md](06-execution-plan.md) §7.1；已修复批次见 [07-batch-completion-report.md](07-batch-completion-report.md)。
 
@@ -41,20 +41,20 @@
 
 | # | 缺口 | 证据 / 说明 |
 |---|---|---|
-| C1 | 删除撤销 | 全仓无 Snackbar / Toast / Undo；`Pages/TaskEditorPage.xaml.cs:130` 明确提示「删除后不可恢复」。另：`ViewModels/TodoRowVm.cs:28,40` 的 `DeleteCommand` 未在任何 XAML 绑定，疑似死代码 |
-| C2 | 导出 / 导入 / 备份 | `Export`、`Import`、`Share`、`FilePicker`、`ShareFile` 全仓零命中 |
-| C3 | 历史留痕「再次开始」 | `TimerSession` 行仅支持改名（`Pages/CalendarPage.xaml.cs:395-410`）；「最近使用」来自 `TimerItem` 计划快照而非留痕（`Pages/TimerPage.xaml.cs:211-231`） |
+| C1 ✅ | 删除撤销 | 全仓无 Snackbar / Toast / Undo；`Pages/TaskEditorPage.xaml.cs:130` 明确提示「删除后不可恢复」。另：`ViewModels/TodoRowVm.cs:28,40` 的 `DeleteCommand` 未在任何 XAML 绑定，疑似死代码 |
+| C2 ✅ | 导出 / 导入 / 备份 | `Export`、`Import`、`Share`、`FilePicker`、`ShareFile` 全仓零命中 |
+| C3 ✅ | 历史留痕「再次开始」 | `TimerSession` 行仅支持改名（`Pages/CalendarPage.xaml.cs:395-410`）；「最近使用」来自 `TimerItem` 计划快照而非留痕（`Pages/TimerPage.xaml.cs:211-231`） |
 | C4 ✅ | 自定义模板保存 / 复用 | 仅硬编码 tabata / hiit / custom chip（`Pages/TimerEditorPage.xaml.cs:194-204`），无保存与读取通路 |
 | C5 ✅ | 清单页新建入口 | `Pages/ListsPage.xaml` 只有搜索 + 筛选 chips + 列表，无新建入口 |
-| C6 | 日历「当日添加」 | `Pages/CalendarPage.xaml.cs:193-205` 无预填日期的添加入口 |
-| C7 | 静默时段 / 免打扰 | `QuietHours` / 静默时段 / 免打扰 全仓零命中 |
+| C6 ✅ | 日历「当日添加」 | `Pages/CalendarPage.xaml.cs:193-205` 无预填日期的添加入口 |
+| C7 ✅ | 静默时段 / 免打扰 | `QuietHours` / 静默时段 / 免打扰 全仓零命中 |
 | C8 | 多计时并行 | 单实例：`ViewModels/MainViewModel.cs:125,156`，`RunningTimerHub.Current` 为单快照（master P1-3） |
 | C9 | **无障碍** | `SemanticProperties` **0 处**；无字号自适应（`DynamicResource` 字号 / `AppThemeBinding` / `OnPlatform` 字号均 0 处）；仅 1 处 `MinimumHeightRequest="44"`（`Pages/TaskEditorPage.xaml:34`）；48dp 只在样式注释里提（`Resources/Styles.xaml:8,214`）→ **200% 字号与读屏不达标** |
 | C10 | **i18n 未收口** | `.xaml`：`AppShell.xaml:19/23/27`（今天/清单/计时）、`Pages/CalendarPage.xaml:6`、`Pages/SettingsPage.xaml:106`；`.xaml.cs` 约 30+ 处，例：`SettingsPage.xaml.cs:154,159`、`TaskEditorPage.xaml.cs:130`、`CalendarPage.xaml.cs:284` |
 | C11 | **TTS 嗓音是死设置** | `Preferences["ttsVoice"]` 只被 `Pages/SettingsPage.xaml.cs:70,229` 读写，`PlatformServices/NativeTextToSpeech.cs` 无任何选音逻辑 → 用户改了不生效（master P1-7 仍成立） |
 | C12 | 日志 / 诊断 | 大量 `catch { }` 静默降级（通知、TTS、权限、模型提取、音频焦点），出故障无法定位（master P2-10） |
 
-> ✅ = 2026-09-14 已实现并闭合（实现位置见 §G）。**C 组 12 项已闭合 6 项**，仍开放 C3 / C6 / C7 / C8 / C9 / C10。
+> ✅ = 2026-09-14 已实现并闭合（实现位置见 §G）。**C 组 12 项已闭合 9 项**，仍开放 C8（多计时并行）/ C9（无障碍）/ C10（i18n 收口）——后两项需改全部 XAML，建议单独一轮。
 
 ## D. 工程与仓库卫生
 
@@ -83,13 +83,15 @@
 |---|---|---|
 | A | 静默失效「可信 4+1」：A1 通知权限 + A2 训练冲突确认 + A3 日历行可点 + A4 Nag 单任务停止 + A5 录音清理 | ✅ **已完成**（2026-09-14） |
 | C-1 | C1 删除撤销 + C2 导出/导入 + C4 自定义模板 + C5 清单页新建 + C11 TTS 嗓音 + C12 日志地基 | ✅ **已完成**（2026-09-14） |
-| C-2 | C3 历史留痕「再次开始」+ C6 日历当日添加 + C7 静默时段 | 待做，改动集中在 CalendarPage / TimerPage / SettingsPage |
+| C-2 | C3 历史留痕「再次开始」+ C6 日历当日添加 + C7 静默时段 | ✅ **已完成**（2026-09-14） |
+| D-1 | D1 `git init` —— 仓库基线 | ✅ **已完成**（2026-09-14，已推送 GitHub `kongliuli/VoiceTodo`，SSH over 443） |
 | C-3 | C8 多计时并行 | 待做；与 A2 新引入的「替换 / 取消」语义互斥，需先定产品决策 |
 | C-4 | C9 无障碍 + C10 i18n 收口 | 待做；需改全部 XAML，冲突面最大，建议单独一轮 |
+| D-2 | D2 非随包模型说明 + 文档收口 | 待做；不动功能，风险最低 |
 | B | 打通常驻会话外围（B1 麦克风 FGS + B2 常驻通知 + B3 全局状态条） | 待做；产品主方向，工作量最大、需真机调 |
-| D | 还工程债（D1 git init + D2 模型说明 + 文档收口） | 待做；不动功能，风险最低 |
+| E | **上机验证**：把已闭合的 A / C 项在真机（Android）跑一遍 | 待做；**当前所有改动只过了编译器，一次真机运行都没有** |
 
-**原建议顺序 A → C → B 中的 A 已全部完成、C 完成一半。建议下一步：D（`git init` 先给改动上回退快照）→ C-2 → B。**
+**建议下一步：E（上机验证）→ C-3 或 D-2 → B。**
 
 ---
 
@@ -115,22 +117,29 @@
 | C5 | `Pages/ListsPage.xaml(.cs)` | 标题行右侧「＋」→ `TextAddPage`（审计确认 `TaskEditorPage` 无参**并非**新建模式，会弹「找不到该任务」回退） |
 | C11 | `PlatformServices/NativeTextToSpeech.cs` 新增 `ResolveLang` | 读 `Preferences["ttsVoice"]`（trim + 长度上限 35，坏值不致命）；优先级 偏好 > culture > zh。Android `Locale.ForLanguageTag`；Windows 在 `AllVoices` 按 `Voice.Language` 前缀匹配，匹配不到静默降级 |
 | C12 | 新建 `Services/AppLog.cs`；接入 `SettingsPage` 两处原空 `catch` 与 C1/C2/C4 异常分支 | 落点 `AppDataDirectory/logs/app-yyyyMMdd.log`，`Info/Warn/Error`，`CleanupOld(7)`、`ExportAsync`；**内部全 try/catch，日志自身绝不抛** |
+| C3 | `Pages/CalendarPage.xaml(.cs)` | 留痕行加「再次开始」按钮（复用 GhostButton 风格）；用 `session.Phases + Rounds` 重建 `TimerItem`（`Plan = null`，走 `TimerPage` 既有的 `Flatten(item.Phases)` 分支），经 `TimerLauncher.RequestStart(item, autoStart: true)` 直接开跑；快照缺失 → `UserAlerts` 提示，不静默。cancelled 记录同样可再次开始 |
+| C6 | `Pages/CalendarPage.xaml(.cs)` + `Pages/TaskEditorPage.xaml.cs` | 日历头部加「＋」→ `TaskEditorPage?date=yyyy-MM-dd`；`TaskEditorPage` 新增 `date` 查询参数：**无 id 且有 date → 新建模式**（预填日期、时间留空、隐藏删除入口、保存走 `CreateAsync`），无参仍维持原「找不到该任务」回退 |
+| C7 | 新建 `Core/Abstractions/IQuietHours.cs`、`Core/QuietHoursPolicy.cs`、`PlatformServices/QuietHoursSettings.cs`；改 `SettingsPage.xaml(.cs)`、`LocalNotificationScheduler.cs`、`MauiProgram.cs` | 设置页新增开关 + 起止 `TimePicker`，持久化到 `Preferences`（`quiet.enabled` / `quiet.start` / `quiet.end`，**不用不持久化的 AppSettings 静态字段**）。语义＝**落入静默窗口的提醒顺延到窗口结束，不丢弃**，跨午夜正确判断；经 DI 注入调度器，作用于主 / 预 / Nag 三槽位，关闭时零副作用 |
 
-### 本轮新增 AppResources 键（28）
+### 本轮新增 AppResources 键（35）
 
 - **A 组（8）**：`Perm_RemindOffNoNotif`、`Conflict_Title`、`Conflict_Text`、`Conflict_Replace`、`Conflict_Cancel`、`Conflict_Kept`、`NagStop_Button`、`NagStop_Done`
-- **C 组（20）**：`Undo_DeletedFormat`、`Undo_Action`、`Undo_Failed`、`DataGroup`、`ExportData`、`ImportData`、`ExportDoneFormat`、`ImportDoneFormat`、`ImportFailed`、`ExportFailed`、`ExportLogs`、`LogsNone`、`SaveAsTemplate`、`SaveAsTemplateTitle`、`TplNamePrompt`、`TplSavedFormat`、`TplDeleteConfirm`、`TplDeleteTitle`、`TplLimitReached`、`AddTodo`
+- **C 组第一批（20）**：`Undo_DeletedFormat`、`Undo_Action`、`Undo_Failed`、`DataGroup`、`ExportData`、`ImportData`、`ExportDoneFormat`、`ImportDoneFormat`、`ImportFailed`、`ExportFailed`、`ExportLogs`、`LogsNone`、`SaveAsTemplate`、`SaveAsTemplateTitle`、`TplNamePrompt`、`TplSavedFormat`、`TplDeleteConfirm`、`TplDeleteTitle`、`TplLimitReached`、`AddTodo`
+- **C 组第二批（7，Wave 2）**：`SessionRestart`、`SessionNoStructure`、`CalAddTodo`、`QuietHours`、`QuietFrom`、`QuietTo`、`QuietHint`
 
 （三处同步：`AppResources.cs` / `AppResources.resx` / `AppResources.zh.resx`；均为追加，未改动已有键）
 
 ### 验证
 
-- Windows TFM 构建：**0 错误 / 43 警告**（2026-09-14 实测；43 条全为既有 CS0618/CS8629/CS8601/CS8602/CS8670，**无一条来自本轮新增文件**）。
+- Windows TFM 构建：**0 错误**。Wave 1 全量 43 警告；Wave 2 增量构建 21 警告（均为既有 CS0618 / CS8629 / CS8601 / CS8602 / CS8670，**无一条来自本轮新增文件**）。
 - 按约定未跑 Android 构建（Release 全量 AOT 约 13.5 分钟，本轮跳过）。
 
 ### 本轮遗留
 
+- ⚠️ **全部改动只做了编译验证，未经真机 / 模拟器运行**。C3「再次开始」、C6「日期预填新建」、C7「静默顺延」三项都需要上机确认一次。
 - **C12 只做了地基**：`App.xaml.cs` 全局异常处理未接入 `AppLog`；其余散落的 `catch {}`（通知、TTS、模型提取、音频焦点等）未逐一替换，属后续清扫项。
 - **C4 长按删除**：.NET MAUI 无 `LongPressGestureRecognizer`，改用 `Button.Pressed` 起算 650ms + `Released` 取消的等价实现（附守卫避免与 tap 冲突）。
 - **C2 导入**直接落库、不经 dispatcher（批量导入不适合逐条排提醒）——与「页面变更走 dispatcher」契约不冲突，但需留意导入项**不会**自动获得提醒。
 - **A1 为「保存时申请」而非「启动时申请」**：用户拒绝后不阻断保存，仅在带提醒的待办保存时提示；后续如需更早引导可再加设置页一键开启入口。
+- **C7 的语义是「顺延」而非「丢弃」**：静默时段内的提醒会顺延到时段结束再响。若产品上更希望「静默期内直接跳过、只在应用内显示逾期」，只需改 `src/VoiceTodo.Core/QuietHoursPolicy.cs` 的 `Defer` 一处。
+- **C7 未覆盖 Windows**：`WindowsNotificationScheduler` 本就 `SupportsFutureScheduling = false`（诚实汇报而非谎报），静默顺延对它无意义，故未接入。
